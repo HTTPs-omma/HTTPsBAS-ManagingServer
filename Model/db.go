@@ -22,7 +22,7 @@ func getDBPtr() (*sql.DB, error) {
 	}
 
 	db.SetMaxOpenConns(3)                  // 최대 오픈 커넥션 수
-	db.SetMaxIdleConns(3)                  // 최대 유휴 커넥션 수
+	db.SetMaxIdleConns(3)                  // 최대 유휴 커넥션 수;
 	db.SetConnMaxLifetime(5 * time.Minute) // 연결이 닫히기 전에 열려 있는 최대 시간을 설정할 수 있습니다.
 	// 최대 5분 까지 유지
 
