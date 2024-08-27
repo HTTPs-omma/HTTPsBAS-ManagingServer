@@ -2,10 +2,16 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v3"
+	"github.com/joho/godotenv"
 	"log"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		panic("Error loading .env file")
+	}
+
 	// Initialize a new Fiber app
 	app := fiber.New()
 
@@ -17,4 +23,5 @@ func main() {
 
 	// Start the server on port 3000
 	log.Fatal(app.Listen(":3000"))
+
 }

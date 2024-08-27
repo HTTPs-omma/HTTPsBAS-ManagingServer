@@ -1,8 +1,9 @@
 package Core
 
+import "github.com/your/repo/Model"
+
 /*
 	Agent Model = Managing + model
-
 */
 
 type AgentManager struct {
@@ -25,8 +26,13 @@ func (self *AgentManager) checkAgent(uuid string) bool {
 	return false
 }
 
-func (self *AgentManager) updateAgent(uuid string) bool {
-
+func (self *AgentManager) updateAgentStatus(uuid string, status bool) bool {
+	agtStat := &Model.NewAgentStatusDB()
+	record := &Model.AgentStatusRecord{
+		UUID:   uuid,
+		Status: status,
+	}
+	agtStat.UpdateRecord()
 }
 
 func (self *AgentManager) deleteAgent(uuid string) bool {
