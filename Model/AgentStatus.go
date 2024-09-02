@@ -5,24 +5,43 @@ import (
 	"time"
 )
 
-/*
-agent 의 상태 Status 는 총 3가지로 나뉜다.
+// Protocol 유형을 정의합니다.
+type Protocol uint8
 
-Running : 동작중인 상태
-waiting : 대기중인 상태
-Stopping : 정지후 사라지기 전에 상태
-*/
+const (
+	TCP             Protocol = 0b0001 // TCP 프로토콜
+	UDP             Protocol = 0b0010 // UDP 프로토콜
+	HTTP            Protocol = 0b0011 // HTTP 프로토콜
+	HTTPS           Protocol = 0b0100 // HTTPS 프로토콜
+	UnknownProtocol Protocol = 0b0000 // 알 수 없는 프로토콜
+)
+
+// Protocol을 문자열로 변환하는 메서드를 구현합니다.
+func (p Protocol) String() string {
+	switch p {
+	case TCP:
+		return "TCP"
+	case UDP:
+		return "UDP"
+	case HTTP:
+		return "HTTP"
+	case HTTPS:
+		return "HTTPS"
+	default:
+		return "Unknown"
+	}
+}
+
+// AgentStatus 유형을 정의합니다.
 type AgentStatus int
 
 const (
-	Running  AgentStatus = iota // 동작 중인 상태
-	Waiting                     // 대기 중인 상태
+	Waiting  AgentStatus = iota // 동작 중인 상태
+	Running                     // 대기 중인 상태
 	Stopping                    // 정지 후 사라지기 전의 상태
+	Deleted
+	Unknown
 )
-
-/*
-해당 코드를 빠른 코드 작성을 위해서 Chatgpt 가 작성후 허남정 연구원이 검토하는 형태로 만들었습니다.
-*/
 
 // AgentStatus를 문자열로 변환하는 메서드를 구현합니다.
 func (s AgentStatus) String() string {
@@ -33,8 +52,26 @@ func (s AgentStatus) String() string {
 		return "Waiting"
 	case Stopping:
 		return "Stopping"
+	case Deleted:
+		return "Deleted"
 	default:
 		return "Unknown"
+	}
+}
+
+// Binary 값을 AgentStatus로 변환하는 메서드를 구현합니다.
+func BinaryToAgentStatus(i uint8) AgentStatus {
+	switch i {
+	case 0b00:
+		return Waiting
+	case 0b01:
+		return Running
+	case 0b10:
+		return Stopping
+	case 0b11:
+		return Deleted
+	default:
+		return Unknown
 	}
 }
 
@@ -46,6 +83,7 @@ type AgentStatusRecord struct {
 	ID        int
 	UUID      string
 	Status    AgentStatus
+	Protocol  Protocol
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -68,6 +106,7 @@ func (s *AgentStatusDB) CreateTable() error {
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			uuid TEXT NOT NULL UNIQUE,
 			status int,
+			protocol int Default 0,
 			createAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 			updateAt DATETIME DEFAULT CURRENT_TIMESTAMP
 		);
@@ -107,14 +146,14 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`INSERT INTO %s (uuid, status) VALUES (?, ?)`, s.dbName)
+	query := fmt.Sprintf(`INSERT INTO %s (uuid, status, protocol) VALUES (?, ?, ?)`, s.dbName)
 	stmt, err := db.Prepare(query)
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(data.UUID, data.Status)
+	_, err = stmt.Exec(data.UUID, data.Status, data.Protocol)
 	if err != nil {
 		return err
 	}
@@ -130,7 +169,7 @@ func (s *AgentStatusDB) SelectRecords() ([]AgentStatusRecord, error) {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`SELECT id, uuid, status, createAt, updateAt FROM %s`, s.dbName)
+	query := fmt.Sprintf(`SELECT id, uuid, status, protocol, createAt, updateAt FROM %s`, s.dbName)
 	rows, err := db.Query(query)
 	if err != nil {
 		return nil, err
@@ -140,7 +179,7 @@ func (s *AgentStatusDB) SelectRecords() ([]AgentStatusRecord, error) {
 	var records []AgentStatusRecord
 	for rows.Next() {
 		var record AgentStatusRecord
-		err := rows.Scan(&record.ID, &record.UUID, &record.Status, &record.CreatedAt, &record.UpdatedAt)
+		err := rows.Scan(&record.ID, &record.UUID, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)
 		if err != nil {
 			return nil, err
 		}
@@ -150,7 +189,7 @@ func (s *AgentStatusDB) SelectRecords() ([]AgentStatusRecord, error) {
 	return records, nil
 }
 
-// UpdateRecord updates the status of a record identified by its UUID.
+// UpdateRecord updates the status and protocol of a record identified by its UUID.
 func (s *AgentStatusDB) UpdateRecord(data *AgentStatusRecord) error {
 	db, err := getDBPtr()
 	if err != nil {
@@ -158,8 +197,8 @@ func (s *AgentStatusDB) UpdateRecord(data *AgentStatusRecord) error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`UPDATE %s SET status = ? WHERE uuid = ?`, s.dbName)
-	_, err = db.Exec(query, data.Status, data.UUID)
+	query := fmt.Sprintf(`UPDATE %s SET status = ?, protocol = ? WHERE uuid = ?`, s.dbName)
+	_, err = db.Exec(query, data.Status, data.Protocol, data.UUID)
 	if err != nil {
 		return err
 	}
