@@ -75,6 +75,23 @@ func BinaryToAgentStatus(i uint8) AgentStatus {
 	}
 }
 
+// Binary 값을 AgentStatus로 변환하는 메서드를 구현합니다.
+func BinaryToProtocol(i uint8) Protocol {
+	switch i {
+	case 0b0001:
+		return TCP
+	case 0b0010:
+		return UDP
+	case 0b0011:
+		return HTTP
+	case 0b0100:
+		return HTTPS
+	default:
+		return UnknownProtocol
+	}
+}
+
+
 type AgentStatusDB struct {
 	dbName string
 }

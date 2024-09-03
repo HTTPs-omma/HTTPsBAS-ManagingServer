@@ -69,7 +69,7 @@ func updateHealth(hs *HSProtocol.HS)(*HSProtocol.HS, error){
 			Status: Model.BinaryToAgentStatus(hs.HealthStatus),
 		})
 		return &HSProtocol.HS{ // ACK
-			Version: hs.Version,
+			ProtocolID: hs.ProtocolID,
 			Command: 0b0000000000,
 			UUID: hs.UUID,
 			HealthStatus: hs.HealthStatus,
@@ -84,7 +84,7 @@ func updateHealth(hs *HSProtocol.HS)(*HSProtocol.HS, error){
 		})
 
 		return &HSProtocol.HS{ // ACK
-			Version: hs.Version,
+			ProtocolID : hs.ProtocolID,
 			Command: 0b0000000000,
 			UUID: hs.UUID,
 			HealthStatus: hs.HealthStatus,
@@ -101,10 +101,36 @@ func updateHealth(hs *HSProtocol.HS)(*HSProtocol.HS, error){
 // Command: 2 (0b0000000010)
 func updateProtocol(hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
+	// protocolID := binary.BigEndian.Uint32(hs.Data)
+	agsmd := Model.NewAgentStatusDB()
+	rst, err := agsmd.ExistRecord()
+	if err != nil {
+		return nil, err
+	}
+	if( rst ) {
+		return nil, fmt.Errorf("Agent Status DB : no Records")
+	}
+
+
+	records, err := agsmd.SelectRecords()
+	if err != nil {
+		return nil, err
+	}
+	hs_uuid := string(hs.UUID[:])
+
+	for _, record  := range records {
+		if record.UUID == hs_uuid {
+			record.Protocol = Model.BinaryToProtocol( hs.ProtocolID )
+			err = agsmd.UpdateRecord(&record)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
 
 
 	return &HSProtocol.HS{ // ACK
-		Version: hs.Version,
+		ProtocolID: hs.ProtocolID,
 		Command: 0b0000000000,
 		UUID: hs.UUID,
 		HealthStatus: hs.HealthStatus,
@@ -119,10 +145,8 @@ func updateProtocol(hs *HSProtocol.HS)(*HSProtocol.HS, error){
 func postSystemInfo (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
 
-
-
 	return &HSProtocol.HS{ // ACK
-		Version: hs.Version,
+		ProtocolID: hs.ProtocolID,
 		Command: 0b0000000000,
 		UUID: hs.UUID,
 		HealthStatus: hs.HealthStatus,
@@ -140,7 +164,7 @@ func postApplicationInfo (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
 
 	return &HSProtocol.HS{ // ACK
-		Version: hs.Version,
+		ProtocolID: hs.ProtocolID,
 		Command: 0b0000000000,
 		UUID: hs.UUID,
 		HealthStatus: hs.HealthStatus,
@@ -157,7 +181,7 @@ func getProcedure (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
 
 	return &HSProtocol.HS{ // ACK
-		Version: hs.Version,
+		ProtocolID: hs.ProtocolID,
 		Command: 0b0000000000,
 		UUID: hs.UUID,
 		HealthStatus: hs.HealthStatus,
@@ -174,7 +198,7 @@ func postLogOfProcedure (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
 
 	return &HSProtocol.HS{ // ACK
-		Version: hs.Version,
+		ProtocolID : hs.ProtocolID,
 		Command: 0b0000000000,
 		UUID: hs.UUID,
 		HealthStatus: hs.HealthStatus,
