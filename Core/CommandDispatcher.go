@@ -6,10 +6,12 @@ import (
 	"github.com/your/repo/Model"
 )
 // https://github.com/HTTPs-omma/HSProtocol
-
 type CommandDispatcher struct {
 
 }
+
+
+
 
 
 func (cd *CommandDispatcher)action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
@@ -19,17 +21,17 @@ func (cd *CommandDispatcher)action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	case 0b0000000001 :
 		return updateHealth(hs)
 	case 0b0000000010 :
-		updateProtocol(hs)
+		return updateProtocol(hs)
 	case 0b0000000011 :
-		postSystemInfo(hs)
+		return postSystemInfo(hs)
 	case 0b0000000100 :
 		break; // 예약
 	case 0b0000000101 :
-		postApplicationInfo(hs)
+		return postApplicationInfo(hs)
 	case 0b0000000110 :
-		getProcedure(hs)
+		return getProcedure(hs)
 	case 0b0000000111 :
-		postLogOfProcedure(hs)
+		return postLogOfProcedure(hs)
 	}
 
 	return nil, fmt.Errorf("Invalid Command")
@@ -145,6 +147,17 @@ func updateProtocol(hs *HSProtocol.HS)(*HSProtocol.HS, error){
 func postSystemInfo (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
 
+	sysDB := Model.NewSystemInfoDB()
+	Dsys, err := sysDB.Unmarshal(hs.Data)
+	if err != nil {
+		return nil, err
+	}
+
+	err = sysDB.InsertRecord(Dsys)
+	if err != nil {
+		return nil, err
+	}
+
 	return &HSProtocol.HS{ // ACK
 		ProtocolID: hs.ProtocolID,
 		Command: 0b0000000000,
@@ -160,8 +173,15 @@ func postSystemInfo (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 // Command: 5 (0b0000000101)
 func postApplicationInfo (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
-
-
+	appDB := Model.ApplicationDB{}
+	Dapp, err := appDB.Unmarshal(hs.Data)
+	if err != nil {
+		return nil, err
+	}
+	err = appDB.InsertRecord( Dapp )
+	if err != nil {
+		return nil, err
+	}
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID: hs.ProtocolID,
@@ -174,11 +194,20 @@ func postApplicationInfo (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 	}, nil
 }
 
-// Command: 5 (0b0000000110)
+
+
+// Command: 6 (0b0000000110)
 func getProcedure (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
-
-
+	appDB := Model.ApplicationDB{}
+	Dapp, err := appDB.Unmarshal(hs.Data)
+	if err != nil {
+		return nil, err
+	}
+	err = appDB.InsertRecord( Dapp )
+	if err != nil {
+		return nil, err
+	}
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID: hs.ProtocolID,
@@ -191,11 +220,10 @@ func getProcedure (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 	}, nil
 }
 
-// Command: 5 (0b0000000110)
+// Command: 7 (0b0000000111)
 func postLogOfProcedure (hs *HSProtocol.HS)(*HSProtocol.HS, error){
 
-
-
+	Model.
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID : hs.ProtocolID,
