@@ -1,6 +1,7 @@
 package Model
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"time"
@@ -11,17 +12,17 @@ type SystemInfoDB struct {
 }
 
 type DsystemInfoDB struct {
-	id            int
-	Uuid          string
-	HostName      string
-	OsName        string
-	OsVersion     string
-	Family        string
-	Architecture  string
-	KernelVersion string
-	BootTime      time.Time
-	createAt      time.Time
-	updateAt      time.Time
+	ID            int       `json:"id"`
+	Uuid          string    `json:"uuid"`
+	HostName      string    `json:"host_name"`
+	OsName        string    `json:"os_name"`
+	OsVersion     string    `json:"os_version"`
+	Family        string    `json:"family"`
+	Architecture  string    `json:"architecture"`
+	KernelVersion string    `json:"kernel_version"`
+	BootTime      time.Time `json:"boot_time"`
+	CreatedAt     time.Time `json:"created_at"`
+	UpdatedAt     time.Time `json:"updated_at"`
 }
 
 func NewSystemInfoDB() *SystemInfoDB {
@@ -29,7 +30,7 @@ func NewSystemInfoDB() *SystemInfoDB {
 	return sysDB
 }
 
-func (s *SystemInfoDB) createTable() error {
+func (s *SystemInfoDB) CreateTable() error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
@@ -78,14 +79,14 @@ func (s *SystemInfoDB) createTable() error {
 	return nil
 }
 
-func (s *SystemInfoDB) insertRecord(data *DsystemInfoDB) error {
+func (s *SystemInfoDB) InsertRecord(data *DsystemInfoDB) error {
 	// 데이터 베이스에는 단 하나의 Row 만을 보장해야함
-	isExist, err := s.existRecord()
+	isExist, err := s.ExistRecord()
 	if err != nil {
 		return err
 	}
 	if isExist == true {
-		err = s.updateRecord(data)
+		err = s.UpdateRecord(data)
 		if err != nil {
 			return err
 		}
@@ -125,14 +126,14 @@ func (s *SystemInfoDB) insertRecord(data *DsystemInfoDB) error {
 selectRecords()를 통해 반환된 DsystemInfoDB 객체의 값을 수정한 후,
 수정된 객체를 updateRecord 함수의 매개변수로 전달합시오
 */
-func (s *SystemInfoDB) updateRecord(data *DsystemInfoDB) error {
+func (s *SystemInfoDB) UpdateRecord(data *DsystemInfoDB) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
 	}
 	defer db.Close()
 
-	rows, err := s.selectRecords()
+	rows, err := s.SelectRecords()
 	if err != nil {
 		return err
 	}
@@ -151,7 +152,7 @@ func (s *SystemInfoDB) updateRecord(data *DsystemInfoDB) error {
 	return nil
 }
 
-func (s *SystemInfoDB) deleteRecord(uuid string) error {
+func (s *SystemInfoDB) DeleteRecord(uuid string) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
@@ -167,7 +168,7 @@ func (s *SystemInfoDB) deleteRecord(uuid string) error {
 	return nil
 }
 
-func (s *SystemInfoDB) selectRecords() ([]DsystemInfoDB, error) {
+func (s *SystemInfoDB) SelectRecords() ([]DsystemInfoDB, error) {
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err
@@ -185,9 +186,9 @@ func (s *SystemInfoDB) selectRecords() ([]DsystemInfoDB, error) {
 	for row.Next() {
 		var data DsystemInfoDB
 
-		err = row.Scan(&data.id, &data.Uuid, &data.HostName, &data.OsName,
+		err = row.Scan(&data.ID, &data.Uuid, &data.HostName, &data.OsName,
 			&data.OsVersion, &data.Family, &data.Architecture, &data.KernelVersion,
-			&data.BootTime, &data.createAt, &data.updateAt)
+			&data.BootTime, &data.CreatedAt, &data.UpdatedAt)
 		if err != nil {
 			return nil, err
 		}
@@ -201,7 +202,7 @@ func (s *SystemInfoDB) selectRecords() ([]DsystemInfoDB, error) {
 *
 하나 이상의 row 행이 있는지 검사한다.
 */
-func (s *SystemInfoDB) existRecord() (bool, error) {
+func (s *SystemInfoDB) ExistRecord() (bool, error) {
 	db, err := getDBPtr()
 	if err != nil {
 		return false, err
@@ -216,4 +217,21 @@ func (s *SystemInfoDB) existRecord() (bool, error) {
 	}
 
 	return exists, nil
+}
+
+func (s *SystemInfoDB) Unmarshal(data []byte) (*DsystemInfoDB, error) {
+
+	var DsysInfo DsystemInfoDB
+	err := json.Unmarshal(data, &DsysInfo)
+	if err != nil {
+		fmt.Println("Error unmarshaling JSON:", err)
+		return &DsysInfo, err
+	}
+
+	err = s.InsertRecord(&DsysInfo)
+	if err != nil {
+		return &DsysInfo, err
+	}
+
+	return &DsysInfo, err
 }

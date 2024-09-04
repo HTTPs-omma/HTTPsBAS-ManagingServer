@@ -1,6 +1,7 @@
 package Model
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/yusufpapurcu/wmi"
 	"log"
@@ -145,7 +146,7 @@ type Win32_Product struct {
 	Description     string // 제품 설명
 }
 
-func getApplicationList() []Win32_Product {
+func GetApplicationList() []Win32_Product {
 	var dst []Win32_Product
 	query := "SELECT Name, AgentUUID, Version, Language, Vendor, InstallDate2, InstallLocation, InstallSource, PackageName, PackageCode, RegCompany, RegOwner, URLInfoAbout, Description FROM Win32_Product"
 	err := wmi.Query(query, &dst)
@@ -164,7 +165,7 @@ func getApplicationList() []Win32_Product {
 	return dst
 }
 
-func (a *ApplicationDB) insertRecord(data DapplicationDB) error {
+func (a *ApplicationDB) InsertRecord(data *DapplicationDB) error {
 	// ProductID 가 있는지 확인 후 중복되는 것이 없으면 insert 하기
 
 	db, err := getDBPtr()
@@ -198,7 +199,7 @@ func (a *ApplicationDB) insertRecord(data DapplicationDB) error {
 selectRecords()를 통해 반환된 DsystemInfoDB 객체의 값을 수정한 후,
 수정된 객체를 updateRecord 함수의 매개변수로 전달합시오
 */
-func (a *ApplicationDB) updateByPackageCode(data *DapplicationDB) error {
+func (a *ApplicationDB) UpdateByPackageCode(data *DapplicationDB) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
@@ -214,7 +215,7 @@ func (a *ApplicationDB) updateByPackageCode(data *DapplicationDB) error {
 	return nil
 }
 
-func (s *ApplicationDB) selectByPackageCode(packageCode string) (*DapplicationDB, error) {
+func (s *ApplicationDB) SelectByPackageCode(packageCode string) (*DapplicationDB, error) {
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err
@@ -237,6 +238,7 @@ func (s *ApplicationDB) selectByPackageCode(packageCode string) (*DapplicationDB
 		&data.InstallDate2, &data.InstallLocation, &data.InstallSource, &data.PackageName,
 		&data.PackageCode, &data.RegCompany, &data.RegOwner, &data.URLInfoAbout, &data.Description,
 		&data.isDeleted, &data.CreateAt, &data.UpdateAt, &data.deletedAt)
+
 	if err != nil {
 		return nil, err
 	}
@@ -244,7 +246,7 @@ func (s *ApplicationDB) selectByPackageCode(packageCode string) (*DapplicationDB
 	return &data, nil
 }
 
-func (s *ApplicationDB) deleteByPackageCode(packageCode string) error {
+func (s *ApplicationDB) DeleteByPackageCode(packageCode string) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
@@ -260,7 +262,7 @@ func (s *ApplicationDB) deleteByPackageCode(packageCode string) error {
 	return nil
 }
 
-func (s *ApplicationDB) selectAllRecords() ([]DapplicationDB, error) {
+func (s *ApplicationDB) SelectAllRecords() ([]DapplicationDB, error) {
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err
@@ -289,4 +291,16 @@ func (s *ApplicationDB) selectAllRecords() ([]DapplicationDB, error) {
 	}
 
 	return rows, nil
+}
+
+func (s *ApplicationDB) Unmarshal(data []byte) (*DapplicationDB, error) {
+
+	var Dapp DapplicationDB
+	err := json.Unmarshal(data, &Dapp)
+	if err != nil {
+		fmt.Println("Error unmarshaling JSON:", err)
+		return nil, err
+	}
+
+	return &Dapp, nil
 }
