@@ -213,6 +213,7 @@ func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	copy(hs.UUID[:], agentUuid)
 
 	job, exist := jbMgr.GetData(agentUuid)
+
 	if exist == true {
 
 		// technical ID 에 맵핑하여 yaml 파일을 직렬화하고 불러와서

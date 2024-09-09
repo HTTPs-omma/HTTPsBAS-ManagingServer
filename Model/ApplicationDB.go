@@ -3,9 +3,6 @@ package Model
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/yusufpapurcu/wmi"
-	"log"
-	"strings"
 	"time"
 )
 
@@ -144,25 +141,6 @@ type Win32_Product struct {
 	RegOwner        string // 제품을 사용하는 것으로 등록된 사용자 이름
 	URLInfoAbout    string // 제품에 대한 정보가 제공되는 URL
 	Description     string // 제품 설명
-}
-
-func GetApplicationList() []Win32_Product {
-	var dst []Win32_Product
-	query := "SELECT Name, AgentUUID, Version, Language, Vendor, InstallDate2, InstallLocation, InstallSource, PackageName, PackageCode, RegCompany, RegOwner, URLInfoAbout, Description FROM Win32_Product"
-	err := wmi.Query(query, &dst)
-	if err != nil {
-		log.Fatalf("wmi query failed: %v", err)
-	}
-	for i := range dst {
-		input := dst[i].PackageCode
-		if strings.HasPrefix(input, "{") && strings.HasSuffix(input, "}") {
-			input = strings.Replace(input, "{", "", 1)
-			input = strings.Replace(input, "}", "", 1)
-		}
-		dst[i].PackageCode = input
-	}
-
-	return dst
 }
 
 func (a *ApplicationDB) InsertRecord(data *DapplicationDB) error {
