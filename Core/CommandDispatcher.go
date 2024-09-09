@@ -10,23 +10,35 @@ import (
 type CommandDispatcher struct {
 }
 
+// Command 상수를 정의
+const (
+	ACK                   = 0b0000000000
+	UPDATE_HEALTH         = 0b0000000001
+	UPDATE_PROTOCOL       = 0b0000000010
+	POST_SYSTEM_INFO      = 0b0000000011
+	RESERVED              = 0b0000000100
+	POST_APPLICATION_INFO = 0b0000000101
+	GET_PROCEDURE         = 0b0000000110
+	POST_LOG_OF_PROCEDURE = 0b0000000111
+)
+
 func (cd *CommandDispatcher) action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
-	//hsMgr := HSProtocol.NewHSProtocolManager()
+	// hsMgr := HSProtocol.NewHSProtocolManager()
 
 	switch hs.Command {
-	case 0b0000000001:
+	case UPDATE_HEALTH:
 		return updateHealth(hs)
-	case 0b0000000010:
+	case UPDATE_PROTOCOL:
 		return updateProtocol(hs)
-	case 0b0000000011:
+	case POST_SYSTEM_INFO:
 		return postSystemInfo(hs)
-	case 0b0000000100:
+	case RESERVED:
 		break // 예약
-	case 0b0000000101:
+	case POST_APPLICATION_INFO:
 		return postApplicationInfo(hs)
-	case 0b0000000110:
+	case GET_PROCEDURE:
 		return getProcedure(hs)
-	case 0b0000000111:
+	case POST_LOG_OF_PROCEDURE:
 		return postLogOfProcedure(hs)
 	}
 
@@ -65,7 +77,7 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		})
 		return &HSProtocol.HS{ // ACK
 			ProtocolID:     hs.ProtocolID,
-			Command:        0b0000000000,
+			Command:        ACK,
 			UUID:           hs.UUID,
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
@@ -80,7 +92,7 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 		return &HSProtocol.HS{ // ACK
 			ProtocolID:     hs.ProtocolID,
-			Command:        0b0000000000,
+			Command:        ACK,
 			UUID:           hs.UUID,
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
@@ -123,7 +135,7 @@ func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        0b0000000000,
+		Command:        ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -148,7 +160,7 @@ func postSystemInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        0b0000000000,
+		Command:        ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -172,7 +184,7 @@ func postApplicationInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        0b0000000000,
+		Command:        ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -196,7 +208,7 @@ func getProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	return &HSProtocol.HS{ // ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        0b0000000000,
+		Command:        ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -208,19 +220,19 @@ func getProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 // Command: 7 (0b0000000111)
 func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
-	jbMgr := NewJobManager()
+	jbMgr := NewJobManager() // stack 에 있어야겠지?
+
 	var agentUuid string
 	copy(hs.UUID[:], agentUuid)
 
-	job, exist := jbMgr.GetData(agentUuid)
+	job, exist := jbMgr.GetData(agentUuid) // agentuuid 에 해당하는 값 찾아괴
 
-	if exist == true {
-
-		// technical ID 에 맵핑하여 yaml 파일을 직렬화하고 불러와서
+	if exist == true { // job 이 있다면
+		// procedureID 에 맵핑하여 yaml 파일을 직렬화하고 불러와서
 
 		return &HSProtocol.HS{ // ACK
 			ProtocolID:     hs.ProtocolID,
-			Command:        0b0000000000,
+			Command:        ACK,
 			UUID:           hs.UUID,
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
@@ -232,7 +244,7 @@ func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	// false
 	return &HSProtocol.HS{ // ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        0b0000000000,
+		Command:        ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
