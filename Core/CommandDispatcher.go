@@ -220,16 +220,32 @@ func getProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 // Command: 7 (0b0000000111)
 func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
-	jbMgr := NewJobManager() // stack 에 있어야겠지?
-
+	jbMgr, err := NewJobManager() // stack 에 있어야겠지?
+	if err != nil {
+		return nil, err
+	}
 	var agentUuid string
 	copy(hs.UUID[:], agentUuid)
+	job, err, exist := jbMgr.popData(agentUuid)
 
-	job, exist := jbMgr.GetData(agentUuid) // agentuuid 에 해당하는 값 찾아괴
+	if err != nil {
+		return nil, err
+	}
 
 	if exist == true { // job 이 있다면
-		// procedureID 에 맵핑하여 yaml 파일을 직렬화하고 불러와서
+		cmdMgr, err := NewCommandManager()
+		if err != nil {
+			return nil, err
+		}
 
+		cmdData, issuccess := cmdMgr.GetByID(job.ProcedureID) // 프로시저를 불러와야함.
+		if issuccess != true {
+			return nil, fmt.Errorf("job procedure not found")
+		}
+		bData, err := cmdData.ToBytes()
+		if err != nil {
+			return nil, err
+		}
 		return &HSProtocol.HS{ // ACK
 			ProtocolID:     hs.ProtocolID,
 			Command:        ACK,
@@ -237,7 +253,7 @@ func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
 			TotalLength:    hs.TotalLength,
-			Data:           []byte{},
+			Data:           bData,
 		}, nil
 	}
 

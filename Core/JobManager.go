@@ -1,48 +1,61 @@
 package Core
 
 import (
-	"time"
+	"fmt"
+	"github.com/your/repo/Model"
 )
 
-type JobData struct {
-	TechnicalID string `json:"technicalID"`
-	AgentUUID   string `json:"agentUUID"`
-	MessageUUID string `json:"messageUUID"`
-	createAt    time.Time
-}
-
 type JobManager struct {
-	dataMap map[string][]JobData
+	jobDB *Model.JobDB
 }
 
-func NewJobManager() *JobManager {
-	return &JobManager{
-		dataMap: make(map[string][]JobData),
-	}
-}
-
-func popFront(slice []JobData) (JobData, []JobData) {
-	if len(slice) > 0 {
-		job := slice[0]
-		return job, slice[1:]
-	}
-	return slice[0], slice
-}
-
-func (jm *JobManager) GetData(agentUUID string) (*JobData, bool) {
-	jobs, exists := jm.dataMap[agentUUID]
-
-	if len(jobs) > 0 {
-		var job JobData
-		job, jm.dataMap[agentUUID] = popFront(jobs)
-		return &job, exists
+// NewJobManager: JobDB와 연결하고 JobManager 생성
+func NewJobManager() (*JobManager, error) {
+	jobDB, err := Model.NewJobDB()
+	if err != nil {
+		return nil, err
 	}
 
-	return &JobData{}, exists
+	return &JobManager{jobDB: jobDB}, nil
 }
 
-func (jm *JobManager) insertData(jobData JobData) bool {
-	jm.dataMap[jobData.AgentUUID] = append(jm.dataMap[jobData.AgentUUID], jobData)
+// InsertData: Model의 InsertJobData 함수를 호출하여 JobData 삽입
+func (jm *JobManager) InsertData(jobData *Model.JobData) error {
+	err := jm.jobDB.InsertJobData(jobData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
-	return true
+func (jm *JobManager) popData(agentUUID string) (*Model.JobData, error, bool) {
+	job, err, exist := jm.getDataByAgentUUID(agentUUID)
+	if err != nil {
+		return nil, err, exist
+	}
+	if exist == false {
+		return nil, fmt.Errorf("Error! NoRecord"), exist
+	}
+
+	return job, nil, exist
+
+}
+
+// GetDataByAgentUUID: Model의 GetJobDataByAgentUUID 함수를 호출하여 JobData 조회
+func (jm *JobManager) getDataByAgentUUID(agentUUID string) (*Model.JobData, error, bool) {
+	job, err, exist := jm.jobDB.SelectJobDataByAgentUUID(agentUUID)
+	if err != nil {
+		return nil, err, exist
+	}
+
+	return job, nil, exist
+}
+
+// DeleteDataByInstructionUUID: Model의 DeleteJobDataByInstructionUUID 함수를 호출하여 JobData 삭제
+func (jm *JobManager) deleteDataByInstructionUUID(instructionUUID string) error {
+	err := jm.jobDB.DeleteJobDataByInstructionUUID(instructionUUID)
+	if err != nil {
+		return err
+	}
+	return nil
 }
