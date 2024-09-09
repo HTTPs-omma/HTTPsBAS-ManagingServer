@@ -43,5 +43,6 @@ func (jm *JobManager) GetData(agentUUID string) (*JobData, bool) {
 
 func (jm *JobManager) insertData(jobData JobData) bool {
 	jm.dataMap[jobData.AgentUUID] = append(jm.dataMap[jobData.AgentUUID], jobData)
+
 	return true
 }
