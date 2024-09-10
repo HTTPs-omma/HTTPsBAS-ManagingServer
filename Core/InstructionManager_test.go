@@ -5,14 +5,14 @@ import (
 	"testing"
 )
 
-// CommandManager의 기본 동작을 테스트
-func TestCommandManager_LoadAndGetByID(t *testing.T) {
+// InstructionManager의 기본 동작을 테스트
+func TestInstructionManager_LoadAndGetByID(t *testing.T) {
 
-	cm, err := NewCommandManager()
+	cm, err := NewInstructionManager()
 	if err != nil {
 		t.Fatalf("err: %s", err)
 	}
-	// ID로 CommandData 가져오기
+	// ID로 InstructionData 가져오기
 	id := "P_Collection_Kimsuky_001"
 	command, exists := cm.GetByID(id)
 	if !exists {

@@ -2,11 +2,15 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"github.com/HTTPs-omma/HSProtocol/HSProtocol"
 	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
+	"github.com/your/repo/Core"
+	"github.com/your/repo/Model"
 	"net"
+	"time"
 )
 
 var testCommand string = "dir /"
@@ -87,6 +91,12 @@ func handleTCPConnection(conn net.Conn) {
 	}
 }
 
+type InstructionD struct {
+	agentUUID       string `json:"agentUUID"`
+	procedureID     string `json:"procedureID"`
+	instructionUUID string `json:"instructionUUID"`
+}
+
 // HTTP 서버 함수 (Fiber 사용)
 func HTTPServer() {
 	app := fiber.New()
@@ -96,12 +106,41 @@ func HTTPServer() {
 		HSMgr := HSProtocol.NewHSProtocolManager()
 		hs, err := HSMgr.Parsing(req)
 		if err != nil {
+			ctx.Status(404)
 			return fmt.Errorf("Error parsing:", err)
 		}
 
 		fmt.Println("hs.uuid : ", hs.UUID)
 
 		return nil
+	})
+
+	// POST 요청을 처리하는 핸들러
+	app.Post("/postInstruction", func(ctx fiber.Ctx) error {
+		data := ctx.Body()
+		InstD := &InstructionD{}
+		err := json.Unmarshal(data, &InstD)
+		if err != nil {
+			fmt.Println("Error marshaling to JSON:", err)
+			ctx.Status(404)
+			return err
+		}
+		jobMgr, err := Core.NewJobManager()
+		if err != nil {
+			return err
+		}
+
+		jobMgr.InsertData(&Model.JobData{
+			InstD.procedureID,
+			InstD.agentUUID,
+			InstD.instructionUUID,
+			time.Now(),
+		})
+
+		ctx.Status(200)
+		return ctx.JSON(fiber.Map{
+			"status": true,
+		})
 	})
 
 	fmt.Println("HTTP server listening on port 80")
