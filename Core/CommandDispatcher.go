@@ -233,7 +233,7 @@ func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	}
 
 	if exist == true { // job 이 있다면
-		cmdMgr, err := NewCommandManager()
+		cmdMgr, err := NewInstructionManager()
 		if err != nil {
 			return nil, err
 		}
