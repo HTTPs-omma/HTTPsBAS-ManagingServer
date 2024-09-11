@@ -12,6 +12,7 @@ type ApplicationDB struct {
 
 func NewApplicationDB() (metaTable *ApplicationDB) {
 	appDB := &ApplicationDB{"Application"}
+	appDB.createTable()
 	return appDB
 }
 
@@ -249,6 +250,7 @@ func (s *ApplicationDB) SelectAllRecords() ([]DapplicationDB, error) {
 
 	query := fmt.Sprintf(`SELECT * FROM %s `, s.dbName)
 	row, err := db.Query(query)
+	defer row.Close()
 	if err != nil {
 		return nil, err
 	}

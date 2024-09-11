@@ -27,6 +27,7 @@ type DsystemInfoDB struct {
 
 func NewSystemInfoDB() *SystemInfoDB {
 	sysDB := &SystemInfoDB{"SystemInfo"}
+	sysDB.CreateTable()
 	return sysDB
 }
 
@@ -103,7 +104,7 @@ func (s *SystemInfoDB) InsertRecord(data *DsystemInfoDB) error {
        OsName, OsVersion, Family, Architecture, KernelVersion,
        BootTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, s.dbName)
 	stmt, err := db.Prepare(query)
-	fmt.Println(query)
+
 	defer stmt.Close()
 	if err != nil {
 		return err
@@ -177,6 +178,7 @@ func (s *SystemInfoDB) SelectRecords() ([]DsystemInfoDB, error) {
 
 	query := fmt.Sprintf(`SELECT * FROM %s`, s.dbName)
 	row, err := db.Query(query)
+	defer row.Close()
 	if err != nil {
 		return nil, err
 	}

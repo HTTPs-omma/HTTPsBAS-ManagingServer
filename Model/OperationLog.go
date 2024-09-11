@@ -14,37 +14,34 @@ import (
 검토자 : 허남정
 */
 
-
 // OperationLogDocument 구조체 정의
 type OperationLogDocument struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	AgentUUID    string             `bson:"agentUUID"`
-	ProcedureID  string             `bson:"procedureID"`
-	InstructionUUID  string         `bson:"instructionUUID"`
-	ConductAt    time.Time          `bson:"conductAt"`
-	ExitCode     int                `bson:"exitCode"`
-	Log          string             `bson:"log"`
-	Command      string             `bson:"command"` // Command 필드로 변경
+	ID              primitive.ObjectID `bson:"_id,omitempty"`
+	AgentUUID       string             `bson:"agentUUID"`
+	ProcedureID     string             `bson:"procedureID"`
+	InstructionUUID string             `bson:"instructionUUID"`
+	ConductAt       time.Time          `bson:"conductAt"`
+	ExitCode        int                `bson:"exitCode"`
+	Log             string             `bson:"log"`
+	Command         string             `bson:"command"` // Command 필드로 변경
 }
 
-// OperationLogDB는 CRUD 작업을 수행하는 구조체입니다.
 type OperationLogDB struct {
 	Collection *mongo.Collection
 }
 
-// NewOperationLogDB는 OperationLogDB 인스턴스를 생성합니다.
 func NewOperationLogDB() (*OperationLogDB, error) {
 	db, err := getCollectionPtr()
 	if err != nil {
 		return nil, err
 	}
-	return &OperationLogDB{
+	OpDB := &OperationLogDB{
 		Collection: db.Collection("execLog"),
-	}, nil
+	}
+	return OpDB, nil
 }
 
-// Create는 새로운 OperationLogDocument 문서를 MongoDB에 삽입합니다.
-func (repo *OperationLogDB) insertDocument(log OperationLogDocument) (*mongo.InsertOneResult, error) {
+func (repo *OperationLogDB) InsertDocument(log OperationLogDocument) (*mongo.InsertOneResult, error) {
 	// Command 필드를 기본값으로 설정 (필요에 따라 변경)
 	result, err := repo.Collection.InsertOne(context.TODO(), log)
 	fmt.Println(log)
@@ -56,8 +53,7 @@ func (repo *OperationLogDB) insertDocument(log OperationLogDocument) (*mongo.Ins
 	return result, nil
 }
 
-// Read는 OperationLogDocument 문서를 조회합니다.
-func (repo *OperationLogDB) selectDocumentById(id string) (*OperationLogDocument, error) {
+func (repo *OperationLogDB) SelectDocumentById(id string) (*OperationLogDocument, error) {
 	var OperationLogDocument OperationLogDocument
 	filter := bson.M{"instructionUUID": id}
 
@@ -69,7 +65,18 @@ func (repo *OperationLogDB) selectDocumentById(id string) (*OperationLogDocument
 	return &OperationLogDocument, nil
 }
 
-// Update는 OperationLogDocument 문서를 수정합니다.
+func (repo *OperationLogDB) SelectAllDocuments() (*OperationLogDocument, error) {
+	var OperationLogDocument OperationLogDocument
+	filter := bson.M{}
+
+	err := repo.Collection.FindOne(context.TODO(), filter).Decode(&OperationLogDocument)
+	if err != nil {
+		return nil, err
+	}
+
+	return &OperationLogDocument, nil
+}
+
 func (repo *OperationLogDB) UpdateDocumentByInstID(id string, updateData bson.M) (*mongo.UpdateResult, error) {
 	filter := bson.M{"instructionUUID": id}
 	update := bson.M{
@@ -85,7 +92,6 @@ func (repo *OperationLogDB) UpdateDocumentByInstID(id string, updateData bson.M)
 	return result, nil
 }
 
-// Delete는 OperationLogDocument 문서를 삭제합니다.
 func (repo *OperationLogDB) DeleteDocumentByInstID(id string) (*mongo.DeleteResult, error) {
 	filter := bson.M{"instructionUUID": id}
 

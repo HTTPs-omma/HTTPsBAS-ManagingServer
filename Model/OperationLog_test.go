@@ -16,13 +16,13 @@ func TestInsertDocument(t *testing.T) {
 		{
 			name: "Insert valid document",
 			log: OperationLogDocument{
-				AgentUUID:   "agent-123",
-				ProcedureID: "tech-456",
+				AgentUUID:       "agent-123",
+				ProcedureID:     "tech-456",
 				InstructionUUID: "msg-789",
-				ConductAt:   time.Now(),
-				ExitCode:    0,
-				Log:         "Test log message",
-				Command:     "Test command",
+				ConductAt:       time.Now(),
+				ExitCode:        0,
+				Log:             "Test log message",
+				Command:         "Test command",
 			},
 		},
 	}
@@ -42,7 +42,7 @@ func TestInsertDocument(t *testing.T) {
 			}
 
 			// insertDocument 호출
-			result, err := db.insertDocument(tt.log)
+			result, err := db.InsertDocument(tt.log)
 			if err != nil {
 				t.Errorf("insertDocument() 에러: %v", err)
 			}
@@ -54,7 +54,7 @@ func TestInsertDocument(t *testing.T) {
 				t.Logf("삽입된 문서 ID: %v", result.InsertedID)
 			}
 
-			log, err := db.selectDocumentById(tt.log.InstructionUUID)
+			log, err := db.SelectDocumentById(tt.log.InstructionUUID)
 			if err != nil {
 				t.Fatalf("select 오류")
 			}
@@ -74,7 +74,6 @@ func TestInsertDocument(t *testing.T) {
 			//	t.Fatalf("update 오류")
 			//}
 
-
 			rst, err := db.DeleteDocumentByInstID(tt.log.InstructionUUID)
 			if err != nil {
 				t.Errorf("DeleteDocumentByInstID() 에러: %v", err)
@@ -86,8 +85,6 @@ func TestInsertDocument(t *testing.T) {
 				t.Logf("정상적으로 삭제됨")
 				//t.Logf("삭제된 문서 ID: %v", rst.)
 			}
-
-
 
 		})
 	}

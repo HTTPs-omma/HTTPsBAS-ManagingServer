@@ -22,7 +22,7 @@ const (
 	POST_LOG_OF_PROCEDURE = 0b0000000111
 )
 
-func (cd *CommandDispatcher) action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+func (cd *CommandDispatcher) Action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	// hsMgr := HSProtocol.NewHSProtocolManager()
 
 	switch hs.Command {
