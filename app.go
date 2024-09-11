@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"github.com/HTTPs-omma/HSProtocol/HSProtocol"
 	"github.com/gofiber/fiber/v3"
@@ -92,9 +91,9 @@ func handleTCPConnection(conn net.Conn) {
 }
 
 type InstructionD struct {
-	agentUUID       string `json:"agentUUID"`
-	procedureID     string `json:"procedureID"`
-	instructionUUID string `json:"instructionUUID"`
+	ProcedureID     string `json:"procedureID"`
+	AgentUUID       string `json:"agentUUID"`
+	InstructionUUID string `json:"instructionUUID"`
 }
 
 // HTTP 서버 함수 (Fiber 사용)
@@ -111,15 +110,16 @@ func HTTPServer() {
 		}
 
 		fmt.Println("hs.uuid : ", hs.UUID)
+		dipt := Core.CommandDispatcher{}
+		dipt.Action(hs)
 
 		return nil
 	})
 
-	// POST 요청을 처리하는 핸들러
 	app.Post("/postInstruction", func(ctx fiber.Ctx) error {
-		data := ctx.Body()
-		InstD := &InstructionD{}
-		err := json.Unmarshal(data, &InstD)
+		//https://github.com/gofiber/fiber/issues/2958
+		InstD := new(InstructionD)
+		err := ctx.Bind().JSON(InstD)
 		if err != nil {
 			fmt.Println("Error marshaling to JSON:", err)
 			ctx.Status(404)
@@ -129,18 +129,102 @@ func HTTPServer() {
 		if err != nil {
 			return err
 		}
+		fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.InstructionUUID)
 
-		jobMgr.InsertData(&Model.JobData{
-			InstD.procedureID,
-			InstD.agentUUID,
-			InstD.instructionUUID,
+		err = jobMgr.InsertData(&Model.JobData{
+			InstD.ProcedureID,
+			InstD.AgentUUID,
+			InstD.InstructionUUID,
 			time.Now(),
 		})
+		if err != nil {
+			fmt.Println("Error inserting data:", err)
+			return fmt.Errorf("Error inserting data into job manager: %v", err)
+		}
 
 		ctx.Status(200)
 		return ctx.JSON(fiber.Map{
 			"status": true,
 		})
+	})
+
+	app.Get("/view/agentStatus", func(ctx fiber.Ctx) error {
+		//data := ctx.Body()
+		db := Model.NewAgentStatusDB()
+		datas, err := db.SelectRecords()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		ctx.Status(200)
+		return ctx.JSON(datas)
+	})
+
+	app.Get("/view/ApplicationDB", func(ctx fiber.Ctx) error {
+		fmt.Println("ApplicationDB loging")
+		db := Model.NewApplicationDB()
+		datas, err := db.SelectAllRecords()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		ctx.Status(200)
+		return ctx.JSON(datas)
+	})
+
+	app.Get("/view/OperationLogDB", func(ctx fiber.Ctx) error {
+		db, _ := Model.NewOperationLogDB()
+		datas, err := db.SelectAllDocuments()
+		if err != nil {
+			ctx.Status(404)
+			return nil
+		}
+		ctx.Status(200)
+		return ctx.JSON(datas)
+	})
+
+	app.Get("/view/SystemInfoDB", func(ctx fiber.Ctx) error {
+		//data := ctx.Body()
+		db := Model.NewSystemInfoDB()
+		datas, err := db.SelectRecords()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		ctx.Status(200)
+		return ctx.JSON(datas)
+	})
+
+	app.Get("/view/JobDataDB", func(ctx fiber.Ctx) error {
+		db, err := Model.NewJobDB()
+		if err != nil {
+			return err
+		}
+		datas, err := db.SelectAllJobData()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		ctx.Status(200)
+		return ctx.JSON(datas)
+	})
+
+	app.Get("/deleted/DeletedJobDataDB", func(ctx fiber.Ctx) error {
+		db, err := Model.NewJobDB()
+		if err != nil {
+			return err
+		}
+		err = db.DeleteAllJobData()
+		if err != nil {
+			fmt.Println("Error Deleted records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		return nil
 	})
 
 	fmt.Println("HTTP server listening on port 80")

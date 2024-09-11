@@ -91,7 +91,6 @@ func BinaryToProtocol(i uint8) Protocol {
 	}
 }
 
-
 type AgentStatusDB struct {
 	dbName string
 }
@@ -107,7 +106,9 @@ type AgentStatusRecord struct {
 
 // NewAgentStatusDB creates a new instance of AgentStatusDB with the default table name.
 func NewAgentStatusDB() *AgentStatusDB {
-	return &AgentStatusDB{dbName: "AgentStatus"}
+	db := &AgentStatusDB{dbName: "AgentStatus"}
+	db.CreateTable()
+	return db
 }
 
 // CreateTable creates the AgentStatus table if it does not exist.
@@ -188,6 +189,7 @@ func (s *AgentStatusDB) SelectRecords() ([]AgentStatusRecord, error) {
 
 	query := fmt.Sprintf(`SELECT id, uuid, status, protocol, createAt, updateAt FROM %s`, s.dbName)
 	rows, err := db.Query(query)
+	defer rows.Close()
 	if err != nil {
 		return nil, err
 	}

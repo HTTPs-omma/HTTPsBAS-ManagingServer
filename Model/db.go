@@ -3,6 +3,7 @@ package Model
 import (
 	"database/sql"
 	"errors"
+	_ "modernc.org/sqlite"
 	"time"
 )
 
@@ -15,6 +16,7 @@ db파일 : https://medium.com/@SlackBeck/golang-database-sql-패키지-삽질기
 */
 func getDBPtr() (*sql.DB, error) {
 	dbPath := "file:db.db?cache=shared"
+	//dbPath := "db.db"
 	db, err := sql.Open("sqlite", dbPath)
 
 	if err != nil {
