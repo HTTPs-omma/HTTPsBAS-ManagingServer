@@ -9,22 +9,75 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "termsOfService": "http://managingserver.io/terms/",
+        "contact": {
+            "name": "ManagingServer API Support",
+            "url": "http://managingserver.io/support",
+            "email": "support@managingserver.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/api/postInst": {
+            "post": {
+                "description": "get struct array by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "get-struct-array2-by-string",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Procedure ID (default: 'P_Collection_Kimsuky_001')",
+                        "name": "procedureID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Agent UUID (default: '123e4567e89b12d3a456426614174000')",
+                        "name": "agentUUID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Instruction UUID (default: '550e8400e29b41d4a716446655440000')",
+                        "name": "instructionUUID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
+	Version:          "1.0",
+	Host:             "localhost:80",
+	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "ManagingServer API",
+	Description:      "This is a sample server for the ManagingServer project.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
