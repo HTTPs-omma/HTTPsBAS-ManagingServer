@@ -4,8 +4,11 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/HTTPs-omma/HSProtocol/HSProtocol"
+	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/your/repo/Core"
 	"github.com/your/repo/Model"
 	"net"
@@ -27,12 +30,23 @@ func main() {
 	// tcp
 	go TCPServer()
 
-	// udp
-	////go UDPServer()
-
 	// HTTP
 	HTTPServer()
 
+	r := gin.Default()
+
+	// API 엔드포인트
+	r.GET("/api/v1/docs", HelloWorld)
+
+	// Swagger 엔드포인트
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	r.Run(":8080")
+}
+func HelloWorld(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"message": "Hello World",
+	})
 }
 
 func TCPServer() {
@@ -227,9 +241,24 @@ func HTTPServer() {
 		return nil
 	})
 
+	app.Get("/view/sdsa", func(ctx fiber.Ctx) error {
+		db, err := Model.NewJobDB()
+		if err != nil {
+			return err
+		}
+		err = db.DeleteAllJobData()
+		if err != nil {
+			fmt.Println("Error Deleted records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		return nil
+	})
+
 	fmt.Println("HTTP server listening on port 80")
 	err := app.Listen(":80")
 	if err != nil {
 		fmt.Println("Error starting HTTP server:", err)
 	}
+
 }
