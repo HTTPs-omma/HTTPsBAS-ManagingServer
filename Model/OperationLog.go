@@ -92,10 +92,10 @@ func (repo *OperationLogDB) UpdateDocumentByInstID(id string, updateData bson.M)
 	return result, nil
 }
 
-func (repo *OperationLogDB) DeleteDocumentByInstID(id string) (*mongo.DeleteResult, error) {
-	filter := bson.M{"instructionUUID": id}
+func (repo *OperationLogDB) DeleteAllDocument() (*mongo.DeleteResult, error) {
+	filter := bson.M{}
 
-	result, err := repo.Collection.DeleteOne(context.TODO(), filter)
+	result, err := repo.Collection.DeleteMany(context.TODO(), filter)
 	if err != nil {
 		return nil, err
 	}

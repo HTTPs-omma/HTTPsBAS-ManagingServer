@@ -105,10 +105,13 @@ type AgentStatusRecord struct {
 }
 
 // NewAgentStatusDB creates a new instance of AgentStatusDB with the default table name.
-func NewAgentStatusDB() *AgentStatusDB {
+func NewAgentStatusDB() (*AgentStatusDB, error) {
 	db := &AgentStatusDB{dbName: "AgentStatus"}
-	db.CreateTable()
-	return db
+	err := db.CreateTable()
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
 }
 
 // CreateTable creates the AgentStatus table if it does not exist.
@@ -235,6 +238,22 @@ func (s *AgentStatusDB) DeleteRecord(uuid string) error {
 
 	query := fmt.Sprintf(`DELETE FROM %s WHERE uuid = ?`, s.dbName)
 	_, err = db.Exec(query, uuid)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *AgentStatusDB) DeleteAllRecord() error {
+	db, err := getDBPtr()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`DELETE FROM %s`)
+	_, err = db.Exec(query)
 	if err != nil {
 		return err
 	}

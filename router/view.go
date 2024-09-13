@@ -6,7 +6,85 @@ import (
 	"github.com/your/repo/Model"
 )
 
+// 통합 구조체 정의
+type CombinedData struct {
+	OperationLog Model.OperationLogDocument `json:"operation_log"`
+	AgentStatus  []Model.AgentStatusRecord  `json:"agent_status"`
+	Application  []Model.DapplicationDB     `json:"application"`
+	JobData      []Model.JobData            `json:"job_data"`
+	SystemInfo   []Model.DsystemInfoDB      `json:"system_info"`
+}
+
 func SetupViewRoutes(app *fiber.App) {
+	app.Get("/combined-data", func(ctx fiber.Ctx) error {
+		dbOperationLog, err := Model.NewOperationLogDB()
+		if err != nil {
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+		// 모든 문서 조회
+		dataOL, err := dbOperationLog.SelectAllDocuments()
+		if err != nil {
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+
+		dbAgentStatus, err := Model.NewAgentStatusDB()
+		if err != nil {
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+		dataAS, err := dbAgentStatus.SelectRecords()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+
+		appdb, err := Model.NewApplicationDB()
+		if err != nil {
+			return err
+		}
+		dataAPP, err := appdb.SelectAllRecords()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+
+		dbJob, err := Model.NewJobDB()
+		if err != nil {
+			return err
+		}
+		dataJD, err := dbJob.SelectAllJobData()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+
+		dbSysInfo, err := Model.NewSystemInfoDB()
+		if err != nil {
+			return err
+		}
+		dataSys, err := dbSysInfo.SelectRecords()
+		if err != nil {
+			fmt.Println("Error selecting records:", err)
+			ctx.Status(404)
+			return ctx.SendString("Error : " + err.Error())
+		}
+
+		combined := CombinedData{
+			OperationLog: *dataOL,
+			AgentStatus:  dataAS,
+			Application:  dataAPP,
+			JobData:      dataJD,
+			SystemInfo:   dataSys,
+		}
+
+		return ctx.JSON(combined)
+	})
+
 	// /view/OperationLogDB 라우트 정의
 	app.Get("/view/OperationLogDB", func(ctx fiber.Ctx) error {
 		db, err := Model.NewOperationLogDB()
@@ -29,7 +107,7 @@ func SetupViewRoutes(app *fiber.App) {
 
 	app.Get("/view/agentStatus", func(ctx fiber.Ctx) error {
 		//data := ctx.Body()
-		db := Model.NewAgentStatusDB()
+		db, err := Model.NewAgentStatusDB()
 		datas, err := db.SelectRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
@@ -42,7 +120,10 @@ func SetupViewRoutes(app *fiber.App) {
 
 	app.Get("/view/ApplicationDB", func(ctx fiber.Ctx) error {
 		fmt.Println("ApplicationDB loging")
-		db := Model.NewApplicationDB()
+		db, err := Model.NewApplicationDB()
+		if err != nil {
+			return err
+		}
 		datas, err := db.SelectAllRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
@@ -66,7 +147,10 @@ func SetupViewRoutes(app *fiber.App) {
 
 	app.Get("/view/SystemInfoDB", func(ctx fiber.Ctx) error {
 		//data := ctx.Body()
-		db := Model.NewSystemInfoDB()
+		db, err := Model.NewSystemInfoDB()
+		if err != nil {
+			return err
+		}
 		datas, err := db.SelectRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
@@ -92,7 +176,7 @@ func SetupViewRoutes(app *fiber.App) {
 		return ctx.JSON(datas)
 	})
 
-	app.Get("/deleted/DeletedJobDataDB", func(ctx fiber.Ctx) error {
+	app.Get("/view/sdsa", func(ctx fiber.Ctx) error {
 		db, err := Model.NewJobDB()
 		if err != nil {
 			return err
@@ -106,12 +190,68 @@ func SetupViewRoutes(app *fiber.App) {
 		return nil
 	})
 
-	app.Get("/view/sdsa", func(ctx fiber.Ctx) error {
+	app.Get("/deleted/JobDataDB", func(ctx fiber.Ctx) error {
 		db, err := Model.NewJobDB()
 		if err != nil {
 			return err
 		}
 		err = db.DeleteAllJobData()
+		if err != nil {
+			fmt.Println("Error Deleted records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		return nil
+	})
+
+	app.Get("/deleted/OperationLog", func(ctx fiber.Ctx) error {
+		db, err := Model.NewOperationLogDB()
+		if err != nil {
+			return err
+		}
+		_, err = db.DeleteAllDocument()
+		if err != nil {
+			fmt.Println("Error Deleted records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		return nil
+	})
+
+	app.Get("/deleted/SystemInfoDB", func(ctx fiber.Ctx) error {
+		db, err := Model.NewSystemInfoDB()
+		if err != nil {
+			return err
+		}
+		err = db.DeleteAllRecord()
+		if err != nil {
+			fmt.Println("Error Deleted records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		return nil
+	})
+
+	app.Get("/deleted/ApplicationDB", func(ctx fiber.Ctx) error {
+		db, err := Model.NewApplicationDB()
+		if err != nil {
+			return err
+		}
+		err = db.DeleteAllRecords()
+		if err != nil {
+			fmt.Println("Error Deleted records:", err)
+			ctx.Status(404)
+			return nil
+		}
+		return nil
+	})
+
+	app.Get("/deleted/AgentStatusDB", func(ctx fiber.Ctx) error {
+		db, err := Model.NewAgentStatusDB()
+		if err != nil {
+			return err
+		}
+		err = db.DeleteAllRecord()
 		if err != nil {
 			fmt.Println("Error Deleted records:", err)
 			ctx.Status(404)

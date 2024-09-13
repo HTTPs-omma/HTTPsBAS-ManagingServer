@@ -21,6 +21,13 @@ func NewJobManager() (*JobManager, error) {
 
 // InsertData: Model의 InsertJobData 함수를 호출하여 JobData 삽입
 func (jm *JobManager) InsertData(jobData *Model.JobData) error {
+	if len(jobData.AgentUUID) != 32 {
+		return fmt.Errorf("AgentUUID is not 32 characters")
+	}
+	if len(jobData.InstructionUUID) != 32 {
+		return fmt.Errorf("InstrwuctionUUID is not 32 characters")
+	}
+
 	err := jm.jobDB.InsertJobData(jobData)
 	if err != nil {
 		return err

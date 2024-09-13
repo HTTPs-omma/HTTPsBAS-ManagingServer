@@ -10,25 +10,27 @@ import (
 	"time"
 )
 
+// swagger:parameters Request
 type InstructionD struct {
-	ProcedureID     string `json:"procedureID"`
-	AgentUUID       string `json:"agentUUID"`
-	InstructionUUID string `json:"instructionUUID"`
+	// example: Test
+	ProcedureID string `json:"procedureID" default:"P_Collection_Kimsuky_001"`
+	// example: Test
+	AgentUUID       string `json:"agentUUID" default:"c3cb84233416497694569d759a8a13e7"`
+	InstructionUUID string `json:"instructionUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
-//	@title			ManagingServer API
-//	@version		1.0
-//	@description	This is a sample server for the ManagingServer project.
-//	@termsOfService	http://managingserver.io/terms/
-//	@contact.name	ManagingServer API Support
-//	@contact.url	http://managingserver.io/support
-//	@contact.email	support@managingserver.io
-//	@license.name	Apache 2.0
-//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-//	@host			localhost:80
-//	@BasePath		/
-//	@Path			/api
-
+// @title			ManagingServer API
+// @version		1.0
+// @description	This is a sample server for the ManagingServer project.
+// @termsOfService	http://managingserver.io/terms/
+// @contact.name	ManagingServer API Support
+// @contact.url	http://managingserver.io/support
+// @contact.email	support@managingserver.io
+// @license.name	Apache 2.0
+// @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
+// @host			localhost:80
+// @BasePath		/
+// @Path			/api
 func SetupAPIRoutes(app *fiber.App) {
 
 	app.Post("/api/checkInstReq", checkInstReq)
@@ -57,11 +59,8 @@ func checkInstReq(ctx fiber.Ctx) error {
 //	@ID				get-struct-array2-by-string
 //	@Accept			json
 //	@Produce		json
-//	@Param			procedureID		query		string	true	"Procedure ID (default: 'P_Collection_Kimsuky_001')"
-//	@Param			agentUUID		query		string	true	"Agent UUID (default: '123e4567e89b12d3a456426614174000')"
-//	@Param			instructionUUID	query		string	true	"Instruction UUID (default: '550e8400e29b41d4a716446655440000')"
-//	@Success		200				{string}	string	"ok"
-//	@Default		{"procedureID": "How to implement a Library", "agentUUID": "2023-09-15T10:00:00Z", "instructionUUID" : :"550e8400-e29b-41d4-a716-446655440000"}
+//	@Param			loginUserRequest	body	InstructionD	true	"request job"
+//	@Default		{"procedureID": "P_Collection_Kimsuky_001", "agentUUID": "2023-09-15T10:00:00Z", "instructionUUID" : :"550e8400-e29b-41d4-a716-446655440000"}
 //	@Router			/api/postInst [post]
 func postInst(ctx fiber.Ctx) error {
 	// https://github.com/gofiber/fiber/issues/2958

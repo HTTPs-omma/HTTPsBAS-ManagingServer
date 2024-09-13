@@ -36,34 +36,36 @@ const docTemplate = `{
                 "operationId": "get-struct-array2-by-string",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Procedure ID (default: 'P_Collection_Kimsuky_001')",
-                        "name": "procedureID",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Agent UUID (default: '123e4567e89b12d3a456426614174000')",
-                        "name": "agentUUID",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Instruction UUID (default: '550e8400e29b41d4a716446655440000')",
-                        "name": "instructionUUID",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "ok",
+                        "description": "request job",
+                        "name": "loginUserRequest",
+                        "in": "body",
+                        "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/router.InstructionD"
                         }
                     }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "router.InstructionD": {
+            "type": "object",
+            "properties": {
+                "agentUUID": {
+                    "description": "example: Test",
+                    "type": "string",
+                    "default": "c3cb84233416497694569d759a8a13e7"
+                },
+                "instructionUUID": {
+                    "type": "string",
+                    "default": "32a2833486414af9bc4596caef585538"
+                },
+                "procedureID": {
+                    "description": "example: Test",
+                    "type": "string",
+                    "default": "P_Collection_Kimsuky_001"
                 }
             }
         }
