@@ -1,4 +1,45 @@
+basePath: /
+host: localhost:80
 info:
-  contact: {}
-paths: {}
+  contact:
+    email: support@managingserver.io
+    name: ManagingServer API Support
+    url: http://managingserver.io/support
+  description: This is a sample server for the ManagingServer project.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://managingserver.io/terms/
+  title: ManagingServer API
+  version: "1.0"
+paths:
+  /api/postInst:
+    post:
+      consumes:
+      - application/json
+      description: get struct array by ID
+      operationId: get-struct-array2-by-string
+      parameters:
+      - description: 'Procedure ID (default: ''P_Collection_Kimsuky_001'')'
+        in: query
+        name: procedureID
+        required: true
+        type: string
+      - description: 'Agent UUID (default: ''123e4567e89b12d3a456426614174000'')'
+        in: query
+        name: agentUUID
+        required: true
+        type: string
+      - description: 'Instruction UUID (default: ''550e8400e29b41d4a716446655440000'')'
+        in: query
+        name: instructionUUID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
 swagger: "2.0"
