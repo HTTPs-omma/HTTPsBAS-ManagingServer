@@ -10,10 +10,13 @@ type ApplicationDB struct {
 	dbName string
 }
 
-func NewApplicationDB() (metaTable *ApplicationDB) {
+func NewApplicationDB() (*ApplicationDB, error) {
 	appDB := &ApplicationDB{"Application"}
-	appDB.createTable()
-	return appDB
+	err := appDB.createTable()
+	if err != nil {
+		return nil, err
+	}
+	return appDB, nil
 }
 
 type DapplicationDB struct {
@@ -234,6 +237,22 @@ func (s *ApplicationDB) DeleteByPackageCode(packageCode string) error {
 
 	query := fmt.Sprintf(`DELETE FROM %s WHERE PackageCode = ?`, s.dbName)
 	_, err = db.Exec(query, packageCode)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *ApplicationDB) DeleteAllRecords() error {
+	db, err := getDBPtr()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`DELETE FROM %s WHERE`)
+	_, err = db.Exec(query)
 	if err != nil {
 		return err
 	}

@@ -25,10 +25,13 @@ type DsystemInfoDB struct {
 	UpdatedAt     time.Time `json:"updated_at"`
 }
 
-func NewSystemInfoDB() *SystemInfoDB {
+func NewSystemInfoDB() (*SystemInfoDB, error) {
 	sysDB := &SystemInfoDB{"SystemInfo"}
-	sysDB.CreateTable()
-	return sysDB
+	err := sysDB.CreateTable()
+	if err != nil {
+		return nil, err
+	}
+	return sysDB, nil
 }
 
 func (s *SystemInfoDB) CreateTable() error {
@@ -153,7 +156,7 @@ func (s *SystemInfoDB) UpdateRecord(data *DsystemInfoDB) error {
 	return nil
 }
 
-func (s *SystemInfoDB) DeleteRecord(uuid string) error {
+func (s *SystemInfoDB) DeleteRecordByUUID(uuid string) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
@@ -162,6 +165,22 @@ func (s *SystemInfoDB) DeleteRecord(uuid string) error {
 
 	query := fmt.Sprintf(`DELETE FROM %s WHERE Uuid = ?`, s.dbName)
 	_, err = db.Exec(query, uuid)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *SystemInfoDB) DeleteAllRecord() error {
+	db, err := getDBPtr()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`DELETE FROM %s WHERE`)
+	_, err = db.Exec(query)
 	if err != nil {
 		return err
 	}

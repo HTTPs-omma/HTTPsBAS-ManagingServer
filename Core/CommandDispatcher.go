@@ -47,7 +47,10 @@ func (cd *CommandDispatcher) Action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 // Command: 1 (0b0000000001)
 func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
-	agsmd := Model.NewAgentStatusDB()
+	agsmd, err := Model.NewAgentStatusDB()
+	if err != nil {
+		return nil, err
+	}
 	rst, err := agsmd.ExistRecord()
 	if err != nil {
 		return nil, err
@@ -108,7 +111,10 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	// protocolID := binary.BigEndian.Uint32(hs.Data)
-	agsmd := Model.NewAgentStatusDB()
+	agsmd, err := Model.NewAgentStatusDB()
+	if err != nil {
+		return nil, err
+	}
 	rst, err := agsmd.ExistRecord()
 	if err != nil {
 		return nil, err
@@ -147,7 +153,10 @@ func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 // Command: 3 (0b0000000011)
 func postSystemInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
-	sysDB := Model.NewSystemInfoDB()
+	sysDB, err := Model.NewSystemInfoDB()
+	if err != nil {
+		return nil, err
+	}
 	Dsys, err := sysDB.Unmarshal(hs.Data)
 	if err != nil {
 		return nil, err

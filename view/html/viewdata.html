@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .table-container {
+            margin-bottom: 40px;
+        }
+
+        .table-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        td {
+            color: #333;
+        }
+
+        /* 테이블이 10행을 넘어가면 스크롤 생김 */
+        .table-wrapper {
+            max-height: 300px; /* 필요에 따라 높이 조정 */
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Combined Data Tables</h1>
+
+<!-- Operation Log -->
+<div class="table-container">
+    <div class="table-title">Operation Log</div>
+    <div class="table-wrapper">
+        <table id="operation-log-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>AgentUUID</th>
+                <th>ProcedureID</th>
+                <th>InstructionUUID</th>
+                <th>ConductAt</th>
+                <th>ExitCode</th>
+                <th>Log</th>
+                <th>Command</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <button onclick="deleteRecords('OperationLog')">Delete Operation Log</button>
+</div>
+
+<!-- Agent Status -->
+<div class="table-container">
+    <div class="table-title">Agent Status</div>
+    <div class="table-wrapper">
+        <table id="agent-status-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>UUID</th>
+                <th>Status</th>
+                <th>Protocol</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <button onclick="deleteRecords('AgentStatusDB')">Delete Agent Status</button>
+</div>
+
+<!-- Application -->
+<div class="table-container">
+    <div class="table-title">Application</div>
+    <div class="table-wrapper">
+        <table id="application-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>AgentUUID</th>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Language</th>
+                <th>Vendor</th>
+                <th>InstallDate</th>
+                <th>InstallLocation</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <button onclick="deleteRecords('ApplicationDB')">Delete Application</button>
+</div>
+
+<!-- Job Data -->
+<div class="table-container">
+    <div class="table-title">Job Data</div>
+    <div class="table-wrapper">
+        <table id="job-data-table">
+            <thead>
+            <tr>
+                <th>ProcedureID</th>
+                <th>AgentUUID</th>
+                <th>InstructionUUID</th>
+                <th>CreatedAt</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <button onclick="deleteRecords('JobDataDB')">Delete Job Data</button>
+</div>
+
+<!-- System Info -->
+<div class="table-container">
+    <div class="table-title">System Info</div>
+    <div class="table-wrapper">
+        <table id="system-info-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>UUID</th>
+                <th>HostName</th>
+                <th>OsName</th>
+                <th>OsVersion</th>
+                <th>Family</th>
+                <th>Architecture</th>
+                <th>KernelVersion</th>
+                <th>BootTime</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <button onclick="deleteRecords('SystemInfoDB')">Delete System Info</button>
+</div>
+
+<script>
+    function fetchData() {
+        fetch('/combined-data')
+            .then(response => response.json())
+            .then(data => {
+                // Operation Log Table
+                const operationLogTable = document.getElementById('operation-log-table').querySelector('tbody');
+                operationLogTable.innerHTML = `
+            <tr>
+              <td>${data.operation_log.ID}</td>
+              <td>${data.operation_log.AgentUUID}</td>
+              <td>${data.operation_log.ProcedureID}</td>
+              <td>${data.operation_log.InstructionUUID}</td>
+              <td>${new Date(data.operation_log.ConductAt).toLocaleString()}</td>
+              <td>${data.operation_log.ExitCode}</td>
+              <td>${data.operation_log.Log}</td>
+              <td>${data.operation_log.Command}</td>
+            </tr>`;
+
+                // Agent Status Table
+                const agentStatusTable = document.getElementById('agent-status-table').querySelector('tbody');
+                agentStatusTable.innerHTML = '';
+                data.agent_status.forEach(status => {
+                    agentStatusTable.innerHTML += `
+              <tr>
+                <td>${status.ID}</td>
+                <td>${status.UUID}</td>
+                <td>${status.Status}</td>
+                <td>${status.Protocol}</td>
+                <td>${new Date(status.CreatedAt).toLocaleString()}</td>
+                <td>${new Date(status.UpdatedAt).toLocaleString()}</td>
+              </tr>`;
+                });
+
+                // Application Table
+                const applicationTable = document.getElementById('application-table').querySelector('tbody');
+                applicationTable.innerHTML = '';
+                data.application.forEach(app => {
+                    applicationTable.innerHTML += `
+              <tr>
+                <td>${app.ID}</td>
+                <td>${app.AgentUUID}</td>
+                <td>${app.Name}</td>
+                <td>${app.Version}</td>
+                <td>${app.Language}</td>
+                <td>${app.Vendor}</td>
+                <td>${app.InstallDate2}</td>
+                <td>${app.InstallLocation}</td>
+                <td>${app.Description}</td>
+              </tr>`;
+                });
+
+                // Job Data Table
+                const jobDataTable = document.getElementById('job-data-table').querySelector('tbody');
+                jobDataTable.innerHTML = '';
+                data.job_data.forEach(job => {
+                    jobDataTable.innerHTML += `
+              <tr>
+                <td>${job.ProcedureID}</td>
+                <td>${job.AgentUUID}</td>
+                <td>${job.InstructionUUID}</td>
+                <td>${new Date(job.CreatedAt).toLocaleString()}</td>
+              </tr>`;
+                });
+
+                // System Info Table
+                const systemInfoTable = document.getElementById('system-info-table').querySelector('tbody');
+                systemInfoTable.innerHTML = '';
+                data.system_info.forEach(info => {
+                    systemInfoTable.innerHTML += `
+              <tr>
+                <td>${info.ID}</td>
+                <td>${info.Uuid}</td>
+                <td>${info.HostName}</td>
+                <td>${info.OsName}</td>
+                <td>${info.OsVersion}</td>
+                <td>${info.Family}</td>
+                <td>${info.Architecture}</td>
+                <td>${info.KernelVersion}</td>
+                <td>${new Date(info.BootTime).toLocaleString()}</td>
+                <td>${new Date(info.CreatedAt).toLocaleString()}</td>
+                <td>${new Date(info.UpdatedAt).toLocaleString()}</td>
+              </tr>`;
+                });
+            });
+    }
+
+    // 삭제 요청 함수
+    function deleteRecords(dbName) {
+        fetch(`/deleted/${dbName}`)
+            .then(response => {
+                if (response.ok) {
+                    alert(`${dbName} records deleted successfully.`);
+                    fetchData();  // 데이터 삭제 후 테이블 새로고침
+                } else {
+                    alert(`Error deleting ${dbName} records.`);
+                }
+            });
+    }
+
+    // 1초마다 데이터 업데이트
+    setInterval(fetchData, 1000);
+</script>
+
+</body>
+</html>

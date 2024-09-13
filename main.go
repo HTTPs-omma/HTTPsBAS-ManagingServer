@@ -13,20 +13,21 @@ import (
 	_ "github.com/your/repo/docs"
 	"github.com/your/repo/router"
 	"net"
+	"os"
 )
 
-//	@title			Swagger Example API
-//	@version		1.0
-//	@description	This is a sample server Petstore server.
-//	@termsOfService	http://swagger.io/terms/
-//	@contact.name	API Support
-//	@contact.url	http://www.swagger.io/support
-//	@contact.email	support@swagger.io
-//	@license.name	Apache 2.0
-//	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-//	@host			petstore.swagger.io
-//	@BasePath		/
-//	@Path			api
+// @title			Swagger Example API
+// @version		1.0
+// @description	This is a sample server Petstore server.
+// @termsOfService	http://swagger.io/terms/
+// @contact.name	API Support
+// @contact.url	http://www.swagger.io/support
+// @contact.email	support@swagger.io
+// @license.name	Apache 2.0
+// @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
+// @host			petstore.swagger.io
+// @BasePath		/
+// @Path			api
 var testCommand string = "dir /"
 
 func main() {
@@ -118,6 +119,15 @@ func handleTCPConnection(conn net.Conn) {
 
 func HTTPServer() {
 	app := fiber.New()
+	app.Get("/view/db", func(c fiber.Ctx) error {
+		// HTML 파일을 읽어서 응답으로 반환
+		htmlData, err := os.ReadFile("./view/html/viewdata.html")
+		if err != nil {
+			return c.Status(500).SendString("Error loading page")
+		}
+		c.Set("Content-Type", "text/html")
+		return c.Send(htmlData)
+	})
 
 	// 효과적인 Cors 에러 해결
 	app.Use(cors.New(cors.Config{
