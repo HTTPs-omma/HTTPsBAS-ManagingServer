@@ -8,37 +8,36 @@ import (
 
 // 통합 구조체 정의
 type CombinedData struct {
-	OperationLog Model.OperationLogDocument `json:"operation_log"`
-	AgentStatus  []Model.AgentStatusRecord  `json:"agent_status"`
-	Application  []Model.DapplicationDB     `json:"application"`
-	JobData      []Model.JobData            `json:"job_data"`
-	SystemInfo   []Model.DsystemInfoDB      `json:"system_info"`
+	OperationLog []Model.OperationLogDocument `json:"operation_log"`
+	AgentStatus  []Model.AgentStatusRecord    `json:"agent_status"`
+	Application  []Model.DapplicationDB       `json:"application"`
+	JobData      []Model.JobData              `json:"job_data"`
+	SystemInfo   []Model.DsystemInfoDB        `json:"system_info"`
 }
 
 func SetupViewRoutes(app *fiber.App) {
 	app.Get("/combined-data", func(ctx fiber.Ctx) error {
 		dbOperationLog, err := Model.NewOperationLogDB()
 		if err != nil {
-			ctx.Status(404)
-			return ctx.SendString("Error : " + err.Error())
+			return ctx.Status(404).SendString("Error : " + err.Error())
 		}
 		// 모든 문서 조회
-		dataOL, err := dbOperationLog.SelectAllDocuments()
+		var dataOL []Model.OperationLogDocument
+		dataOL, err = dbOperationLog.SelectAllDocuments()
 		if err != nil {
-			ctx.Status(404)
-			return ctx.SendString("Error : " + err.Error())
+			//dataOL = make([]Model.OperationLogDocument, 0)
+			//fmt.Println("SelectAllDocuments Error : " + err.Error())
+			//return ctx.Status(404).SendString("Error : " + err.Error())
 		}
 
 		dbAgentStatus, err := Model.NewAgentStatusDB()
 		if err != nil {
-			ctx.Status(404)
-			return ctx.SendString("Error : " + err.Error())
+			return ctx.Status(404).SendString("Error : " + err.Error())
 		}
-		dataAS, err := dbAgentStatus.SelectRecords()
+		dataAS, err := dbAgentStatus.SelectAllRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
-			ctx.Status(404)
-			return ctx.SendString("Error : " + err.Error())
+			return ctx.Status(404).SendString("Error : " + err.Error())
 		}
 
 		appdb, err := Model.NewApplicationDB()
@@ -67,7 +66,7 @@ func SetupViewRoutes(app *fiber.App) {
 		if err != nil {
 			return err
 		}
-		dataSys, err := dbSysInfo.SelectRecords()
+		dataSys, err := dbSysInfo.SelectAllRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
 			ctx.Status(404)
@@ -75,7 +74,7 @@ func SetupViewRoutes(app *fiber.App) {
 		}
 
 		combined := CombinedData{
-			OperationLog: *dataOL,
+			OperationLog: dataOL,
 			AgentStatus:  dataAS,
 			Application:  dataAPP,
 			JobData:      dataJD,
@@ -108,7 +107,7 @@ func SetupViewRoutes(app *fiber.App) {
 	app.Get("/view/agentStatus", func(ctx fiber.Ctx) error {
 		//data := ctx.Body()
 		db, err := Model.NewAgentStatusDB()
-		datas, err := db.SelectRecords()
+		datas, err := db.SelectAllRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
 			ctx.Status(404)
@@ -151,7 +150,7 @@ func SetupViewRoutes(app *fiber.App) {
 		if err != nil {
 			return err
 		}
-		datas, err := db.SelectRecords()
+		datas, err := db.SelectAllRecords()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
 			ctx.Status(404)

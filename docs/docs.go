@@ -9,11 +9,11 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://managingserver.io/terms/",
+        "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "ManagingServer API Support",
-            "url": "http://managingserver.io/support",
-            "email": "support@managingserver.io"
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
         },
         "license": {
             "name": "Apache 2.0",
@@ -56,7 +56,7 @@ const docTemplate = `{
                 "agentUUID": {
                     "description": "example: Test",
                     "type": "string",
-                    "default": "c3cb84233416497694569d759a8a13e7"
+                    "default": "937640a858ad48e9bc2787e8c4456ced"
                 },
                 "instructionUUID": {
                     "type": "string",
@@ -75,11 +75,11 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:80",
+	Host:             "petstore.swagger.io",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "ManagingServer API",
-	Description:      "This is a sample server for the ManagingServer project.",
+	Title:            "Swagger Example API",
+	Description:      "This is a sample server Petstore server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

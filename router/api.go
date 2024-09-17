@@ -2,7 +2,7 @@ package router
 
 import (
 	"fmt"
-	"github.com/HTTPs-omma/HSProtocol/HSProtocol"
+	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/gofiber/fiber/v3"
 	"github.com/your/repo/Core"
 	"github.com/your/repo/Model"
@@ -15,7 +15,7 @@ type InstructionD struct {
 	// example: Test
 	ProcedureID string `json:"procedureID" default:"P_Collection_Kimsuky_001"`
 	// example: Test
-	AgentUUID       string `json:"agentUUID" default:"c3cb84233416497694569d759a8a13e7"`
+	AgentUUID       string `json:"agentUUID" default:"937640a858ad48e9bc2787e8c4456ced"`
 	InstructionUUID string `json:"instructionUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
@@ -60,7 +60,6 @@ func checkInstReq(ctx fiber.Ctx) error {
 //	@Accept			json
 //	@Produce		json
 //	@Param			loginUserRequest	body	InstructionD	true	"request job"
-//	@Default		{"procedureID": "P_Collection_Kimsuky_001", "agentUUID": "2023-09-15T10:00:00Z", "instructionUUID" : :"550e8400-e29b-41d4-a716-446655440000"}
 //	@Router			/api/postInst [post]
 func postInst(ctx fiber.Ctx) error {
 	// https://github.com/gofiber/fiber/issues/2958
@@ -71,13 +70,14 @@ func postInst(ctx fiber.Ctx) error {
 		ctx.Status(404)
 		return ctx.Send([]byte(err.Error()))
 	}
-	jobMgr, err := Core.NewJobManager()
+	jobdb, err := Model.NewJobDB()
 	if err != nil {
 		return ctx.Send([]byte(err.Error()))
 	}
-	fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.InstructionUUID)
+	//fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.InstructionUUID)
 
-	err = jobMgr.InsertData(&Model.JobData{
+	err = jobdb.InsertJobData(&Model.JobData{
+		0,
 		InstD.ProcedureID,
 		InstD.AgentUUID,
 		InstD.InstructionUUID,
