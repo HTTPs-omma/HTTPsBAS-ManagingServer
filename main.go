@@ -144,7 +144,6 @@ func HTTPServer() {
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*", "http://localhost/*"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
-		//AllowCredentials: true,
 	}))
 
 	router.SetupAPIRoutes(app)

@@ -130,7 +130,17 @@
                 <th>Vendor</th>
                 <th>InstallDate</th>
                 <th>InstallLocation</th>
+                <th>InstallSource</th>
+                <th>PackageName</th>
+                <th>PackageCode</th>
+                <th>RegCompany</th>
+                <th>RegOwner</th>
+                <th>URLInfoAbout</th>
                 <th>Description</th>
+                <th>IsDeleted</th>
+                <th>CreateAt</th>
+                <th>UpdateAt</th>
+                <th>DeletedAt</th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -225,15 +235,25 @@
                 data.application.forEach(app => {
                     applicationTable.innerHTML += `
               <tr>
-                <td>${app.ID}</td>
-                <td>${app.AgentUUID}</td>
-                <td>${app.Name}</td>
-                <td>${app.Version}</td>
-                <td>${app.Language}</td>
-                <td>${app.Vendor}</td>
-                <td>${app.InstallDate2}</td>
-                <td>${app.InstallLocation}</td>
-                <td>${app.Description}</td>
+                <td>${app.id}</td>
+                <td>${app.agent_uuid}</td>
+                <td>${app.name}</td>
+                <td>${app.version}</td>
+                <td>${app.language}</td>
+                <td>${app.vendor}</td>
+                <td>${app.install_date}</td>
+                <td>${app.install_location}</td>
+                <td>${app.install_source}</td>
+                <td>${app.package_name}</td>
+                <td>${app.package_code}</td>
+                <td>${app.reg_company}</td>
+                <td>${app.reg_owner}</td>
+                <td>${app.url_info_about}</td>
+                <td>${app.description}</td>
+                <td>${app.is_deleted}</td>
+                <td>${new Date(app.create_at).toLocaleString()}</td>
+                <td>${new Date(app.update_at).toLocaleString()}</td>
+                <td>${new Date(app.deleted_at).toLocaleString()}</td>
               </tr>`;
                 });
 
@@ -257,17 +277,17 @@
                 data.system_info.forEach(info => {
                     systemInfoTable.innerHTML += `
               <tr>
-                <td>${info.ID}</td>
-                <td>${info.Uuid}</td>
-                <td>${info.HostName}</td>
-                <td>${info.OsName}</td>
-                <td>${info.OsVersion}</td>
-                <td>${info.Family}</td>
-                <td>${info.Architecture}</td>
-                <td>${info.KernelVersion}</td>
-                <td>${new Date(info.BootTime).toLocaleString()}</td>
-                <td>${new Date(info.CreatedAt).toLocaleString()}</td>
-                <td>${new Date(info.UpdatedAt).toLocaleString()}</td>
+                <td>${info.id}</td>
+                <td>${info.uuid}</td>
+                <td>${info.host_name}</td>
+                <td>${info.os_name}</td>
+                <td>${info.os_version}</td>
+                <td>${info.family}</td>
+                <td>${info.architecture}</td>
+                <td>${info.kernel_version}</td>
+                <td>${new Date(info.boot_time).toLocaleString()}</td>
+                <td>${new Date(info.created_at).toLocaleString()}</td>
+                <td>${new Date(info.updated_at).toLocaleString()}</td>
               </tr>`;
                 });
             });

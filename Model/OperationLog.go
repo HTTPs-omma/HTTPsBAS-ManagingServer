@@ -26,6 +26,12 @@ type OperationLogDocument struct {
 	Command         string             `bson:"command"` // Command 필드로 변경
 }
 
+const (
+	EXIT_SUCCESS = 1
+	EXIT_Unknown = 0
+	EXIT_FAIL    = -1
+)
+
 type OperationLogDB struct {
 	DBNAME string
 }

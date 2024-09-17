@@ -167,6 +167,17 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 	}
 	defer db.Close()
 
+	checkQuery := fmt.Sprintf(`SELECT COUNT(*) FROM %s WHERE uuid = ?`, s.dbName)
+	var count int
+	err = db.QueryRow(checkQuery, data.UUID).Scan(&count)
+	if err != nil {
+		return err
+	}
+	if count > 0 {
+		// 중복된 항목이 있으면 업데이트
+		return s.UpdateRecord(data)
+	}
+
 	query := fmt.Sprintf(`INSERT INTO %s (uuid, status, protocol) VALUES (?, ?, ?)`, s.dbName)
 	stmt, err := db.Prepare(query)
 	if err != nil {
@@ -219,8 +230,8 @@ func (s *AgentStatusDB) UpdateRecord(data *AgentStatusRecord) error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`UPDATE %s SET status = ?, protocol = ? WHERE uuid = ?`, s.dbName)
-	_, err = db.Exec(query, data.Status, data.Protocol, data.UUID)
+	query := fmt.Sprintf(`UPDATE %s SET status = ? WHERE uuid = ?`, s.dbName)
+	_, err = db.Exec(query, data.Status, data.UUID)
 	if err != nil {
 		return err
 	}
@@ -261,7 +272,6 @@ func (s *AgentStatusDB) DeleteAllRecord() error {
 	return nil
 }
 
-// ExistRecord checks if at least one record exists in the AgentStatus table.
 func (s *AgentStatusDB) ExistRecord() (bool, error) {
 	db, err := getDBPtr()
 	if err != nil {
