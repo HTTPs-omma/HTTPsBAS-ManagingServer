@@ -42,15 +42,20 @@ func checkInstReq(ctx fiber.Ctx) error {
 	HSMgr := HSProtocol.NewHSProtocolManager()
 	hs, err := HSMgr.Parsing(req)
 	if err != nil {
+		fmt.Println(err)
 		ctx.Status(404)
 		return fmt.Errorf("Error parsing:", err)
 	}
 
-	fmt.Println("hs.uuid : ", hs.UUID)
+	//fmt.Println("hs.uuid : ", hs.UUID)
 	dipt := Core.CommandDispatcher{}
-	dipt.Action(hs)
+	ack, err := dipt.Action(hs)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-	return nil
+	rstb, err := HSMgr.ToBytes(ack)
+	return ctx.Send(rstb)
 }
 
 // postInst example
