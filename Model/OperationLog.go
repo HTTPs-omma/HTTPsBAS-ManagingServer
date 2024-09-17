@@ -27,23 +27,21 @@ type OperationLogDocument struct {
 }
 
 type OperationLogDB struct {
-	Collection *mongo.Collection
+	DBNAME string
 }
 
 func NewOperationLogDB() (*OperationLogDB, error) {
+	return &OperationLogDB{DBNAME: "execLog"}, nil
+}
+
+func (repo *OperationLogDB) InsertDocument(log OperationLogDocument) (*mongo.InsertOneResult, error) {
 	db, err := getCollectionPtr()
 	if err != nil {
 		return nil, err
 	}
-	OpDB := &OperationLogDB{
-		Collection: db.Collection("execLog"),
-	}
-	return OpDB, nil
-}
-
-func (repo *OperationLogDB) InsertDocument(log OperationLogDocument) (*mongo.InsertOneResult, error) {
+	ptrdb := db.Collection(repo.DBNAME)
 	// Command 필드를 기본값으로 설정 (필요에 따라 변경)
-	result, err := repo.Collection.InsertOne(context.TODO(), log)
+	result, err := ptrdb.InsertOne(context.TODO(), log)
 	fmt.Println(log)
 	if err != nil {
 		return nil, err
@@ -54,10 +52,16 @@ func (repo *OperationLogDB) InsertDocument(log OperationLogDocument) (*mongo.Ins
 }
 
 func (repo *OperationLogDB) SelectDocumentById(id string) (*OperationLogDocument, error) {
+	db, err := getCollectionPtr()
+	if err != nil {
+		return nil, err
+	}
+	ptrdb := db.Collection(repo.DBNAME)
+
 	var OperationLogDocument OperationLogDocument
 	filter := bson.M{"instructionUUID": id}
 
-	err := repo.Collection.FindOne(context.TODO(), filter).Decode(&OperationLogDocument)
+	err = ptrdb.FindOne(context.TODO(), filter).Decode(&OperationLogDocument)
 	if err != nil {
 		return nil, err
 	}
@@ -65,25 +69,51 @@ func (repo *OperationLogDB) SelectDocumentById(id string) (*OperationLogDocument
 	return &OperationLogDocument, nil
 }
 
-func (repo *OperationLogDB) SelectAllDocuments() (*OperationLogDocument, error) {
-	var OperationLogDocument OperationLogDocument
+func (repo *OperationLogDB) SelectAllDocuments() ([]OperationLogDocument, error) {
+	documents := []OperationLogDocument{}
+	db, err := getCollectionPtr()
+	if err != nil {
+		return documents, err
+	}
+	ptrdb := db.Collection(repo.DBNAME)
+
 	filter := bson.M{}
 
-	err := repo.Collection.FindOne(context.TODO(), filter).Decode(&OperationLogDocument)
+	cursor, err := ptrdb.Find(context.TODO(), filter)
 	if err != nil {
-		return nil, err
+		return documents, err
 	}
 
-	return &OperationLogDocument, nil
+	defer cursor.Close(context.TODO())
+
+	for cursor.Next(context.TODO()) {
+		var doc OperationLogDocument
+		if err := cursor.Decode(&doc); err != nil {
+			return nil, err
+		}
+		documents = append(documents, doc)
+	}
+
+	if err := cursor.Err(); err != nil {
+		return documents, err
+	}
+
+	return documents, nil
 }
 
 func (repo *OperationLogDB) UpdateDocumentByInstID(id string, updateData bson.M) (*mongo.UpdateResult, error) {
+	db, err := getCollectionPtr()
+	if err != nil {
+		return nil, err
+	}
+	ptrdb := db.Collection(repo.DBNAME)
+
 	filter := bson.M{"instructionUUID": id}
 	update := bson.M{
 		"$set": updateData,
 	}
 
-	result, err := repo.Collection.UpdateOne(context.TODO(), filter, update)
+	result, err := ptrdb.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		return nil, err
 	}
@@ -93,9 +123,15 @@ func (repo *OperationLogDB) UpdateDocumentByInstID(id string, updateData bson.M)
 }
 
 func (repo *OperationLogDB) DeleteAllDocument() (*mongo.DeleteResult, error) {
+	db, err := getCollectionPtr()
+	if err != nil {
+		return nil, err
+	}
+	ptrdb := db.Collection(repo.DBNAME)
+
 	filter := bson.M{}
 
-	result, err := repo.Collection.DeleteMany(context.TODO(), filter)
+	result, err := ptrdb.DeleteMany(context.TODO(), filter)
 	if err != nil {
 		return nil, err
 	}

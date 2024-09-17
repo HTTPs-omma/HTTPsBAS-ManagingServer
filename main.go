@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/HTTPs-omma/HSProtocol/HSProtocol"
+	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"

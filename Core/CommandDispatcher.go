@@ -2,7 +2,7 @@ package Core
 
 import (
 	"fmt"
-	"github.com/HTTPs-omma/HSProtocol/HSProtocol"
+	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/your/repo/Model"
 )
 
@@ -59,7 +59,7 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, fmt.Errorf("Agent Status DB : no Records")
 	}
 
-	records, err := agsmd.SelectRecords()
+	records, err := agsmd.SelectAllRecords()
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 			TotalLength:    hs.TotalLength,
 			Data:           []byte{},
 		}, nil
-	} else if (flag == false) && (hs.HealthStatus == uint8(Model.Waiting)) {
+	} else if (flag == false) && (hs.HealthStatus == uint8(Model.WAIT)) {
 		agsmd.InsertRecord(&Model.AgentStatusRecord{
 			UUID:   string(hs.UUID[:]),
 			Status: Model.BinaryToAgentStatus(hs.HealthStatus),
@@ -123,7 +123,7 @@ func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, fmt.Errorf("Agent Status DB : no Records")
 	}
 
-	records, err := agsmd.SelectRecords()
+	records, err := agsmd.SelectAllRecords()
 	if err != nil {
 		return nil, err
 	}
@@ -229,13 +229,13 @@ func getProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 // Command: 7 (0b0000000111)
 func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
-	jbMgr, err := NewJobManager() // stack 에 있어야겠지?
+	jobdb, err := Model.NewJobDB() // stack 에 있어야겠지?
 	if err != nil {
 		return nil, err
 	}
 	var agentUuid string
 	copy(hs.UUID[:], agentUuid)
-	job, err, exist := jbMgr.popData(agentUuid)
+	job, err, exist := jobdb.PopbyAgentUUID(agentUuid)
 
 	if err != nil {
 		return nil, err

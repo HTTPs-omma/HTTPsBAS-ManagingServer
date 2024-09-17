@@ -274,7 +274,7 @@ func (s *ApplicationDB) SelectAllRecords() ([]DapplicationDB, error) {
 		return nil, err
 	}
 
-	var rows []DapplicationDB
+	rows := []DapplicationDB{}
 
 	for row.Next() {
 		var data DapplicationDB

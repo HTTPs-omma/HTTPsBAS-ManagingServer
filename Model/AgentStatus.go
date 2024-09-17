@@ -16,7 +16,7 @@ const (
 	UnknownProtocol Protocol = 0b0000 // 알 수 없는 프로토콜
 )
 
-// Protocol을 문자열로 변환하는 메서드를 구현합니다.
+// // Protocol을 문자열로 변환하는 메서드를 구현합니다.
 func (p Protocol) String() string {
 	switch p {
 	case TCP:
@@ -32,28 +32,28 @@ func (p Protocol) String() string {
 	}
 }
 
-// AgentStatus 유형을 정의합니다.
+// // AgentStatus 유형을 정의합니다.
 type AgentStatus int
 
 const (
-	Waiting  AgentStatus = iota // 동작 중인 상태
-	Running                     // 대기 중인 상태
-	Stopping                    // 정지 후 사라지기 전의 상태
-	Deleted
-	Unknown
+	NEW  AgentStatus = iota // 동작 중인 상태
+	WAIT                    // 대기 중인 상태
+	RUN                     // 정지 후 사라지기 전의 상태
+	DELETED
+	UNKNOWN
 )
 
 // AgentStatus를 문자열로 변환하는 메서드를 구현합니다.
 func (s AgentStatus) String() string {
 	switch s {
-	case Running:
+	case NEW:
+		return "NEW"
+	case RUN:
 		return "Running"
-	case Waiting:
+	case WAIT:
 		return "Waiting"
-	case Stopping:
-		return "Stopping"
-	case Deleted:
-		return "Deleted"
+	case DELETED:
+		return "DELETED"
 	default:
 		return "Unknown"
 	}
@@ -63,15 +63,15 @@ func (s AgentStatus) String() string {
 func BinaryToAgentStatus(i uint8) AgentStatus {
 	switch i {
 	case 0b00:
-		return Waiting
+		return NEW
 	case 0b01:
-		return Running
+		return WAIT
 	case 0b10:
-		return Stopping
+		return RUN
 	case 0b11:
-		return Deleted
+		return DELETED
 	default:
-		return Unknown
+		return UNKNOWN
 	}
 }
 
@@ -183,7 +183,7 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 }
 
 // SelectRecords retrieves all records from the AgentStatus table.
-func (s *AgentStatusDB) SelectRecords() ([]AgentStatusRecord, error) {
+func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err
@@ -198,7 +198,7 @@ func (s *AgentStatusDB) SelectRecords() ([]AgentStatusRecord, error) {
 	}
 	defer rows.Close()
 
-	var records []AgentStatusRecord
+	records := []AgentStatusRecord{}
 	for rows.Next() {
 		var record AgentStatusRecord
 		err := rows.Scan(&record.ID, &record.UUID, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)

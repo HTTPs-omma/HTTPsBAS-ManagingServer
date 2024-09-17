@@ -137,7 +137,7 @@ func (s *SystemInfoDB) UpdateRecord(data *DsystemInfoDB) error {
 	}
 	defer db.Close()
 
-	rows, err := s.SelectRecords()
+	rows, err := s.SelectAllRecords()
 	if err != nil {
 		return err
 	}
@@ -188,7 +188,7 @@ func (s *SystemInfoDB) DeleteAllRecord() error {
 	return nil
 }
 
-func (s *SystemInfoDB) SelectRecords() ([]DsystemInfoDB, error) {
+func (s *SystemInfoDB) SelectAllRecords() ([]DsystemInfoDB, error) {
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err
@@ -202,7 +202,7 @@ func (s *SystemInfoDB) SelectRecords() ([]DsystemInfoDB, error) {
 		return nil, err
 	}
 
-	var rows []DsystemInfoDB
+	rows := []DsystemInfoDB{}
 
 	for row.Next() {
 		var data DsystemInfoDB

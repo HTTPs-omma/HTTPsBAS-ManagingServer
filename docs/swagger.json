@@ -1,13 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server for the ManagingServer project.",
-        "title": "ManagingServer API",
-        "termsOfService": "http://managingserver.io/terms/",
+        "description": "This is a sample server Petstore server.",
+        "title": "Swagger Example API",
+        "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "ManagingServer API Support",
-            "url": "http://managingserver.io/support",
-            "email": "support@managingserver.io"
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
         },
         "license": {
             "name": "Apache 2.0",
@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:80",
+    "host": "petstore.swagger.io",
     "basePath": "/",
     "paths": {
         "/api/postInst": {
@@ -50,7 +50,7 @@
                 "agentUUID": {
                     "description": "example: Test",
                     "type": "string",
-                    "default": "c3cb84233416497694569d759a8a13e7"
+                    "default": "937640a858ad48e9bc2787e8c4456ced"
                 },
                 "instructionUUID": {
                     "type": "string",

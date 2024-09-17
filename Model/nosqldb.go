@@ -2,6 +2,7 @@ package Model
 
 import (
 	"context"
+	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -29,6 +30,11 @@ func getCollectionPtr() (*mongo.Database, error) {
 	if err != nil {
 		log.Fatal("Error creating MongoDB client: ", err)
 		return nil, err
+	}
+
+	err = client.Ping(context.TODO(), nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to MongoDB: %v", err)
 	}
 
 	// 연결 설정
