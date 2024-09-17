@@ -1,6 +1,7 @@
 package Model
 
 import (
+	"database/sql"
 	"fmt"
 	"time"
 )
@@ -141,34 +142,41 @@ func (jd *JobDB) SelectAllJobData() ([]JobData, error) {
 }
 
 func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
-
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err, false
 	}
 	defer db.Close()
 
-	selectSQL := `SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt FROM jobs`
+	// 쿼리문 수정: WHERE 절을 추가하고 ORDER BY를 사용하여 CreateAt을 기준으로 내림차순 정렬
+	selectSQL := `
+		SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt 
+		FROM jobs 
+		WHERE AgentUUID = ? 
+		ORDER BY CreateAt DESC
+		LIMIT 1
+	`
 
-	rows, err := db.Query(selectSQL)
-	defer rows.Close()
+	// QueryRow를 사용하여 한 행만 가져옵니다.
+	row := db.QueryRow(selectSQL, agentUUID)
+
+	var job JobData
+	err = row.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.InstructionUUID, &job.CreateAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			// 일치하는 행이 없는 경우
+			return &JobData{}, nil, false
+		}
+		return nil, err, false
+	}
+
+	// 해당 JobData를 삭제
+	err = jd.DeleteJobDataById(job.Id)
 	if err != nil {
 		return nil, err, false
 	}
 
-	for rows.Next() == true {
-		var job *JobData = &JobData{}
-		err = rows.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.InstructionUUID, &job.CreateAt) // 첫 행에만 적용
-		if err != nil {
-			return nil, err, false
-		}
-		if agentUUID == job.AgentUUID {
-			jd.DeleteJobDataById(job.Id)
-			return job, nil, true
-		}
-	}
-
-	return &JobData{}, nil, false
+	return &job, nil, true
 }
 
 // DeleteJobDataByInstructionUUID: InstructionUUID 기반으로 JobData 삭제

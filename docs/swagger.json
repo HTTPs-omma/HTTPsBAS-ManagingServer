@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "petstore.swagger.io",
+    "host": "localhost",
     "basePath": "/",
     "paths": {
         "/api/postInst": {

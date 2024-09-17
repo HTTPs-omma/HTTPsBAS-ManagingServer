@@ -24,7 +24,7 @@ func getCollectionPtr() (*mongo.Database, error) {
 		SetMaxPoolSize(50).                                                               // 최대 풀 크기
 		SetMinPoolSize(10).                                                               // 최소 풀 크기
 		SetMaxConnIdleTime(30 * time.Second)                                              // 최대 유휴 시간
-
+		//fmt.Println("mongodb://" + MONGOID + ":" + MONGOPW + "@uskawjdu.iptime.org:17017/")
 	// 클라이언트 생성
 	client, err := mongo.NewClient(clientOptions)
 	if err != nil {

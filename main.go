@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
+	cors2 "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
@@ -25,7 +26,7 @@ import (
 // @contact.email	support@swagger.io
 // @license.name	Apache 2.0
 // @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-// @host			petstore.swagger.io
+// @host			localhost
 // @BasePath		/
 // @Path			api
 var testCommand string = "dir /"
@@ -57,8 +58,14 @@ func Swagger() {
 
 	// Swagger 엔드포인트
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
-	r.Run(":8080")
+	r.Use(cors2.New(cors2.Config{
+		AllowOrigins:     []string{"*"},                            // 모든 도메인 허용, 보안 상 필요한 경우 특정 도메인만 허용해야 함
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"}, // 허용할 HTTP 메서드
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "Access-Control-Allow-Origin", "Connection", "Accept-Encoding"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
+	r.Run("localhost:8000")
 
 }
 
@@ -130,9 +137,14 @@ func HTTPServer() {
 	})
 
 	// 효과적인 Cors 에러 해결
+	//app.Use(cors.New(cors.Config{
+	//	AllowCredentials: true,
+	//	AllowOriginsFunc: func(origin string) bool { return true },
+	//}))
 	app.Use(cors.New(cors.Config{
-		AllowCredentials: true,
-		AllowOriginsFunc: func(origin string) bool { return true },
+		AllowOrigins: []string{"*", "http://localhost/*"},
+		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
+		//AllowCredentials: true,
 	}))
 
 	router.SetupAPIRoutes(app)

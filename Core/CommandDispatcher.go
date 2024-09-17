@@ -11,42 +11,32 @@ type CommandDispatcher struct {
 }
 
 // Command 상수를 정의
-const (
-	ACK                   = 0b0000000000
-	UPDATE_HEALTH         = 0b0000000001
-	UPDATE_PROTOCOL       = 0b0000000010
-	POST_SYSTEM_INFO      = 0b0000000011
-	RESERVED              = 0b0000000100
-	POST_APPLICATION_INFO = 0b0000000101
-	GET_PROCEDURE         = 0b0000000110
-	POST_LOG_OF_PROCEDURE = 0b0000000111
-)
 
 func (cd *CommandDispatcher) Action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	// hsMgr := HSProtocol.NewHSProtocolManager()
 
 	switch hs.Command {
-	case UPDATE_HEALTH:
-		return updateHealth(hs)
-	case UPDATE_PROTOCOL:
-		return updateProtocol(hs)
-	case POST_SYSTEM_INFO:
-		return postSystemInfo(hs)
-	case RESERVED:
+	case HSProtocol.UPDATE_AGENT_PROTOCOL:
+		return UPDATE_AGENT_PROTOCOL(hs)
+	case HSProtocol.UPDATE_AGENT_STATUS:
+		return UPDATE_AGENT_STATUS(hs)
+	case HSProtocol.SEND_AGENT_SYS_INFO:
+		return SEND_AGENT_SYS_INFO(hs)
+	case HSProtocol.ERROR_ACK:
 		break // 예약
-	case POST_APPLICATION_INFO:
-		return postApplicationInfo(hs)
-	case GET_PROCEDURE:
-		return getProcedure(hs)
-	case POST_LOG_OF_PROCEDURE:
-		return postLogOfProcedure(hs)
+	case HSProtocol.SEND_AGENT_APP_INFO:
+		return SEND_AGENT_APP_INFO(hs)
+	case HSProtocol.FETCH_INSTRUCTION:
+		return FETCH_INSTRUCTION(hs)
+	case HSProtocol.SEND_PROCEDURE_LOG:
+		return SEND_PROCEDURE_LOG(hs)
 	}
 
 	return nil, fmt.Errorf("Invalid Command")
 }
 
 // Command: 1 (0b0000000001)
-func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+func UPDATE_AGENT_PROTOCOL(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	agsmd, err := Model.NewAgentStatusDB()
 	if err != nil {
 		return nil, err
@@ -64,7 +54,7 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, err
 	}
 
-	hs_uuid := string(hs.UUID[:])
+	hs_uuid := HSProtocol.ByteArrayToHexString(hs.UUID)
 
 	flag := false
 	for _, record := range records {
@@ -75,12 +65,12 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	if flag == true {
 		agsmd.UpdateRecord(&Model.AgentStatusRecord{
-			UUID:   string(hs.UUID[:]),
+			UUID:   hs_uuid,
 			Status: Model.BinaryToAgentStatus(hs.HealthStatus),
 		})
-		return &HSProtocol.HS{ // ACK
+		return &HSProtocol.HS{ // HSProtocol.ACK
 			ProtocolID:     hs.ProtocolID,
-			Command:        ACK,
+			Command:        HSProtocol.ACK,
 			UUID:           hs.UUID,
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
@@ -89,13 +79,13 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		}, nil
 	} else if (flag == false) && (hs.HealthStatus == uint8(Model.WAIT)) {
 		agsmd.InsertRecord(&Model.AgentStatusRecord{
-			UUID:   string(hs.UUID[:]),
+			UUID:   hs_uuid,
 			Status: Model.BinaryToAgentStatus(hs.HealthStatus),
 		})
 
-		return &HSProtocol.HS{ // ACK
+		return &HSProtocol.HS{ // HSProtocol.ACK
 			ProtocolID:     hs.ProtocolID,
-			Command:        ACK,
+			Command:        HSProtocol.ACK,
 			UUID:           hs.UUID,
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
@@ -108,7 +98,7 @@ func updateHealth(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 2 (0b0000000010)
-func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+func UPDATE_AGENT_STATUS(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	// protocolID := binary.BigEndian.Uint32(hs.Data)
 	agsmd, err := Model.NewAgentStatusDB()
@@ -139,9 +129,9 @@ func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		}
 	}
 
-	return &HSProtocol.HS{ // ACK
+	return &HSProtocol.HS{ // HSProtocol.ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        ACK,
+		Command:        HSProtocol.ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -151,7 +141,7 @@ func updateProtocol(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 3 (0b0000000011)
-func postSystemInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+func SEND_AGENT_SYS_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	sysDB, err := Model.NewSystemInfoDB()
 	if err != nil {
@@ -167,9 +157,9 @@ func postSystemInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, err
 	}
 
-	return &HSProtocol.HS{ // ACK
+	return &HSProtocol.HS{ // HSProtocol.ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        ACK,
+		Command:        HSProtocol.ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -179,7 +169,7 @@ func postSystemInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 5 (0b0000000101)
-func postApplicationInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+func SEND_AGENT_APP_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	appDB := Model.ApplicationDB{}
 	Dapp, err := appDB.Unmarshal(hs.Data)
@@ -191,9 +181,9 @@ func postApplicationInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, err
 	}
 
-	return &HSProtocol.HS{ // ACK
+	return &HSProtocol.HS{ // HSProtocol.ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        ACK,
+		Command:        HSProtocol.ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,
@@ -203,44 +193,20 @@ func postApplicationInfo(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 6 (0b0000000110)
-func getProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
-
-	appDB := Model.ApplicationDB{}
-	Dapp, err := appDB.Unmarshal(hs.Data)
+func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+	agentUuid := HSProtocol.ByteArrayToHexString(hs.UUID)
+	fmt.Println("agent uuid : " + agentUuid)
+	jobdb, err := Model.NewJobDB()
 	if err != nil {
 		return nil, err
 	}
-	err = appDB.InsertRecord(Dapp)
-	if err != nil {
-		return nil, err
-	}
-
-	return &HSProtocol.HS{ // ACK
-		ProtocolID:     hs.ProtocolID,
-		Command:        ACK,
-		UUID:           hs.UUID,
-		HealthStatus:   hs.HealthStatus,
-		Identification: hs.Identification,
-		TotalLength:    hs.TotalLength,
-		Data:           []byte{},
-	}, nil
-}
-
-// Command: 7 (0b0000000111)
-func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
-
-	jobdb, err := Model.NewJobDB() // stack 에 있어야겠지?
-	if err != nil {
-		return nil, err
-	}
-	var agentUuid string
-	copy(hs.UUID[:], agentUuid)
 	job, err, exist := jobdb.PopbyAgentUUID(agentUuid)
 
 	if err != nil {
 		return nil, err
 	}
 
+	//fmt.Println("debug === : " + job.ProcedureID)
 	if exist == true { // job 이 있다면
 		cmdMgr, err := NewInstructionManager()
 		if err != nil {
@@ -255,9 +221,9 @@ func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		if err != nil {
 			return nil, err
 		}
-		return &HSProtocol.HS{ // ACK
+		return &HSProtocol.HS{ // HSProtocol.ACK
 			ProtocolID:     hs.ProtocolID,
-			Command:        ACK,
+			Command:        HSProtocol.ACK,
 			UUID:           hs.UUID,
 			HealthStatus:   hs.HealthStatus,
 			Identification: hs.Identification,
@@ -267,9 +233,36 @@ func postLogOfProcedure(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	}
 
 	// false
-	return &HSProtocol.HS{ // ACK
+	return &HSProtocol.HS{ // HSProtocol.ACK
 		ProtocolID:     hs.ProtocolID,
-		Command:        ACK,
+		Command:        HSProtocol.ACK,
+		UUID:           hs.UUID,
+		HealthStatus:   hs.HealthStatus,
+		Identification: hs.Identification,
+		TotalLength:    hs.TotalLength,
+		Data:           []byte{},
+	}, nil
+
+}
+
+// Command: 7 (0b0000000111)
+func SEND_PROCEDURE_LOG(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+
+	//hs_uuid := HSProtocol.ByteArrayToHexString(hs.UUID)
+
+	appDB := Model.ApplicationDB{}
+	Dapp, err := appDB.Unmarshal(hs.Data)
+	if err != nil {
+		return nil, err
+	}
+	err = appDB.InsertRecord(Dapp)
+	if err != nil {
+		return nil, err
+	}
+
+	return &HSProtocol.HS{ // HSProtocol.ACK
+		ProtocolID:     hs.ProtocolID,
+		Command:        HSProtocol.ACK,
 		UUID:           hs.UUID,
 		HealthStatus:   hs.HealthStatus,
 		Identification: hs.Identification,

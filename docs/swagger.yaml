@@ -14,7 +14,7 @@ definitions:
         description: 'example: Test'
         type: string
     type: object
-host: petstore.swagger.io
+host: localhost
 info:
   contact:
     email: support@swagger.io
