@@ -51,7 +51,18 @@ func checkInstReq(ctx fiber.Ctx) error {
 	dipt := Core.CommandDispatcher{}
 	ack, err := dipt.Action(hs)
 	if err != nil {
+		ack := &HSProtocol.HS{ // HSProtocol.ACK
+			ProtocolID:     hs.ProtocolID,
+			Command:        HSProtocol.ERROR_ACK,
+			UUID:           hs.UUID,
+			HealthStatus:   hs.HealthStatus,
+			Identification: hs.Identification,
+			TotalLength:    hs.TotalLength,
+			Data:           []byte{},
+		}
+		rstb, _ := HSMgr.ToBytes(ack)
 		fmt.Println(err)
+		return ctx.Send(rstb)
 	}
 
 	rstb, err := HSMgr.ToBytes(ack)

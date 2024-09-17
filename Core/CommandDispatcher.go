@@ -1,6 +1,7 @@
 package Core
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/your/repo/Model"
@@ -28,8 +29,8 @@ func (cd *CommandDispatcher) Action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return SEND_AGENT_APP_INFO(hs)
 	case HSProtocol.FETCH_INSTRUCTION:
 		return FETCH_INSTRUCTION(hs)
-	case HSProtocol.SEND_PROCEDURE_LOG:
-		return SEND_PROCEDURE_LOG(hs)
+		//case HSProtocol.SEND_PROCEDURE_LOG:
+		//	return SEND_PROCEDURE_LOG(hs)
 	}
 
 	return nil, fmt.Errorf("Invalid Command")
@@ -101,32 +102,20 @@ func UPDATE_AGENT_PROTOCOL(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 func UPDATE_AGENT_STATUS(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 	// protocolID := binary.BigEndian.Uint32(hs.Data)
-	agsmd, err := Model.NewAgentStatusDB()
+	agsDb, err := Model.NewAgentStatusDB()
 	if err != nil {
 		return nil, err
-	}
-	rst, err := agsmd.ExistRecord()
-	if err != nil {
-		return nil, err
-	}
-	if rst {
-		return nil, fmt.Errorf("Agent Status DB : no Records")
 	}
 
-	records, err := agsmd.SelectAllRecords()
+	agsDb.InsertRecord(&Model.AgentStatusRecord{
+		ID:       0,
+		UUID:     HSProtocol.ByteArrayToHexString(hs.UUID),
+		Protocol: Model.BinaryToProtocol(hs.ProtocolID),
+		Status:   Model.BinaryToAgentStatus(hs.HealthStatus),
+	})
+	err = agsDb.InsertRecord(&Model.AgentStatusRecord{})
 	if err != nil {
 		return nil, err
-	}
-	hs_uuid := string(hs.UUID[:])
-
-	for _, record := range records {
-		if record.UUID == hs_uuid {
-			record.Protocol = Model.BinaryToProtocol(hs.ProtocolID)
-			err = agsmd.UpdateRecord(&record)
-			if err != nil {
-				return nil, err
-			}
-		}
 	}
 
 	return &HSProtocol.HS{ // HSProtocol.ACK
@@ -147,12 +136,13 @@ func SEND_AGENT_SYS_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	if err != nil {
 		return nil, err
 	}
-	Dsys, err := sysDB.Unmarshal(hs.Data)
+	sysinfo := Model.DsystemInfoDB{}
+	err = json.Unmarshal(hs.Data, &sysinfo)
 	if err != nil {
 		return nil, err
 	}
 
-	err = sysDB.InsertRecord(Dsys)
+	err = sysDB.InsertRecord(&sysinfo)
 	if err != nil {
 		return nil, err
 	}
@@ -171,14 +161,20 @@ func SEND_AGENT_SYS_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 // Command: 5 (0b0000000101)
 func SEND_AGENT_APP_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
-	appDB := Model.ApplicationDB{}
-	Dapp, err := appDB.Unmarshal(hs.Data)
+	appDB, err := Model.NewApplicationDB()
 	if err != nil {
 		return nil, err
 	}
-	err = appDB.InsertRecord(Dapp)
+	applist, err := appDB.FromJSON(hs.Data)
 	if err != nil {
 		return nil, err
+	}
+
+	for _, Dapp := range applist {
+		err = appDB.InsertRecord(&Dapp)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return &HSProtocol.HS{ // HSProtocol.ACK
@@ -246,27 +242,27 @@ func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 7 (0b0000000111)
-func SEND_PROCEDURE_LOG(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
-
-	//hs_uuid := HSProtocol.ByteArrayToHexString(hs.UUID)
-
-	appDB := Model.ApplicationDB{}
-	Dapp, err := appDB.Unmarshal(hs.Data)
-	if err != nil {
-		return nil, err
-	}
-	err = appDB.InsertRecord(Dapp)
-	if err != nil {
-		return nil, err
-	}
-
-	return &HSProtocol.HS{ // HSProtocol.ACK
-		ProtocolID:     hs.ProtocolID,
-		Command:        HSProtocol.ACK,
-		UUID:           hs.UUID,
-		HealthStatus:   hs.HealthStatus,
-		Identification: hs.Identification,
-		TotalLength:    hs.TotalLength,
-		Data:           []byte{},
-	}, nil
-}
+//func SEND_PROCEDURE_LOG(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+//
+//	hs_uuid := HSProtocol.ByteArrayToHexString(hs.UUID)
+//
+///*	appDB := Model.ApplicationDB{}
+//	Dapp, err := appDB.Unmarshal(hs.Data)
+//	if err != nil {
+//		return nil, err
+//	}
+//	err = appDB.InsertRecord(Dapp)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return &HSProtocol.HS{ // HSProtocol.ACK
+//		ProtocolID:     hs.ProtocolID,
+//		Command:        HSProtocol.ACK,
+//		UUID:           hs.UUID,
+//		HealthStatus:   hs.HealthStatus,
+//		Identification: hs.Identification,
+//		TotalLength:    hs.TotalLength,
+//		Data:           []byte{},
+//	}, nil*/
+//}

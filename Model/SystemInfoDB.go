@@ -45,7 +45,6 @@ func (s *SystemInfoDB) CreateTable() error {
 		CREATE TABLE IF NOT EXISTS %s (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,    -- 내부 ID, 자동 증가
 			uuid TEXT NOT NULL unique,               -- UUIDv4
-			AgentUUID VARCHAR(255),
 			HostName string,
 			OsName string,
 			OsVersion string,
