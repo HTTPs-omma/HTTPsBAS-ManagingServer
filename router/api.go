@@ -12,10 +12,8 @@ import (
 
 // swagger:parameters Request
 type InstructionD struct {
-	// example: Test
-	ProcedureID string `json:"procedureID" default:"P_Collection_Kimsuky_001"`
-	// example: Test
-	AgentUUID       string `json:"agentUUID" default:"937640a858ad48e9bc2787e8c4456ced"`
+	ProcedureID     string `json:"procedureID" default:"P_DefenseEvasion_Kimsuky_001"`
+	AgentUUID       string `json:"agentUUID" default:"09a4e53c7a1c4b4e9a519f36df29d8a2"`
 	InstructionUUID string `json:"instructionUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 

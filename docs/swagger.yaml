@@ -3,15 +3,13 @@ definitions:
   router.InstructionD:
     properties:
       agentUUID:
-        default: 937640a858ad48e9bc2787e8c4456ced
-        description: 'example: Test'
+        default: 09a4e53c7a1c4b4e9a519f36df29d8a2
         type: string
       instructionUUID:
         default: 32a2833486414af9bc4596caef585538
         type: string
       procedureID:
-        default: P_Collection_Kimsuky_001
-        description: 'example: Test'
+        default: P_DefenseEvasion_Kimsuky_001
         type: string
     type: object
 host: localhost

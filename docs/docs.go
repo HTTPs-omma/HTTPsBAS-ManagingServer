@@ -54,18 +54,16 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "agentUUID": {
-                    "description": "example: Test",
                     "type": "string",
-                    "default": "937640a858ad48e9bc2787e8c4456ced"
+                    "default": "09a4e53c7a1c4b4e9a519f36df29d8a2"
                 },
                 "instructionUUID": {
                     "type": "string",
                     "default": "32a2833486414af9bc4596caef585538"
                 },
                 "procedureID": {
-                    "description": "example: Test",
                     "type": "string",
-                    "default": "P_Collection_Kimsuky_001"
+                    "default": "P_DefenseEvasion_Kimsuky_001"
                 }
             }
         }

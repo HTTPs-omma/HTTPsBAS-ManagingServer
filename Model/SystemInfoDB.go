@@ -218,6 +218,35 @@ func (s *SystemInfoDB) SelectAllRecords() ([]DsystemInfoDB, error) {
 	return rows, nil
 }
 
+func (s *SystemInfoDB) SelectRecordByUUID(uuid string) ([]DsystemInfoDB, error) {
+	db, err := getDBPtr()
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`SELECT * FROM %s WHERE uuid = ?`, s.dbName)
+	rows, err := db.Query(query, uuid)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	results := []DsystemInfoDB{}
+	for rows.Next() {
+		data := DsystemInfoDB{}
+		err = rows.Scan(&data.ID, &data.Uuid, &data.HostName, &data.OsName,
+			&data.OsVersion, &data.Family, &data.Architecture, &data.KernelVersion,
+			&data.BootTime, &data.CreatedAt, &data.UpdatedAt)
+		if err != nil {
+			return nil, err
+		}
+		results = append(results, data)
+	}
+
+	return results, nil
+}
+
 /*
 *
 하나 이상의 row 행이 있는지 검사한다.

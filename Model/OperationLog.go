@@ -40,7 +40,7 @@ func NewOperationLogDB() (*OperationLogDB, error) {
 	return &OperationLogDB{DBNAME: "execLog"}, nil
 }
 
-func (repo *OperationLogDB) InsertDocument(log OperationLogDocument) (*mongo.InsertOneResult, error) {
+func (repo *OperationLogDB) InsertDocument(log *OperationLogDocument) (*mongo.InsertOneResult, error) {
 	db, err := getCollectionPtr()
 	if err != nil {
 		return nil, err

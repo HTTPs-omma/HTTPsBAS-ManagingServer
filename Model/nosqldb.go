@@ -23,18 +23,13 @@ func getCollectionPtr() (*mongo.Database, error) {
 		ApplyURI("mongodb://" + MONGOID + ":" + MONGOPW + "@uskawjdu.iptime.org:17017/"). // MongoDB URI
 		SetMaxPoolSize(50).                                                               // 최대 풀 크기
 		SetMinPoolSize(10).                                                               // 최소 풀 크기
-		SetMaxConnIdleTime(30 * time.Second)                                              // 최대 유휴 시간
+		SetMaxConnIdleTime(60 * time.Second)                                              // 최대 유휴 시간
 		//fmt.Println("mongodb://" + MONGOID + ":" + MONGOPW + "@uskawjdu.iptime.org:17017/")
 	// 클라이언트 생성
 	client, err := mongo.NewClient(clientOptions)
 	if err != nil {
 		log.Fatal("Error creating MongoDB client: ", err)
 		return nil, err
-	}
-
-	err = client.Ping(context.TODO(), nil)
-	if err != nil {
-		return nil, fmt.Errorf("failed to connect to MongoDB: %v", err)
 	}
 
 	// 연결 설정
@@ -49,6 +44,11 @@ func getCollectionPtr() (*mongo.Database, error) {
 	}
 
 	database := client.Database("httpsAgent")
+
+	err = client.Ping(context.TODO(), nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to MongoDB: %v", err)
+	}
 
 	// 클라이언트 연결 반환
 	return database, nil
