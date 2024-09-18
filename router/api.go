@@ -2,17 +2,18 @@ package router
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/gofiber/fiber/v3"
 	"github.com/your/repo/Core"
 	"github.com/your/repo/Model"
 	_ "github.com/your/repo/docs"
-	"time"
 )
 
 // swagger:parameters Request
 type InstructionD struct {
-	ProcedureID     string `json:"procedureID" default:"P_DefenseEvasion_Kimsuky_001"`
+	ProcedureID     string `json:"procedureID" default:"P_DefenseEvasion_0002"`
 	AgentUUID       string `json:"agentUUID" default:"09a4e53c7a1c4b4e9a519f36df29d8a2"`
 	InstructionUUID string `json:"instructionUUID" default:"32a2833486414af9bc4596caef585538"`
 }
@@ -29,6 +30,7 @@ type InstructionD struct {
 // @host			localhost:80
 // @BasePath		/
 // @Path			/api
+
 func SetupAPIRoutes(app *fiber.App) {
 
 	app.Post("/api/checkInstReq", checkInstReq)

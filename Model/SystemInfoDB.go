@@ -1,7 +1,6 @@
 package Model
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"time"
@@ -51,7 +50,7 @@ func (s *SystemInfoDB) CreateTable() error {
 			Family string,
 			Architecture string,
 			KernelVersion string,
-			BootTime DATETIME,
+			BootTime DATETIME DEFAULT CURRENT_TIMESTAMP,
 			createAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 			updateAt DATETIME DEFAULT CURRENT_TIMESTAMP
 		);
@@ -60,6 +59,7 @@ func (s *SystemInfoDB) CreateTable() error {
 
 	_, err = db.Exec(sqlStmt)
 	if err != nil {
+		fmt.Println(63)
 		return err
 	}
 
@@ -83,24 +83,25 @@ func (s *SystemInfoDB) CreateTable() error {
 }
 
 func (s *SystemInfoDB) InsertRecord(data *DsystemInfoDB) error {
-	// 데이터 베이스에는 단 하나의 Row 만을 보장해야함
-	isExist, err := s.ExistRecord()
-	if err != nil {
-		return err
-	}
-	if isExist == true {
-		err = s.UpdateRecord(data)
-		if err != nil {
-			return err
-		}
-		return nil
-	}
-
+	// fmt.Println("client uuid : " + data.Uuid)
 	db, err := getDBPtr()
 	if err != nil {
+
 		return err
 	}
 	defer db.Close()
+
+	checkQuery := fmt.Sprintf(`SELECT COUNT(*) FROM %s WHERE uuid = ?`, s.dbName)
+	var count int
+	err = db.QueryRow(checkQuery, data.Uuid).Scan(&count)
+	if err != nil {
+		return err
+	}
+
+	if count > 0 {
+		// 중복된 항목이 있으면 업데이트
+		return s.UpdateRecord(data)
+	}
 
 	query := fmt.Sprintf(`INSERT INTO %s (uuid, HostName,
        OsName, OsVersion, Family, Architecture, KernelVersion,
@@ -109,6 +110,7 @@ func (s *SystemInfoDB) InsertRecord(data *DsystemInfoDB) error {
 
 	defer stmt.Close()
 	if err != nil {
+		fmt.Println(114)
 		return err
 	}
 
@@ -119,6 +121,7 @@ func (s *SystemInfoDB) InsertRecord(data *DsystemInfoDB) error {
 	//fmt.Println("debug=-===============")
 
 	if err != nil {
+		fmt.Println(126)
 		return err
 	}
 
@@ -149,6 +152,7 @@ func (s *SystemInfoDB) UpdateRecord(data *DsystemInfoDB) error {
 	query := fmt.Sprintf(`UPDATE %s SET HostName = ?, OsName = ?, OsVersion = ?, Family = ?, Architecture = ?, KernelVersion = ?, BootTime = ?`, s.dbName)
 	_, err = db.Exec(query, data.HostName, data.OsName, data.OsVersion, data.Family, data.Architecture, data.KernelVersion, data.BootTime)
 	if err != nil {
+		fmt.Println(156)
 		return err
 	}
 
@@ -178,7 +182,7 @@ func (s *SystemInfoDB) DeleteAllRecord() error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`DELETE FROM %s WHERE`)
+	query := fmt.Sprintf(`DELETE FROM %s`, s.dbName)
 	_, err = db.Exec(query)
 	if err != nil {
 		return err
@@ -198,6 +202,7 @@ func (s *SystemInfoDB) SelectAllRecords() ([]DsystemInfoDB, error) {
 	row, err := db.Query(query)
 	defer row.Close()
 	if err != nil {
+		fmt.Println(206)
 		return nil, err
 	}
 
@@ -205,11 +210,11 @@ func (s *SystemInfoDB) SelectAllRecords() ([]DsystemInfoDB, error) {
 
 	for row.Next() {
 		var data DsystemInfoDB
-
 		err = row.Scan(&data.ID, &data.Uuid, &data.HostName, &data.OsName,
 			&data.OsVersion, &data.Family, &data.Architecture, &data.KernelVersion,
 			&data.BootTime, &data.CreatedAt, &data.UpdatedAt)
 		if err != nil {
+			fmt.Println(218)
 			return nil, err
 		}
 		rows = append(rows, data)
@@ -239,48 +244,11 @@ func (s *SystemInfoDB) SelectRecordByUUID(uuid string) ([]DsystemInfoDB, error) 
 			&data.OsVersion, &data.Family, &data.Architecture, &data.KernelVersion,
 			&data.BootTime, &data.CreatedAt, &data.UpdatedAt)
 		if err != nil {
+			fmt.Println(248)
 			return nil, err
 		}
 		results = append(results, data)
 	}
 
 	return results, nil
-}
-
-/*
-*
-하나 이상의 row 행이 있는지 검사한다.
-*/
-func (s *SystemInfoDB) ExistRecord() (bool, error) {
-	db, err := getDBPtr()
-	if err != nil {
-		return false, err
-	}
-	defer db.Close()
-
-	query := fmt.Sprintf(`SELECT EXISTS(SELECT 1 FROM %s)`, s.dbName)
-	var exists bool
-	err = db.QueryRow(query).Scan(&exists)
-	if err != nil {
-		return false, err
-	}
-
-	return exists, nil
-}
-
-func (s *SystemInfoDB) Unmarshal(data []byte) (*DsystemInfoDB, error) {
-
-	var DsysInfo DsystemInfoDB
-	err := json.Unmarshal(data, &DsysInfo)
-	if err != nil {
-		fmt.Println("Error unmarshaling JSON:", err)
-		return &DsysInfo, err
-	}
-
-	err = s.InsertRecord(&DsysInfo)
-	if err != nil {
-		return &DsysInfo, err
-	}
-
-	return &DsysInfo, err
 }

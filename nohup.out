@@ -1,0 +1,1440 @@
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			143981
+INFO Total process count: 	1
+
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+client uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+&{0 P_DefenseEvasion_0002 5610eb3154c742d4bc95ce9194166ac4 32a2833486414af9bc4596caef585538 2024-09-19 02:55:33.49113365 +0900 KST m=+114.071083802}
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+2024/09/19 02:55:36 failed to load file HTTPsBAS-Procedures/P_Discovery_0001.yaml: failed to unmarshal yaml: yaml: line 6: block sequence entries are not allowed in this context
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_DefenseEvasion_0002  2024-09-18 10:55:36.7757702 -0700 -0700 1 The operation completed successfully.
+The operation completed successfully.
+ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile" /v "EnableFirewall" /t REG_DWORD /d 0 /f & reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v "EnableFirewall" /t REG_DWORD /d 0 /f}
+Inserted document with ID: ObjectID("66eb1418d4309b3bf6036d5d")
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+Error reading from connection: EOF
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 1a3ec954bd35460fb1c2d81b39978ee7
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+agent uuid : 5610eb3154c742d4bc95ce9194166ac4
+Error reading from connection: EOF
+panic: runtime error: makeslice: len out of range
+
+goroutine 5810374 [running]:
+github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol.(*HSProtocolManager).Parsing(0x0?, {0xc020ac0000, 0x100000, 0x100000})
+	/root/golang/pkg/mod/github.com/!h!t!t!ps-omma/!h!t!t!ps!b!a!s-!h!s!protocol@v1.0.9/HSProtocol/HSProtocol.go:117 +0x6a
+main.handleTCPConnection({0x124d138, 0xc001289128})
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:110 +0xeb
+created by main.TCPServer in goroutine 10
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:90 +0x1f8
+exit status 2
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			739869
+INFO Total process count: 	1
+
+TCP server listening on port 8081
+[GIN] 2024/09/19 - 03:44:31 | 200 |     335.382µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:31 | 200 |     210.924µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:31 | 200 |   31.614079ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:31 | 200 |   65.277258ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:31 | 200 |      43.791µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:31 | 200 |     218.537µs |  223.195.37.233 | GET      "/swagger/doc.json"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			741083
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/09/19 - 03:44:53 | 200 |     232.226µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:53 | 200 |     213.438µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:53 | 200 |    23.63733ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:53 | 200 |   81.727613ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:53 | 200 |      44.699µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:53 | 200 |      248.08µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:53 | 200 |     114.332µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:53 | 304 |       40.09µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:53 | 304 |     112.446µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:53 | 304 |     155.329µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:53 | 304 |      27.587µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:53 | 200 |     211.832µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:53 | 304 |      45.607µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:53 | 200 |     105.811µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:53 | 304 |      44.839µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:53 | 304 |       26.75µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:53 | 304 |      23.328µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:53 | 304 |      88.979µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:54 | 200 |     221.818µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      45.676µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:54 | 200 |      83.182µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      32.966µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:54 | 200 |      22.699µs |  223.195.37.233 | GET      "/swagger/favicon-16x16.png"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      16.273µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      17.251µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:54 | 200 |     195.349µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:54 | 200 |     103.506µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:54 | 200 |     181.799µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:54 | 200 |     103.576µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      82.064µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      34.502µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:54 | 304 |       17.53µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      45.747µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:54 | 200 |     175.513µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:54 | 200 |       110.7µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      44.839µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:54 | 200 |      85.766µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      27.658µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:54 | 200 |      106.37µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      44.559µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      20.812µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:54 | 304 |       26.68µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:54 | 304 |      44.978µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:55 | 200 |      172.65µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:55 | 304 |      44.839µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     105.392µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:55 | 304 |      45.956µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:55 | 304 |     116.287µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:55 | 304 |      99.106µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     138.636µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:55 | 200 |      62.789µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:55 | 304 |       31.01µs |  223.195.37.233 | GET      "/swagger/favicon-16x16.png"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     201.215µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     112.865µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:55 | 304 |      43.791µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     144.923µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:44:55 | 200 |      86.744µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:55 | 304 |      47.143µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:44:55 | 304 |     118.312µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:44:55 | 304 |     212.739µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     138.428µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:44:55 | 200 |     171.183µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:06 | 200 |     106.929µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:06 | 304 |      47.074µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:45:06 | 304 |      44.419µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:45:06 | 304 |      18.718µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:45:06 | 304 |      25.981µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:45:06 | 200 |     198.701µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:07 | 200 |     112.795µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:07 | 200 |     125.995µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:07 | 200 |     106.928µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:07 | 200 |     158.472µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:07 | 200 |     155.259µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:07 | 200 |      99.595µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:07 | 200 |     117.824µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:07 | 304 |      49.588µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:45:07 | 304 |      119.22µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:45:07 | 304 |      98.268µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:45:08 | 304 |      71.658µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     167.132µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     105.881µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     168.949µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     104.274µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     131.932µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     106.509µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:08 | 200 |     161.754µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     106.161µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:09 | 304 |      27.029µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:45:09 | 304 |       48.68µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:45:09 | 304 |      79.201µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     121.875µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     161.475µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     140.871µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     139.056µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     157.495µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:09 | 200 |      141.64µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     166.504µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     115.449µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:09 | 304 |      42.324µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     138.637µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     110.211µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:09 | 304 |      42.534µs |  223.195.37.233 | GET      "/swagger/favicon-16x16.png"
+[GIN] 2024/09/19 - 03:45:09 | 200 |     113.494µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     161.754µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     145.481µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     131.094µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     153.304µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     117.265µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     145.341µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     107.976µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     150.021µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     102.877µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     139.894µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:10 | 200 |     106.789µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:10 | 304 |      43.861µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:45:10 | 304 |      23.816µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:45:10 | 304 |      43.512µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:45:11 | 200 |     142.478µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:11 | 200 |     130.675µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:11 | 200 |     174.955µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:11 | 200 |     157.843µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:11 | 304 |      47.632µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:45:11 | 200 |     172.022µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:11 | 200 |     166.015µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:12 | 200 |     189.342µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:12 | 200 |     148.205µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:12 | 200 |     100.363µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:15 | 200 |      79.062µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:15 | 304 |      41.835µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:45:15 | 304 |      15.365µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:45:15 | 304 |        17.6µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:45:15 | 304 |      49.029µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:45:15 | 200 |     158.682µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:45:15 | 200 |      63.836µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:15 | 200 |     117.754µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:45:15 | 200 |     181.101µs |  223.195.37.233 | GET      "/swagger/doc.json"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+Error starting HTTP server: failed to listen: failed to listen: listen tcp4 0.0.0.0:80: bind: address already in use
+[GIN] 2024/09/19 - 03:47:22 | 200 |     121.107µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:22 | 304 |      46.165µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:47:22 | 304 |      46.165µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:47:22 | 304 |      61.531µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:47:22 | 304 |      27.727µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:47:22 | 200 |      619.78µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:47:22 | 200 |     177.818µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:22 | 200 |      68.096µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:23 | 200 |       123.9µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:47:23 | 200 |     163.431µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:23 | 200 |     142.967µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:47:23 | 200 |     108.046µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:23 | 200 |     167.552µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:47:23 | 200 |     109.233µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:23 | 200 |     126.693µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:47:24 | 200 |     118.801µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:47:24 | 200 |     137.659µs |  223.195.37.233 | GET      "/swagger/doc.json"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			743192
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+TCP server listening on port 8081
+ Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			743672
+INFO Total process count: 	1
+
+[GIN] 2024/09/19 - 03:48:58 | 200 |     261.419µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:48:58 | 200 |     184.244µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:48:58 | 200 |   13.982761ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:48:58 | 200 |   34.886256ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:48:58 | 200 |      86.814µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:48:58 | 200 |     228.035µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:48:58 | 304 |       44.35µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:49:09 | 200 |     112.236µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:49:09 | 304 |      73.823µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:49:09 | 304 |      47.074µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:49:09 | 304 |      96.312µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:49:09 | 304 |      44.071µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:49:09 | 200 |     227.336µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:49:17 | 200 |     104.903µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:49:17 | 304 |      52.801µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:49:17 | 304 |     100.433µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:49:17 | 304 |      73.405µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:49:17 | 304 |      27.588µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:49:17 | 200 |     204.289µs |  223.195.37.233 | GET      "/swagger/doc.json"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+Error starting HTTP server: failed to listen: failed to listen: listen tcp4 0.0.0.0:80: bind: address already in use
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+
+INFO PID: 			744907
+INFO Total process count: 	1
+
+[GIN] 2024/09/19 - 03:49:58 | 200 |     381.199µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:49:58 | 200 |     367.789µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:49:58 | 200 |   12.663095ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:49:59 | 200 |   66.081855ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:49:59 | 200 |      81.436µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:49:59 | 200 |     390.767µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:50:00 | 200 |     110.491µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:50:00 | 304 |      47.213µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:50:00 | 304 |      25.842µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:50:00 | 304 |      49.239µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:50:00 | 304 |      27.169µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:50:01 | 200 |     195.069µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:50:01 | 304 |      27.727µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			745789
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/09/19 - 03:50:34 | 200 |     399.497µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:50:34 | 200 |      358.36µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:50:34 | 200 |   22.602901ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:50:34 | 200 |   74.535139ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:50:34 | 200 |      51.613µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:50:35 | 200 |     275.457µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:50:35 | 304 |      86.325µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:50:35 | 200 |      124.04µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:50:35 | 304 |      44.769µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:50:35 | 304 |      25.702µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:50:35 | 304 |      47.632µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:50:35 | 304 |          44µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:50:35 | 200 |     210.016µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:50:35 | 304 |       44.35µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			748043
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/09/19 - 03:51:55 | 200 |     248.918µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:51:55 | 200 |     344.392µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:51:55 | 200 |   24.257394ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:51:55 | 200 |   54.789763ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:51:55 | 200 |      51.195µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:51:55 | 200 |     210.924µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:51:55 | 304 |      28.636µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:51:56 | 200 |     109.582µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      48.121µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      57.131µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      51.823µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      45.327µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:51:56 | 200 |     277.833µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:51:56 | 200 |     107.418µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      45.817µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      51.055µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      85.627µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      46.724µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:51:56 | 200 |     207.502µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:51:56 | 304 |      45.467µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+TCP server listening on port 8081
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			749143
+INFO Total process count: 	1
+
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			749415
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			749877
+INFO Total process count: 	1
+
+TCP server listening on port 8081
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/09/19 - 03:53:38 | 200 |     338.665µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:53:38 | 200 |     401.663µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:53:38 | 200 |   24.136637ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:53:38 | 200 |   72.437009ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:53:38 | 200 |      90.445µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:53:38 | 200 |     263.864µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/09/19 - 03:53:38 | 304 |      27.727µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8081
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	15
+INFO Prefork: 			Disabled
+INFO PID: 			752375
+INFO Total process count: 	1
+
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/09/19 - 03:58:03 | 200 |     433.161µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:58:03 | 200 |     342.506µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/09/19 - 03:58:03 | 200 |   18.785464ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/09/19 - 03:58:03 | 200 |  101.301267ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/09/19 - 03:58:03 | 200 |      87.303µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/09/19 - 03:58:03 | 200 |     339.712µs |  223.195.37.233 | GET      "/swagger/doc.json"
+ApplicationDB logging
+
+ApplicationDB logging
+5610eb3154c742d4bc95ce9194166ac4
+ApplicationDB logging
+5610eb3154c742d4bc95ce9194166ac
+ApplicationDB logging
+5610eb3154c742d4bc95ce9194166ac
+ApplicationDB logging
+
+[GIN] 2024/09/19 - 03:59:48 | 200 |     180.472µs |  211.231.103.91 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:59:48 | 200 |     185.501µs |    27.0.238.187 | GET      "/swagger/index.html"
+[GIN] 2024/09/19 - 03:59:48 | 200 |       106.3µs | 211.231.103.106 | GET      "/swagger/favicon-32x32.png"

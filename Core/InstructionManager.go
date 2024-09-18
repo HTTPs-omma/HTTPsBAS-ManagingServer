@@ -2,11 +2,12 @@ package Core
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
+
+	"gopkg.in/yaml.v2"
 )
 
 /**
@@ -18,6 +19,7 @@ type InstructionData struct {
 	ID               string `yaml:"id"`
 	MITREID          string `yaml:"MITRE_ID"`
 	Description      string `yaml:"Description"`
+	Escalation       bool   `yaml:"Escalation"` // 새로운 필드 추가
 	Tool             string `yaml:"tool"`
 	RequisiteCommand string `yaml:"requisite_command"`
 	Command          string `yaml:"command"`
@@ -54,7 +56,7 @@ func NewInstructionManager() (*InstructionManager, error) {
 // loadCommands는 주어진 경로에서 모든 YAML 파일을 읽어들여 InstructionData로 변환합니다.
 func (cm *InstructionManager) loadCommands() error {
 	// 디렉토리 내의 모든 YAML 파일을 찾습니다.
-	files, err := filepath.Glob(filepath.Join("../CommandDB/", "*.yaml"))
+	files, err := filepath.Glob(filepath.Join("./HTTPsBAS-Procedures/", "*.yaml"))
 	if err != nil {
 		return fmt.Errorf("failed to read directory: %w", err)
 	}

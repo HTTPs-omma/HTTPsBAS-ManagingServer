@@ -3,6 +3,9 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"net"
+	"os"
+
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	cors2 "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -13,22 +16,18 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	_ "github.com/your/repo/docs"
 	"github.com/your/repo/router"
-	"net"
-	"os"
 )
 
-// @title			Swagger Example API
-// @version		1.0
-// @description	This is a sample server Petstore server.
-// @termsOfService	http://swagger.io/terms/
-// @contact.name	API Support
-// @contact.url	http://www.swagger.io/support
-// @contact.email	support@swagger.io
+// @title			ManagingServer API
+// @version			1.0
+// @description		parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.
+// @contact.name	ManagingServer API Support
+// @contact.email	uskawjdu@gmail.com
 // @license.name	Apache 2.0
-// @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-// @host			localhost
+// @license.url		http://www.apache.org/licenses/LICENSE-2.0.html
+// @host			uskawjdu.iptime.org
 // @BasePath		/
-// @Path			api
+// @Path api/
 var testCommand string = "dir /"
 
 func main() {
@@ -65,19 +64,19 @@ func Swagger() {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
-	r.Run("localhost:8000")
+	r.Run("0.0.0.0:8001")
 
 }
 
 func TCPServer() {
-	listener, err := net.Listen("tcp", "localhost:8080")
+	listener, err := net.Listen("tcp", "0.0.0.0:8081")
 	if err != nil {
 		fmt.Println("Error starting TCP server:", err)
 		return
 	}
 	defer listener.Close()
 
-	fmt.Println("TCP server listening on port 8080")
+	fmt.Println("TCP server listening on port 8081")
 
 	for {
 		conn, err := listener.Accept()
@@ -142,15 +141,15 @@ func HTTPServer() {
 	//	AllowOriginsFunc: func(origin string) bool { return true },
 	//}))
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"*", "http://localhost/*"},
-		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{"Origin", "Content-Type", "Accept", "*"},
 	}))
 
 	router.SetupAPIRoutes(app)
 	router.SetupViewRoutes(app)
 
 	fmt.Println("HTTP server listening on port 80")
-	err := app.Listen(":80")
+	err := app.Listen("0.0.0.0:80")
 	if err != nil {
 		fmt.Println("Error starting HTTP server:", err)
 	}
