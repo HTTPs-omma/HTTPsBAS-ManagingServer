@@ -9,11 +9,9 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
+            "name": "ManagingServer API Support",
+            "email": "uskawjdu@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -47,6 +45,82 @@ const docTemplate = `{
                 ],
                 "responses": {}
             }
+        },
+        "/view/ApplicationDB": {
+            "get": {
+                "description": "Retrieves application database records by UUID, or all records if no UUID is provided",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ApplicationDB"
+                ],
+                "summary": "Get application database records",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Application UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/view/JobDataDB": {
+            "get": {
+                "description": "Retrieves all job data from the database",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "JobDataDB"
+                ],
+                "summary": "Get all job data",
+                "responses": {}
+            }
+        },
+        "/view/SystemInfoDB": {
+            "get": {
+                "description": "Retrieves system information records by UUID, or all records if no UUID is provided",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SystemInfoDB"
+                ],
+                "summary": "Get system information records",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "System UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/view/agentStatus": {
+            "get": {
+                "description": "Retrieves agent status by UUID, or all agents if no UUID is provided",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AgentStatus"
+                ],
+                "summary": "Get agent status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Agent UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
         }
     },
     "definitions": {
@@ -63,7 +137,7 @@ const docTemplate = `{
                 },
                 "procedureID": {
                     "type": "string",
-                    "default": "P_DefenseEvasion_Kimsuky_001"
+                    "default": "P_DefenseEvasion_0002"
                 }
             }
         }
@@ -73,11 +147,11 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost",
+	Host:             "uskawjdu.iptime.org",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "Swagger Example API",
-	Description:      "This is a sample server Petstore server.",
+	Title:            "ManagingServer API",
+	Description:      "parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

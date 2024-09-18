@@ -9,21 +9,19 @@ definitions:
         default: 32a2833486414af9bc4596caef585538
         type: string
       procedureID:
-        default: P_DefenseEvasion_Kimsuky_001
+        default: P_DefenseEvasion_0002
         type: string
     type: object
-host: localhost
+host: uskawjdu.iptime.org
 info:
   contact:
-    email: support@swagger.io
-    name: API Support
-    url: http://www.swagger.io/support
-  description: This is a sample server Petstore server.
+    email: uskawjdu@gmail.com
+    name: ManagingServer API Support
+  description: parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
-  title: Swagger Example API
+  title: ManagingServer API
   version: "1.0"
 paths:
   /api/postInst:
@@ -42,4 +40,57 @@ paths:
       produces:
       - application/json
       responses: {}
+  /view/ApplicationDB:
+    get:
+      description: Retrieves application database records by UUID, or all records
+        if no UUID is provided
+      parameters:
+      - description: Application UUID
+        in: query
+        name: uuid
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get application database records
+      tags:
+      - ApplicationDB
+  /view/JobDataDB:
+    get:
+      description: Retrieves all job data from the database
+      produces:
+      - application/json
+      responses: {}
+      summary: Get all job data
+      tags:
+      - JobDataDB
+  /view/SystemInfoDB:
+    get:
+      description: Retrieves system information records by UUID, or all records if
+        no UUID is provided
+      parameters:
+      - description: System UUID
+        in: query
+        name: uuid
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get system information records
+      tags:
+      - SystemInfoDB
+  /view/agentStatus:
+    get:
+      description: Retrieves agent status by UUID, or all agents if no UUID is provided
+      parameters:
+      - description: Agent UUID
+        in: query
+        name: uuid
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get agent status
+      tags:
+      - AgentStatus
 swagger: "2.0"

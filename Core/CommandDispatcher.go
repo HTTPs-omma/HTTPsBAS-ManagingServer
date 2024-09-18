@@ -3,6 +3,7 @@ package Core
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/your/repo/Model"
 )
@@ -107,13 +108,13 @@ func UPDATE_AGENT_STATUS(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, err
 	}
 
-	agsDb.InsertRecord(&Model.AgentStatusRecord{
+	err = agsDb.InsertRecord(&Model.AgentStatusRecord{
 		ID:       0,
 		UUID:     HSProtocol.ByteArrayToHexString(hs.UUID),
 		Protocol: Model.BinaryToProtocol(hs.ProtocolID),
 		Status:   Model.BinaryToAgentStatus(hs.HealthStatus),
 	})
-	err = agsDb.InsertRecord(&Model.AgentStatusRecord{})
+	// err = agsDb.InsertRecord(&Model.AgentStatusRecord{})
 	if err != nil {
 		return nil, err
 	}
@@ -138,9 +139,11 @@ func SEND_AGENT_SYS_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	}
 	sysinfo := Model.DsystemInfoDB{}
 	err = json.Unmarshal(hs.Data, &sysinfo)
+	// fmt.Println("SEND_AGENT_SYS_INFO UUID : " + sysinfo.Uuid)
 	if err != nil {
 		return nil, err
 	}
+	// fmt.Println(sysinfo.Uuid)
 
 	err = sysDB.InsertRecord(&sysinfo)
 	if err != nil {

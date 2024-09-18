@@ -286,7 +286,7 @@ func (s *AgentStatusDB) DeleteAllRecord() error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`DELETE FROM %s`)
+	query := fmt.Sprintf(`DELETE FROM %s`, s.dbName)
 	_, err = db.Exec(query)
 	if err != nil {
 		return err
