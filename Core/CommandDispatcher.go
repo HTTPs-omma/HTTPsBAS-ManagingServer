@@ -29,8 +29,8 @@ func (cd *CommandDispatcher) Action(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return SEND_AGENT_APP_INFO(hs)
 	case HSProtocol.FETCH_INSTRUCTION:
 		return FETCH_INSTRUCTION(hs)
-		//case HSProtocol.SEND_PROCEDURE_LOG:
-		//	return SEND_PROCEDURE_LOG(hs)
+	case HSProtocol.SEND_PROCEDURE_LOG:
+		return SEND_PROCEDURE_LOG(hs)
 	}
 
 	return nil, fmt.Errorf("Invalid Command")
@@ -242,27 +242,32 @@ func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 7 (0b0000000111)
-//func SEND_PROCEDURE_LOG(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
-//
-//	hs_uuid := HSProtocol.ByteArrayToHexString(hs.UUID)
-//
-///*	appDB := Model.ApplicationDB{}
-//	Dapp, err := appDB.Unmarshal(hs.Data)
-//	if err != nil {
-//		return nil, err
-//	}
-//	err = appDB.InsertRecord(Dapp)
-//	if err != nil {
-//		return nil, err
-//	}
-//
-//	return &HSProtocol.HS{ // HSProtocol.ACK
-//		ProtocolID:     hs.ProtocolID,
-//		Command:        HSProtocol.ACK,
-//		UUID:           hs.UUID,
-//		HealthStatus:   hs.HealthStatus,
-//		Identification: hs.Identification,
-//		TotalLength:    hs.TotalLength,
-//		Data:           []byte{},
-//	}, nil*/
-//}
+func SEND_PROCEDURE_LOG(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+
+	//hs_uuid := HSProtocol.ByteArrayToHexString(hs.UUID)
+
+	logdb, err := Model.NewOperationLogDB()
+	if err != nil {
+		return nil, err
+	}
+	log := &Model.OperationLogDocument{}
+	err = json.Unmarshal(hs.Data, &log)
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = logdb.InsertDocument(log)
+	if err != nil {
+		return nil, err
+	}
+
+	return &HSProtocol.HS{ // HSProtocol.ACK
+		ProtocolID:     hs.ProtocolID,
+		Command:        HSProtocol.ACK,
+		UUID:           hs.UUID,
+		HealthStatus:   hs.HealthStatus,
+		Identification: hs.Identification,
+		TotalLength:    hs.TotalLength,
+		Data:           []byte{},
+	}, nil
+}

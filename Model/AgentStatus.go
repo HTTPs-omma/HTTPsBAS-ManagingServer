@@ -1,6 +1,7 @@
 package Model
 
 import (
+	"database/sql"
 	"fmt"
 	"time"
 )
@@ -193,7 +194,6 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 	return nil
 }
 
-// SelectRecords retrieves all records from the AgentStatus table.
 func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	db, err := getDBPtr()
 	if err != nil {
@@ -220,6 +220,29 @@ func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	}
 
 	return records, nil
+}
+
+func (s *AgentStatusDB) SelectRecordByUUID(uuid string) ([]AgentStatusRecord, error) {
+	db, err := getDBPtr()
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`SELECT id, uuid, status, protocol, createAt, updateAt FROM %s WHERE uuid = ?`, s.dbName)
+	row := db.QueryRow(query, uuid)
+
+	var records []AgentStatusRecord
+	var record AgentStatusRecord
+	err = row.Scan(&record.ID, &record.UUID, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil // Return nil if no record is found
+		}
+		return nil, err
+	}
+
+	return append(records, record), nil
 }
 
 // UpdateRecord updates the status and protocol of a record identified by its UUID.

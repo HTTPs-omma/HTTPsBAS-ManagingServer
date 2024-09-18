@@ -95,26 +95,28 @@ func SetupViewRoutes(app *fiber.App) {
 		// 모든 문서 조회
 		datas, err := db.SelectAllDocuments()
 		if err != nil {
-			ctx.Status(404)
-			return ctx.SendString("Documents not found")
+			return ctx.Status(404).JSON(datas)
 		}
 
-		// 성공 시 JSON으로 응답
-		ctx.Status(200)
-		return ctx.JSON(datas)
+		return ctx.Status(200).JSON(datas)
 	})
 
 	app.Get("/view/agentStatus", func(ctx fiber.Ctx) error {
-		//data := ctx.Body()
 		db, err := Model.NewAgentStatusDB()
-		datas, err := db.SelectAllRecords()
+		uuid := ctx.Params("uuid")
+		var datas []Model.AgentStatusRecord
+		if uuid != "" {
+			datas, err = db.SelectRecordByUUID(uuid)
+		} else {
+			datas, err = db.SelectAllRecords()
+		}
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
 			ctx.Status(404)
-			return nil
+			return ctx.Status(404).SendString("Error : " + err.Error())
 		}
-		ctx.Status(200)
-		return ctx.JSON(datas)
+
+		return ctx.Status(200).JSON(datas)
 	})
 
 	app.Get("/view/ApplicationDB", func(ctx fiber.Ctx) error {
@@ -123,25 +125,20 @@ func SetupViewRoutes(app *fiber.App) {
 		if err != nil {
 			return err
 		}
-		datas, err := db.SelectAllRecords()
+
+		uuid := ctx.Query("uuid")
+		var datas []Model.DapplicationDB
+		fmt.Println(uuid)
+		if uuid != "" {
+			datas, err = db.SelectRecordByUUID(uuid)
+		} else {
+			datas, err = db.SelectAllRecords()
+		}
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
-			ctx.Status(404)
-			return nil
+			return ctx.Status(404).JSON(datas)
 		}
-		ctx.Status(200)
-		return ctx.JSON(datas)
-	})
-
-	app.Get("/view/OperationLogDB", func(ctx fiber.Ctx) error {
-		db, _ := Model.NewOperationLogDB()
-		datas, err := db.SelectAllDocuments()
-		if err != nil {
-			ctx.Status(404)
-			return nil
-		}
-		ctx.Status(200)
-		return ctx.JSON(datas)
+		return ctx.Status(200).JSON(datas)
 	})
 
 	app.Get("/view/SystemInfoDB", func(ctx fiber.Ctx) error {
@@ -150,14 +147,19 @@ func SetupViewRoutes(app *fiber.App) {
 		if err != nil {
 			return err
 		}
-		datas, err := db.SelectAllRecords()
+
+		uuid := ctx.Query("uuid")
+		var datas []Model.DsystemInfoDB
+		if uuid != "" {
+			datas, err = db.SelectRecordByUUID(uuid)
+		} else {
+			datas, err = db.SelectAllRecords()
+		}
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
-			ctx.Status(404)
-			return nil
+			return ctx.Status(404).JSON(datas)
 		}
-		ctx.Status(200)
-		return ctx.JSON(datas)
+		return ctx.Status(200).JSON(datas)
 	})
 
 	app.Get("/view/JobDataDB", func(ctx fiber.Ctx) error {
@@ -168,25 +170,10 @@ func SetupViewRoutes(app *fiber.App) {
 		datas, err := db.SelectAllJobData()
 		if err != nil {
 			fmt.Println("Error selecting records:", err)
-			ctx.Status(404)
-			return nil
+			return ctx.Status(404).JSON(datas)
 		}
 		ctx.Status(200)
 		return ctx.JSON(datas)
-	})
-
-	app.Get("/view/sdsa", func(ctx fiber.Ctx) error {
-		db, err := Model.NewJobDB()
-		if err != nil {
-			return err
-		}
-		err = db.DeleteAllJobData()
-		if err != nil {
-			fmt.Println("Error Deleted records:", err)
-			ctx.Status(404)
-			return nil
-		}
-		return nil
 	})
 
 	app.Get("/deleted/JobDataDB", func(ctx fiber.Ctx) error {

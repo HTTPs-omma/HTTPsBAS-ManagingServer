@@ -232,7 +232,7 @@ func (s *ApplicationDB) SelectByPackageCode(packageCode string) (*DapplicationDB
 	if row.Next() == false {
 		return &DapplicationDB{PackageCode: "-1"}, nil
 	}
-	err = row.Scan(&data.ID, &data.Name, &data.AgentUUID, &data.Version, &data.Language, &data.Vendor,
+	err = row.Scan(&data.ID, &data.AgentUUID, &data.Name, &data.Version, &data.Language, &data.Vendor,
 		&data.InstallDate2, &data.InstallLocation, &data.InstallSource, &data.PackageName,
 		&data.PackageCode, &data.RegCompany, &data.RegOwner, &data.URLInfoAbout, &data.Description,
 		&data.IsDeleted, &data.CreateAt, &data.UpdateAt, &data.DeletedAt)
@@ -283,7 +283,7 @@ func (s *ApplicationDB) DeleteAllRecords() error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`DELETE FROM %s WHERE`)
+	query := fmt.Sprintf(`DELETE FROM %s WHERE`, s.dbName)
 	_, err = db.Exec(query)
 	if err != nil {
 		return err
@@ -322,6 +322,37 @@ func (s *ApplicationDB) SelectAllRecords() ([]DapplicationDB, error) {
 	}
 
 	return rows, nil
+}
+
+// SelectRecordByUUID retrieves a record from the ApplicationDB table by UUID.
+func (s *ApplicationDB) SelectRecordByUUID(uuid string) ([]DapplicationDB, error) {
+	db, err := getDBPtr()
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`SELECT * FROM %s WHERE AgentUUID = ?`, s.dbName)
+	rows, err := db.Query(query, uuid)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	results := []DapplicationDB{}
+	for rows.Next() {
+		var data DapplicationDB
+		err = rows.Scan(&data.ID, &data.AgentUUID, &data.Name, &data.Version, &data.Language, &data.Vendor,
+			&data.InstallDate2, &data.InstallLocation, &data.InstallSource, &data.PackageName,
+			&data.PackageCode, &data.RegCompany, &data.RegOwner, &data.URLInfoAbout, &data.Description,
+			&data.IsDeleted, &data.CreateAt, &data.UpdateAt, &data.DeletedAt)
+		if err != nil {
+			return nil, err
+		}
+		results = append(results, data)
+	}
+
+	return results, nil
 }
 
 // ToJSON: 구조체를 JSON 바이트로 마샬링

@@ -202,17 +202,21 @@
             .then(data => {
                 // Operation Log Table
                 const operationLogTable = document.getElementById('operation-log-table').querySelector('tbody');
-                operationLogTable.innerHTML = `
-            <tr>
-              <td>${data.operation_log.ID}</td>
-              <td>${data.operation_log.AgentUUID}</td>
-              <td>${data.operation_log.ProcedureID}</td>
-              <td>${data.operation_log.InstructionUUID}</td>
-              <td>${new Date(data.operation_log.ConductAt).toLocaleString()}</td>
-              <td>${data.operation_log.ExitCode}</td>
-              <td>${data.operation_log.Log}</td>
-              <td>${data.operation_log.Command}</td>
-            </tr>`;
+                operationLogTable.innerHTML = '';
+                data.operation_log.forEach(log => {
+                    operationLogTable.innerHTML += `
+                    <tr>
+                        <td>${log.ID}</td>
+                        <td>${log.AgentUUID}</td>
+                        <td>${log.ProcedureID}</td>
+                        <td>${log.InstructionUUID}</td>
+                        <td>${new Date(log.ConductAt).toLocaleString()}</td>
+                        <td>${log.ExitCode}</td>
+                        <td>${log.Log}</td>
+                        <td>${log.Command}</td>
+                    </tr>`;
+                });
+
 
                 // Agent Status Table
                 const agentStatusTable = document.getElementById('agent-status-table').querySelector('tbody');
