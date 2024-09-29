@@ -74,6 +74,27 @@
                 "responses": {}
             }
         },
+        "/view/OperationLogDB": {
+            "get": {
+                "description": "Retrieves all operation logs from the database",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "OperationLogDB"
+                ],
+                "summary": "Get all operation logs",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Agent UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/view/SystemInfoDB": {
             "get": {
                 "description": "Retrieves system information records by UUID, or all records if no UUID is provided",

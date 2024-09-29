@@ -81,7 +81,7 @@ func (jd *JobDB) SelectJobDataByAgentUUID(agentUUID string) (*JobData, error, bo
 	}
 	defer db.Close()
 
-	selectSQL := `SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt FROM jobs WHERE AgentUUID = ?`
+	selectSQL := `SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt FROM jobs WHERE AgentUUID = ? `
 	rows, err := db.Query(selectSQL, agentUUID)
 	if err != nil {
 		return nil, err, false
@@ -153,7 +153,7 @@ func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
 		SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt 
 		FROM jobs 
 		WHERE AgentUUID = ? 
-		ORDER BY CreateAt DESC
+		ORDER BY CreateAt ASC
 		LIMIT 1
 	`
 

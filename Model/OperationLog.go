@@ -3,10 +3,11 @@ package Model
 import (
 	"context"
 	"fmt"
+	"time"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"time"
 )
 
 /*
@@ -73,6 +74,37 @@ func (repo *OperationLogDB) SelectDocumentById(id string) (*OperationLogDocument
 	}
 
 	return &OperationLogDocument, nil
+}
+
+func (repo *OperationLogDB) SelectDocumentsByAgentUUID(id string) ([]OperationLogDocument, error) {
+	db, err := getCollectionPtr()
+	if err != nil {
+		return nil, err
+	}
+	ptrdb := db.Collection(repo.DBNAME)
+
+	var documents []OperationLogDocument
+	filter := bson.M{"agentUUID": id}
+
+	cursor, err := ptrdb.Find(context.TODO(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(context.TODO())
+
+	for cursor.Next(context.TODO()) {
+		var document OperationLogDocument
+		if err := cursor.Decode(&document); err != nil {
+			return nil, err
+		}
+		documents = append(documents, document)
+	}
+
+	if err := cursor.Err(); err != nil {
+		return nil, err
+	}
+
+	return documents, nil
 }
 
 func (repo *OperationLogDB) SelectAllDocuments() ([]OperationLogDocument, error) {
