@@ -1,12 +1,10 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"net"
 	"os"
 
-	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	cors2 "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gofiber/fiber/v3"
@@ -65,7 +63,6 @@ func Swagger() {
 		AllowCredentials: true,
 	}))
 	r.Run("0.0.0.0:8001")
-
 }
 
 func TCPServer() {
@@ -91,36 +88,45 @@ func TCPServer() {
 }
 
 func handleTCPConnection(conn net.Conn) {
-	defer conn.Close() // 함수 호출 종료 후 Close
+	// defer conn.Close() // 함수 호출 종료 후 Close
 
-	buffer := make([]byte, 1024*1024)
-	for {
-		n, err := conn.Read(buffer)
-		if err != nil {
-			fmt.Println("Error reading from connection:", err)
-			break
-		}
-		if n < 1 {
-			continue
-		}
+	// HSMgr := HSProtocol.NewHSProtocolManager()
 
-		HSMgr := HSProtocol.NewHSProtocolManager()
-		hs, err := HSMgr.Parsing(buffer)
-		if err != nil {
-			fmt.Println("Error parsing:", err)
-			continue
-		}
+	// for {
+	// 	bData := []byte{}
+	// 	n, err := conn.Read(bData)
 
-		if hs.Command == 0b0000000110 { // payload 를 받아옴
-			conn.Write([]byte(testCommand))
-		}
+	// 	hs, err := HSMgr.Parsing(bData)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		continue
+	// 	}
 
-		if hs.Command == 0b0000000111 { // 실행 결과를 작성함.
-			msg := bytes.ReplaceAll(hs.Data, []byte{0x00}, []byte{})
-			fmt.Println("Log : ", string(msg))
-		}
+	// 	if n == 0 || err != nil {
+	// 		ack := &HSProtocol.HS{ // HSProtocol.ACK
+	// 			ProtocolID:     hs.ProtocolID,
+	// 			Command:        HSProtocol.ERROR_ACK,
+	// 			UUID:           hs.UUID,
+	// 			HealthStatus:   hs.HealthStatus,
+	// 			Identification: hs.Identification,
+	// 			TotalLength:    hs.TotalLength,
+	// 			Data:           []byte{},
+	// 		}
+	// 		rstb, _ := HSMgr.ToBytes(ack)
+	// 	}
 
-	}
+	// 	fmt.Println("request by hs.uuid : ", hs.UUID)
+	// 	dipt := Core.CommandDispatcher{}
+	// 	ack, err := dipt.Action(hs)
+	// 	if err != nil {
+	// 		rstb, _ := HSMgr.ToBytes(ack)
+	// 		fmt.Println(err)
+	// 		// return ctx.Send(rstb)
+	// 		continue
+	// 	}
+
+	// 	rstb, err := HSMgr.ToBytes(ack)
+	// }
 }
 
 func HTTPServer() {

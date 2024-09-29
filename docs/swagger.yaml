@@ -64,6 +64,20 @@ paths:
       summary: Get all job data
       tags:
       - JobDataDB
+  /view/OperationLogDB:
+    get:
+      description: Retrieves all operation logs from the database
+      parameters:
+      - description: Agent UUID
+        in: query
+        name: uuid
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get all operation logs
+      tags:
+      - OperationLogDB
   /view/SystemInfoDB:
     get:
       description: Retrieves system information records by UUID, or all records if

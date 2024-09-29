@@ -172,20 +172,26 @@ func SetupViewRoutes(app *fiber.App) {
 // @Description	Retrieves all operation logs from the database
 // @Tags			OperationLogDB
 // @Produce		json
+// @Param			uuid query string false "Agent UUID"
+// @Router			/view/OperationLogDB [get]
 func GetOperationLogDB(ctx fiber.Ctx) error {
 	db, err := Model.NewOperationLogDB()
 	if err != nil {
-		ctx.Status(500)
-		return ctx.SendString("Failed to connect to the database")
+		return ctx.Status(500).SendString("Failed to connect to the database")
 	}
-
-	// 모든 문서 조회
-	datas, err := db.SelectAllDocuments()
+	uuid := ctx.Query("uuid")
+	datas := []Model.OperationLogDocument{}
+	if uuid != "" {
+		datas, err = db.SelectDocumentsByAgentUUID(uuid)
+	} else {
+		// 모든 문서 조회
+		datas, err = db.SelectAllDocuments()
+	}
 	if err != nil {
 		return ctx.Status(404).JSON(datas)
 	}
-
 	return ctx.Status(200).JSON(datas)
+
 }
 
 // GetAgentStatus retrieves agent status by UUID, or all agents if no UUID is provided

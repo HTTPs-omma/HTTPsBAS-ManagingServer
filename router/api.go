@@ -92,6 +92,15 @@ func postInst(ctx fiber.Ctx) error {
 	}
 	//fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.InstructionUUID)
 
+	itmgr, err := Core.NewInstructionManager()
+
+	_, exist := itmgr.GetByID(InstD.ProcedureID)
+	if exist == false {
+		return ctx.Status(404).JSON(fiber.Map{
+			"status": false,
+		})
+	}
+
 	err = jobdb.InsertJobData(&Model.JobData{
 		0,
 		InstD.ProcedureID,
