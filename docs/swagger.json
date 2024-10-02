@@ -150,11 +150,11 @@
                 },
                 "agentUUID": {
                     "type": "string",
-                    "default": "09a4e53c7a1c4b4e9a519f36df29d8a2"
+                    "default": "5610eb3154c742d4bc95ce9194166ac4"
                 },
                 "procedureID": {
                     "type": "string",
-                    "default": "P_DefenseEvasion_Kimsuky_001"
+                    "default": "P_PrivilegeEscalation_0001"
                 }
             }
         }
