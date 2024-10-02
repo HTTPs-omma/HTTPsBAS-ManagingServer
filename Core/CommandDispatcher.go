@@ -162,9 +162,38 @@ func SEND_AGENT_SYS_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 }
 
 // Command: 5 (0b0000000101)
+//func SEND_AGENT_APP_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
+//
+//	appDB, err := Model.NewApplicationDB()
+//	if err != nil {
+//		return nil, err
+//	}
+//	applist, err := appDB.FromJSON(hs.Data)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	for _, Dapp := range applist {
+//		err = appDB.InsertRecord(&Dapp)
+//		if err != nil {
+//			return nil, err
+//		}
+//	}
+//
+//	return &HSProtocol.HS{ // HSProtocol.ACK
+//		ProtocolID:     hs.ProtocolID,
+//		Command:        HSProtocol.ACK,
+//		UUID:           hs.UUID,
+//		HealthStatus:   hs.HealthStatus,
+//		Identification: hs.Identification,
+//		TotalLength:    hs.TotalLength,
+//		Data:           []byte{},
+//	}, nil
+//}
+
 func SEND_AGENT_APP_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
-	appDB, err := Model.NewApplicationDB()
+	appDB, err := Model.NewProgramsDB()
 	if err != nil {
 		return nil, err
 	}
@@ -174,8 +203,9 @@ func SEND_AGENT_APP_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	}
 
 	for _, Dapp := range applist {
-		err = appDB.InsertRecord(&Dapp)
+		err = appDB.InsertRecord(Dapp.AgentUUID, Dapp.FileName)
 		if err != nil {
+			fmt.Println(err)
 			return nil, err
 		}
 	}
@@ -194,7 +224,7 @@ func SEND_AGENT_APP_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 // Command: 6 (0b0000000110)
 func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	agentUuid := HSProtocol.ByteArrayToHexString(hs.UUID)
-	fmt.Println("agent uuid : " + agentUuid)
+	//fmt.Println("agent uuid : " + agentUuid)
 	jobdb, err := Model.NewJobDB()
 	if err != nil {
 		return nil, err
@@ -211,12 +241,12 @@ func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		if err != nil {
 			return nil, err
 		}
-
 		cmdData, issuccess := cmdMgr.GetByID(job.ProcedureID) // 프로시저를 불러와야함.
 		if issuccess != true {
 			return nil, fmt.Errorf("job procedure not found")
 		}
-		bData, err := cmdData.ToBytes()
+		extendedcmdData := cmdData.ConvertToExtended(job.MessageUUID, job.Action)
+		bData, err := extendedcmdData.ToBytes()
 		if err != nil {
 			return nil, err
 		}

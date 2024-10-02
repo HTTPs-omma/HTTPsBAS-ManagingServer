@@ -160,10 +160,10 @@ func HTTPServer() {
 	})
 
 	// 효과적인 Cors 에러 해결
-	//app.Use(cors.New(cors.Config{
-	//	AllowCredentials: true,
-	//	AllowOriginsFunc: func(origin string) bool { return true },
-	//}))
+	app.Use(cors.New(cors.Config{
+		AllowCredentials: true,
+		AllowOriginsFunc: func(origin string) bool { return true },
+	}))
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*", "http://localhost/*"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},

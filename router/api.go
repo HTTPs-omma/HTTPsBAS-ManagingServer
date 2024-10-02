@@ -4,17 +4,28 @@ import (
 	"fmt"
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/gofiber/fiber/v3"
+	"github.com/google/uuid"
 	"github.com/your/repo/Core"
 	"github.com/your/repo/Model"
 	_ "github.com/your/repo/docs"
 	"time"
 )
 
+type AgentAction string
+
+const (
+	ExecutePayLoad AgentAction = "ExecutePayLoad"
+	ExecuteCleanUp AgentAction = "ExecuteCleanUp"
+	GetSystemInfo  AgentAction = "GetSystemInfo"
+	GetApplication AgentAction = "GetApplication"
+)
+
 // swagger:parameters Request
 type InstructionD struct {
 	ProcedureID string `json:"procedureID" default:"P_DefenseEvasion_Kimsuky_001"`
 	AgentUUID   string `json:"agentUUID" default:"09a4e53c7a1c4b4e9a519f36df29d8a2"`
-	MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
+	Action      string `json:"action" default:"ExecutePayLoad"`
+	//MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
 // @title			ManagingServer API
@@ -38,12 +49,16 @@ func SetupAPIRoutes(app *fiber.App) {
 func checkInstReq(ctx fiber.Ctx) error {
 	req := ctx.Body()
 	HSMgr := HSProtocol.NewHSProtocolManager()
+	//fmt.Println("debug")
+
 	hs, err := HSMgr.Parsing(req)
 	if err != nil {
 		fmt.Println(err)
 		ctx.Status(404)
 		return fmt.Errorf("Error parsing:", err)
 	}
+
+	//fmt.Println()
 
 	//fmt.Println("hs.uuid : ", hs.UUID)
 	dipt := Core.CommandDispatcher{}
@@ -81,20 +96,22 @@ func postInst(ctx fiber.Ctx) error {
 	err := ctx.Bind().JSON(InstD)
 	if err != nil {
 		fmt.Println("Error marshaling to JSON:", err)
-		ctx.Status(404)
-		return ctx.Send([]byte(err.Error()))
+		return ctx.Status(404).Send([]byte(err.Error()))
 	}
 	jobdb, err := Model.NewJobDB()
 	if err != nil {
-		return ctx.Send([]byte(err.Error()))
+		return ctx.Status(404).Send([]byte(err.Error()))
 	}
 	//fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.MessageUUID)
 
+	newUUID := uuid.New()
+	MessageUUID := newUUID.String()
 	err = jobdb.InsertJobData(&Model.JobData{
 		0,
 		InstD.ProcedureID,
 		InstD.AgentUUID,
-		InstD.MessageUUID,
+		MessageUUID,
+		InstD.Action,
 		time.Now(),
 	})
 	if err != nil {
@@ -102,8 +119,7 @@ func postInst(ctx fiber.Ctx) error {
 		return fmt.Errorf("Error inserting data into job manager: %v", err)
 	}
 
-	ctx.Status(200)
-	return ctx.JSON(fiber.Map{
-		"status": true,
+	return ctx.Status(200).JSON(fiber.Map{
+		"MessageUUID": MessageUUID,
 	})
 }

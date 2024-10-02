@@ -1,9 +1,5 @@
-github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.9 h1:LmGvK4r5RyPb3QaJ//3eqmmufu3W/aikssoWsmQLHhw=
-github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.9/go.mod h1:7Kv1PDaclTyg/VJ3xPahHfJiYF1GqXIWsbYlGKlUV2c=
-github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.11 h1:vHgJG5BhEyxfbNZzXw1DXyQh6x9OU5jIsSHcVRXH+cA=
-github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.11/go.mod h1:7Kv1PDaclTyg/VJ3xPahHfJiYF1GqXIWsbYlGKlUV2c=
-github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.12 h1:6PXYMZk1DCBQnbiasXXNj2My5p827wFyvP0QZX438Vw=
-github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.12/go.mod h1:7Kv1PDaclTyg/VJ3xPahHfJiYF1GqXIWsbYlGKlUV2c=
+github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.14 h1:ACdDGHNTwsUBLALnB6/0mmlMxvtmiBKGYhXg9ys/OwM=
+github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.14/go.mod h1:7Kv1PDaclTyg/VJ3xPahHfJiYF1GqXIWsbYlGKlUV2c=
 github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc=
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/andybalholm/brotli v1.1.0 h1:eLKJA0d02Lf0mVpIDgYnqXcUn0GqVmEFny3VuID1U3M=

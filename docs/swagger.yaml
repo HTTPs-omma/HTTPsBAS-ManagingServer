@@ -2,26 +2,28 @@ basePath: /
 definitions:
   router.InstructionD:
     properties:
+      action:
+        default: ExecutePayLoad
+        type: string
       agentUUID:
         default: 09a4e53c7a1c4b4e9a519f36df29d8a2
         type: string
-      messageUUID:
-        default: 32a2833486414af9bc4596caef585538
-        type: string
       procedureID:
-        default: P_DefenseEvasion_0002
+        default: P_DefenseEvasion_Kimsuky_001
         type: string
     type: object
-host: uskawjdu.iptime.org
+host: localhost
 info:
   contact:
-    email: uskawjdu@gmail.com
-    name: ManagingServer API Support
-  description: parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  title: ManagingServer API
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
   version: "1.0"
 paths:
   /api/postInst:

@@ -9,9 +9,11 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
+        "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "ManagingServer API Support",
-            "email": "uskawjdu@gmail.com"
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
         },
         "license": {
             "name": "Apache 2.0",
@@ -148,17 +150,17 @@ const docTemplate = `{
         "router.InstructionD": {
             "type": "object",
             "properties": {
+                "action": {
+                    "type": "string",
+                    "default": "ExecutePayLoad"
+                },
                 "agentUUID": {
                     "type": "string",
                     "default": "09a4e53c7a1c4b4e9a519f36df29d8a2"
                 },
-                "messageUUID": {
-                    "type": "string",
-                    "default": "32a2833486414af9bc4596caef585538"
-                },
                 "procedureID": {
                     "type": "string",
-                    "default": "P_DefenseEvasion_0002"
+                    "default": "P_DefenseEvasion_Kimsuky_001"
                 }
             }
         }
@@ -168,11 +170,11 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "uskawjdu.iptime.org",
+	Host:             "localhost",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "ManagingServer API",
-	Description:      "parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.",
+	Title:            "Swagger Example API",
+	Description:      "This is a sample server Petstore server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

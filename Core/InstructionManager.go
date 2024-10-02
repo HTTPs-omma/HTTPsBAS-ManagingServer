@@ -13,7 +13,6 @@ import (
 ChatGpt 로 생성한 코드임
 */
 
-// InstructionData는 주어진 YAML 데이터를 저장할 구조체입니다.
 type InstructionData struct {
 	ID               string `yaml:"id"`
 	MITREID          string `yaml:"MITRE_ID"`
@@ -22,6 +21,42 @@ type InstructionData struct {
 	RequisiteCommand string `yaml:"requisite_command"`
 	Command          string `yaml:"command"`
 	Cleanup          string `yaml:"cleanup"`
+}
+
+type ExtendedInstructionData struct {
+	ID               string `yaml:"id"`
+	MITREID          string `yaml:"MITRE_ID"`
+	Description      string `yaml:"Description"`
+	Tool             string `yaml:"tool"`
+	RequisiteCommand string `yaml:"requisite_command"`
+	Command          string `yaml:"command"`
+	Cleanup          string `yaml:"cleanup"`
+	MessageUUID      string `yaml:"messageUUID"`
+	AgentAction      string `yaml:"agentAction"`
+}
+
+func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction string) ExtendedInstructionData {
+	return ExtendedInstructionData{
+		ID:               cd.ID,
+		MITREID:          cd.MITREID,
+		Description:      cd.Description,
+		Tool:             cd.Tool,
+		RequisiteCommand: cd.RequisiteCommand,
+		Command:          cd.Command,
+		Cleanup:          cd.Cleanup,
+		MessageUUID:      messageUUID,
+		AgentAction:      agentAction,
+	}
+}
+
+// ToBytes는 InstructionData 구조체를 YAML 바이트 슬라이스로 변환하는 함수입니다.
+func (cd *ExtendedInstructionData) ToBytes() ([]byte, error) {
+	// YAML로 직렬화
+	data, err := yaml.Marshal(cd)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }
 
 // ToBytes는 InstructionData 구조체를 YAML 바이트 슬라이스로 변환하는 함수입니다.
@@ -47,14 +82,13 @@ func NewInstructionManager() (*InstructionManager, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return cm, nil
 }
 
 // loadCommands는 주어진 경로에서 모든 YAML 파일을 읽어들여 InstructionData로 변환합니다.
 func (cm *InstructionManager) loadCommands() error {
 	// 디렉토리 내의 모든 YAML 파일을 찾습니다.
-	files, err := filepath.Glob(filepath.Join("../HTTPsBAS-Procedures/", "*.yaml"))
+	files, err := filepath.Glob(filepath.Join("./HTTPsBAS-Procedures/", "*.yaml"))
 	if err != nil {
 		return fmt.Errorf("failed to read directory: %w", err)
 	}

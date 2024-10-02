@@ -11,7 +11,7 @@ import (
 type CombinedData struct {
 	OperationLog []Model.OperationLogDocument `json:"operation_log"`
 	AgentStatus  []Model.AgentStatusRecord    `json:"agent_status"`
-	Application  []Model.DapplicationDB       `json:"application"`
+	Application  []Model.ProgramsRecord       `json:"application"`
 	JobData      []Model.JobData              `json:"job_data"`
 	SystemInfo   []Model.DsystemInfoDB        `json:"system_info"`
 }
@@ -41,13 +41,13 @@ func SetupViewRoutes(app *fiber.App) {
 			return ctx.Status(404).SendString("Error : " + err.Error())
 		}
 
-		appdb, err := Model.NewApplicationDB()
+		appdb, err := Model.NewProgramsDB()
 		if err != nil {
 			return err
 		}
 		dataAPP, err := appdb.SelectAllRecords()
-		if len(dataAPP) > 200 {
-			dataAPP = dataAPP[len(dataAPP)-200:]
+		if len(dataAPP) > 100 {
+			dataAPP = dataAPP[len(dataAPP)-100:]
 		}
 
 		if err != nil {
@@ -138,7 +138,7 @@ func SetupViewRoutes(app *fiber.App) {
 	})
 
 	app.Get("/deleted/ApplicationDB", func(ctx fiber.Ctx) error {
-		db, err := Model.NewApplicationDB()
+		db, err := Model.NewProgramsDB()
 		if err != nil {
 			return err
 		}
@@ -230,16 +230,16 @@ func GetAgentStatus(ctx fiber.Ctx) error {
 // @Router			/view/ApplicationDB [get]
 func GetApplicationDB(ctx fiber.Ctx) error {
 	fmt.Println("ApplicationDB logging")
-	db, err := Model.NewApplicationDB()
+	db, err := Model.NewProgramsDB()
 	if err != nil {
 		return err
 	}
 
 	uuid := ctx.Query("uuid")
-	var datas []Model.DapplicationDB
+	var datas []Model.ProgramsRecord
 	fmt.Println(uuid)
 	if uuid != "" {
-		datas, err = db.SelectRecordByUUID(uuid)
+		datas, err = db.SelectRecordsByUUID(uuid)
 	} else {
 		datas, err = db.SelectAllRecords()
 	}
@@ -249,6 +249,28 @@ func GetApplicationDB(ctx fiber.Ctx) error {
 	}
 	return ctx.Status(200).JSON(datas)
 }
+
+//func GetApplicationDB(ctx fiber.Ctx) error {
+//	fmt.Println("ApplicationDB logging")
+//	db, err := Model.NewApplicationDB()
+//	if err != nil {
+//		return err
+//	}
+//
+//	uuid := ctx.Query("uuid")
+//	var datas []Model.DapplicationDB
+//	fmt.Println(uuid)
+//	if uuid != "" {
+//		datas, err = db.SelectRecordByUUID(uuid)
+//	} else {
+//		datas, err = db.SelectAllRecords()
+//	}
+//	if err != nil {
+//		fmt.Println("Error selecting records:", err)
+//		return ctx.Status(404).JSON(datas)
+//	}
+//	return ctx.Status(200).JSON(datas)
+//}
 
 // GetSystemInfoDB retrieves system information records by UUID, or all records if no UUID is provided
 // @Path			/api/view/SystemInfoDB

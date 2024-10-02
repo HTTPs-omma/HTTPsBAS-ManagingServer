@@ -1,11 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.",
-        "title": "ManagingServer API",
+        "description": "This is a sample server Petstore server.",
+        "title": "Swagger Example API",
+        "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "ManagingServer API Support",
-            "email": "uskawjdu@gmail.com"
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
         },
         "license": {
             "name": "Apache 2.0",
@@ -13,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "uskawjdu.iptime.org",
+    "host": "localhost",
     "basePath": "/",
     "paths": {
         "/api/postInst": {
@@ -142,17 +144,17 @@
         "router.InstructionD": {
             "type": "object",
             "properties": {
+                "action": {
+                    "type": "string",
+                    "default": "ExecutePayLoad"
+                },
                 "agentUUID": {
                     "type": "string",
                     "default": "09a4e53c7a1c4b4e9a519f36df29d8a2"
                 },
-                "messageUUID": {
-                    "type": "string",
-                    "default": "32a2833486414af9bc4596caef585538"
-                },
                 "procedureID": {
                     "type": "string",
-                    "default": "P_DefenseEvasion_0002"
+                    "default": "P_DefenseEvasion_Kimsuky_001"
                 }
             }
         }

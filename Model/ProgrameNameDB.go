@@ -79,6 +79,19 @@ func (a *ProgramsDB) InsertRecord(agentUUID string, fileName string) error {
 	}
 	defer db.Close()
 
+	dupliValidQuery := fmt.Sprintf(`select * from %s WHERE AgentUUID = ? AND FileName = ?`, a.dbName)
+	rst, err := db.Query(dupliValidQuery, agentUUID, fileName)
+	if err != nil {
+		return err
+	}
+	col, err := rst.Columns()
+	if err != nil {
+		return err
+	}
+	if len(col) >= 1 {
+		return nil
+	}
+
 	query := fmt.Sprintf(`INSERT INTO %s (AgentUUID, FileName) VALUES (?, ?)`, a.dbName)
 	_, err = db.Exec(query, agentUUID, fileName)
 	if err != nil {

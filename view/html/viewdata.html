@@ -124,20 +124,7 @@
             <tr>
                 <th>ID</th>
                 <th>AgentUUID</th>
-                <th>Name</th>
-                <th>Version</th>
-                <th>Language</th>
-                <th>Vendor</th>
-                <th>InstallDate</th>
-                <th>InstallLocation</th>
-                <th>InstallSource</th>
-                <th>PackageName</th>
-                <th>PackageCode</th>
-                <th>RegCompany</th>
-                <th>RegOwner</th>
-                <th>URLInfoAbout</th>
-                <th>Description</th>
-                <th>IsDeleted</th>
+                <th>FileName</th>
                 <th>CreateAt</th>
                 <th>UpdateAt</th>
                 <th>DeletedAt</th>
@@ -217,7 +204,6 @@
                     </tr>`;
                 });
 
-
                 // Agent Status Table
                 const agentStatusTable = document.getElementById('agent-status-table').querySelector('tbody');
                 agentStatusTable.innerHTML = '';
@@ -241,20 +227,7 @@
               <tr>
                 <td>${app.id}</td>
                 <td>${app.agent_uuid}</td>
-                <td>${app.name}</td>
-                <td>${app.version}</td>
-                <td>${app.language}</td>
-                <td>${app.vendor}</td>
-                <td>${app.install_date}</td>
-                <td>${app.install_location}</td>
-                <td>${app.install_source}</td>
-                <td>${app.package_name}</td>
-                <td>${app.package_code}</td>
-                <td>${app.reg_company}</td>
-                <td>${app.reg_owner}</td>
-                <td>${app.url_info_about}</td>
-                <td>${app.description}</td>
-                <td>${app.is_deleted}</td>
+                <td>${app.file_name}</td>
                 <td>${new Date(app.create_at).toLocaleString()}</td>
                 <td>${new Date(app.update_at).toLocaleString()}</td>
                 <td>${new Date(app.deleted_at).toLocaleString()}</td>
@@ -310,8 +283,7 @@
             });
     }
 
-    fetchData()
-    // 1초마다 데이터 업데이트
+    fetchData();
     setInterval(fetchData, 2500);
 </script>
 
