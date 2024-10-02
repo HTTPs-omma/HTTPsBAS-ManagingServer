@@ -22,8 +22,8 @@ const (
 
 // swagger:parameters Request
 type InstructionD struct {
-	ProcedureID string `json:"procedureID" default:"P_DefenseEvasion_Kimsuky_001"`
-	AgentUUID   string `json:"agentUUID" default:"09a4e53c7a1c4b4e9a519f36df29d8a2"`
+	ProcedureID string `json:"procedureID" default:"P_PrivilegeEscalation_0001"`
+	AgentUUID   string `json:"agentUUID" default:"5610eb3154c742d4bc95ce9194166ac4"`
 	Action      string `json:"action" default:"ExecutePayLoad"`
 	//MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
 }

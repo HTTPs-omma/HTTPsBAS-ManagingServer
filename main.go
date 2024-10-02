@@ -65,12 +65,12 @@ func Swagger() {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
-	r.Run("localhost:8000")
+	r.Run("0.0.0.0:8001")
 
 }
 
 func TCPServer() {
-	listener, err := net.Listen("tcp", "localhost:8080")
+	listener, err := net.Listen("tcp", "0.0.0.0:8080")
 	if err != nil {
 		fmt.Println("Error starting TCP server:", err)
 		return
