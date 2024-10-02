@@ -3,76 +3,23 @@ package Model
 import (
 	"database/sql"
 	"fmt"
+	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"time"
 )
-
-// Protocol 유형을 정의합니다.
-type Protocol uint8
-
-const (
-	TCP             Protocol = 0b0001 // TCP 프로토콜
-	UDP             Protocol = 0b0010 // UDP 프로토콜
-	HTTP            Protocol = 0b0011 // HTTP 프로토콜
-	HTTPS           Protocol = 0b0100 // HTTPS 프로토콜
-	UnknownProtocol Protocol = 0b0000 // 알 수 없는 프로토콜
-)
-
-// // Protocol을 문자열로 변환하는 메서드를 구현합니다.
-func (p Protocol) String() string {
-	switch p {
-	case TCP:
-		return "TCP"
-	case UDP:
-		return "UDP"
-	case HTTP:
-		return "HTTP"
-	case HTTPS:
-		return "HTTPS"
-	default:
-		return "Unknown"
-	}
-}
-
-// // AgentStatus 유형을 정의합니다.
-type AgentStatus int
-
-const (
-	NEW  AgentStatus = iota // 동작 중인 상태
-	WAIT                    // 대기 중인 상태
-	RUN                     // 정지 후 사라지기 전의 상태
-	DELETED
-	UNKNOWN
-)
-
-// AgentStatus를 문자열로 변환하는 메서드를 구현합니다.
-func (s AgentStatus) String() string {
-	switch s {
-	case NEW:
-		return "NEW"
-	case RUN:
-		return "Running"
-	case WAIT:
-		return "Waiting"
-	case DELETED:
-		return "DELETED"
-	default:
-		return "Unknown"
-	}
-}
 
 // Binary 값을 AgentStatus로 변환하는 메서드를 구현합니다.
 func BinaryToAgentStatus(i uint8) AgentStatus {
 	switch i {
 	case 0b00:
-		return NEW
+		return HSProtocol.NEW
 	case 0b01:
-		return WAIT
+		return HSProtocol.WAIT
 	case 0b10:
-		return RUN
+		return HSProtocol.RUN
 	case 0b11:
-		return DELETED
+		return HSProtocol.DELETED
 	default:
-		return UNKNOWN
+		return HSProtocol.UNKNOWN
 	}
 }
 
@@ -80,17 +27,23 @@ func BinaryToAgentStatus(i uint8) AgentStatus {
 func BinaryToProtocol(i uint8) Protocol {
 	switch i {
 	case 0b0001:
-		return TCP
+		return HSProtocol.TCP
 	case 0b0010:
-		return UDP
+		return HSProtocol.UDP
 	case 0b0011:
-		return HTTP
+		return HSProtocol.HTTP
 	case 0b0100:
-		return HTTPS
+		return HSProtocol.HTTPS
 	default:
-		return UnknownProtocol
+		return HSProtocol.UNKNOWN
 	}
 }
+
+// Protocol 유형을 정의합니다.
+type Protocol uint8
+
+// // AgentStatus 유형을 정의합니다.
+type AgentStatus int
 
 type AgentStatusDB struct {
 	dbName string

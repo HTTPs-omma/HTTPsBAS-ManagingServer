@@ -57,7 +57,7 @@ const docTemplate = `{
                     "type": "string",
                     "default": "09a4e53c7a1c4b4e9a519f36df29d8a2"
                 },
-                "instructionUUID": {
+                "messageUUID": {
                     "type": "string",
                     "default": "32a2833486414af9bc4596caef585538"
                 },

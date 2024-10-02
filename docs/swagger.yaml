@@ -5,7 +5,7 @@ definitions:
       agentUUID:
         default: 09a4e53c7a1c4b4e9a519f36df29d8a2
         type: string
-      instructionUUID:
+      messageUUID:
         default: 32a2833486414af9bc4596caef585538
         type: string
       procedureID:

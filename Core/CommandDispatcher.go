@@ -78,7 +78,7 @@ func UPDATE_AGENT_PROTOCOL(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 			TotalLength:    hs.TotalLength,
 			Data:           []byte{},
 		}, nil
-	} else if (flag == false) && (hs.HealthStatus == uint8(Model.WAIT)) {
+	} else if (flag == false) && (hs.HealthStatus == uint8(HSProtocol.WAIT)) {
 		agsmd.InsertRecord(&Model.AgentStatusRecord{
 			UUID:   hs_uuid,
 			Status: Model.BinaryToAgentStatus(hs.HealthStatus),

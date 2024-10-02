@@ -7,11 +7,11 @@ import (
 )
 
 type JobData struct {
-	Id              int       `json:"id"`
-	ProcedureID     string    `json:"procedureID"`
-	AgentUUID       string    `json:"agentUUID"`
-	InstructionUUID string    `json:"instructionUUID"`
-	CreateAt        time.Time `json:"createAt"`
+	Id          int       `json:"id"`
+	ProcedureID string    `json:"procedureID"`
+	AgentUUID   string    `json:"agentUUID"`
+	MessageUUID string    `json:"messageUUID"`
+	CreateAt    time.Time `json:"createAt"`
 }
 
 /**
@@ -45,7 +45,7 @@ func (jd *JobDB) createTableIfNotExists() error {
 	    id INTEGER PRIMARY KEY AUTOINCREMENT,
 		ProcedureID TEXT,
 		AgentUUID TEXT,
-		InstructionUUID TEXT,
+		MessageUUID TEXT,
 		CreateAt DATETIME
 	);`
 
@@ -63,9 +63,9 @@ func (jd *JobDB) InsertJobData(jobData *JobData) error {
 	}
 	defer db.Close()
 	jobData.CreateAt = time.Now()
-	insertSQL := `INSERT INTO jobs (ProcedureID, AgentUUID, InstructionUUID, CreateAt) 
+	insertSQL := `INSERT INTO jobs (ProcedureID, AgentUUID, MessageUUID, CreateAt) 
 	              VALUES (?, ?, ?, ?)`
-	_, err = db.Exec(insertSQL, jobData.ProcedureID, jobData.AgentUUID, jobData.InstructionUUID, jobData.CreateAt)
+	_, err = db.Exec(insertSQL, jobData.ProcedureID, jobData.AgentUUID, jobData.MessageUUID, jobData.CreateAt)
 	fmt.Println(jobData)
 	if err != nil {
 		return fmt.Errorf("insert job failed: %w", err)
@@ -81,7 +81,7 @@ func (jd *JobDB) SelectJobDataByAgentUUID(agentUUID string) (*JobData, error, bo
 	}
 	defer db.Close()
 
-	selectSQL := `SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt FROM jobs WHERE AgentUUID = ?`
+	selectSQL := `SELECT id, ProcedureID, AgentUUID, MessageUUID, CreateAt FROM jobs WHERE AgentUUID = ?`
 	rows, err := db.Query(selectSQL, agentUUID)
 	if err != nil {
 		return nil, err, false
@@ -93,7 +93,7 @@ func (jd *JobDB) SelectJobDataByAgentUUID(agentUUID string) (*JobData, error, bo
 	}
 
 	var job *JobData = &JobData{}
-	err = rows.Scan(&job.ProcedureID, &job.Id, &job.AgentUUID, &job.InstructionUUID, &job.CreateAt) // 첫 행에만 적용
+	err = rows.Scan(&job.ProcedureID, &job.Id, &job.AgentUUID, &job.MessageUUID, &job.CreateAt) // 첫 행에만 적용
 	if err != nil {
 		return nil, err, true
 	}
@@ -109,7 +109,7 @@ func (jd *JobDB) SelectAllJobData() ([]JobData, error) {
 	}
 	defer db.Close()
 
-	selectSQL := `SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt FROM jobs`
+	selectSQL := `SELECT id, ProcedureID, AgentUUID, MessageUUID, CreateAt FROM jobs`
 
 	rows, err := db.Query(selectSQL)
 	defer rows.Close()
@@ -123,7 +123,7 @@ func (jd *JobDB) SelectAllJobData() ([]JobData, error) {
 	jobs := []JobData{}
 
 	var job_init *JobData = &JobData{}
-	err = rows.Scan(&job_init.Id, &job_init.ProcedureID, &job_init.AgentUUID, &job_init.InstructionUUID, &job_init.CreateAt) // 첫 행에만 적용
+	err = rows.Scan(&job_init.Id, &job_init.ProcedureID, &job_init.AgentUUID, &job_init.MessageUUID, &job_init.CreateAt) // 첫 행에만 적용
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +131,7 @@ func (jd *JobDB) SelectAllJobData() ([]JobData, error) {
 
 	for rows.Next() == true {
 		var job *JobData = &JobData{}
-		err = rows.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.InstructionUUID, &job.CreateAt) // 첫 행에만 적용
+		err = rows.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.CreateAt) // 첫 행에만 적용
 		if err != nil {
 			return nil, err
 		}
@@ -150,7 +150,7 @@ func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
 
 	// 쿼리문 수정: WHERE 절을 추가하고 ORDER BY를 사용하여 CreateAt을 기준으로 내림차순 정렬
 	selectSQL := `
-		SELECT id, ProcedureID, AgentUUID, InstructionUUID, CreateAt 
+		SELECT id, ProcedureID, AgentUUID, MessageUUID, CreateAt 
 		FROM jobs 
 		WHERE AgentUUID = ? 
 		ORDER BY CreateAt DESC
@@ -161,7 +161,7 @@ func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
 	row := db.QueryRow(selectSQL, agentUUID)
 
 	var job JobData
-	err = row.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.InstructionUUID, &job.CreateAt)
+	err = row.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.CreateAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			// 일치하는 행이 없는 경우
@@ -179,16 +179,16 @@ func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
 	return &job, nil, true
 }
 
-// DeleteJobDataByInstructionUUID: InstructionUUID 기반으로 JobData 삭제
-func (jd *JobDB) DeleteJobDataByInstructionUUID(instructionUUID string) error {
+// DeleteJobDataByMessageUUID: MessageUUID 기반으로 JobData 삭제
+func (jd *JobDB) DeleteJobDataByMessageUUID(messageUUID string) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
 	}
 	defer db.Close()
 
-	deleteSQL := `DELETE FROM jobs WHERE InstructionUUID = ?`
-	_, err = db.Exec(deleteSQL, instructionUUID)
+	deleteSQL := `DELETE FROM jobs WHERE MessageUUID = ?`
+	_, err = db.Exec(deleteSQL, messageUUID)
 	if err != nil {
 		return fmt.Errorf("delete job failed: %w", err)
 	}
@@ -210,7 +210,7 @@ func (jd *JobDB) DeleteJobDataById(id int) error {
 	return nil
 }
 
-// DeleteJobDataByInstructionUUID: InstructionUUID 기반으로 JobData 삭제
+// DeleteJobDataByMessageUUID: MessageUUID 기반으로 JobData 삭제
 func (jd *JobDB) DeleteAllJobData() error {
 	db, err := getDBPtr()
 	if err != nil {

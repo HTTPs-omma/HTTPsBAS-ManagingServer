@@ -12,9 +12,9 @@ import (
 
 // swagger:parameters Request
 type InstructionD struct {
-	ProcedureID     string `json:"procedureID" default:"P_DefenseEvasion_Kimsuky_001"`
-	AgentUUID       string `json:"agentUUID" default:"09a4e53c7a1c4b4e9a519f36df29d8a2"`
-	InstructionUUID string `json:"instructionUUID" default:"32a2833486414af9bc4596caef585538"`
+	ProcedureID string `json:"procedureID" default:"P_DefenseEvasion_Kimsuky_001"`
+	AgentUUID   string `json:"agentUUID" default:"09a4e53c7a1c4b4e9a519f36df29d8a2"`
+	MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
 // @title			ManagingServer API
@@ -88,13 +88,13 @@ func postInst(ctx fiber.Ctx) error {
 	if err != nil {
 		return ctx.Send([]byte(err.Error()))
 	}
-	//fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.InstructionUUID)
+	//fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.MessageUUID)
 
 	err = jobdb.InsertJobData(&Model.JobData{
 		0,
 		InstD.ProcedureID,
 		InstD.AgentUUID,
-		InstD.InstructionUUID,
+		InstD.MessageUUID,
 		time.Now(),
 	})
 	if err != nil {

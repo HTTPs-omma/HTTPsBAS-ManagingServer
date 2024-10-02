@@ -3,7 +3,7 @@ module github.com/your/repo
 go 1.23.0
 
 require (
-	github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.9
+	github.com/HTTPs-omma/HTTPsBAS-HSProtocol v1.0.12
 	github.com/gin-gonic/gin v1.10.0
 	github.com/gofiber/fiber/v3 v3.0.0-beta.3
 	github.com/joho/godotenv v1.5.1
