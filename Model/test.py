@@ -8,7 +8,7 @@ url = 'http://127.0.0.1/postInstruction'
 data = {
     "agentUUID": "12342",
     "procedureID": "P_Collection_Kimsuky_001",
-    "instructionUUID": "f5556669-ffbe-4d24-b833-fc9888fdeaef"
+    "messageUUID": "f5556669-ffbe-4d24-b833-fc9888fdeaef"
 }
 
 # 헤더 설정

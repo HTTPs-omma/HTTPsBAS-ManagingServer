@@ -81,7 +81,7 @@
                 <th>ID</th>
                 <th>AgentUUID</th>
                 <th>ProcedureID</th>
-                <th>InstructionUUID</th>
+                <th>MessageUUID</th>
                 <th>ConductAt</th>
                 <th>ExitCode</th>
                 <th>Log</th>
@@ -159,7 +159,7 @@
                 <th>ID</th>
                 <th>ProcedureID</th>
                 <th>AgentUUID</th>
-                <th>InstructionUUID</th>
+                <th>MessageUUID</th>
                 <th>CreatedAt</th>
             </tr>
             </thead>
@@ -209,7 +209,7 @@
                         <td>${log.ID}</td>
                         <td>${log.AgentUUID}</td>
                         <td>${log.ProcedureID}</td>
-                        <td>${log.InstructionUUID}</td>
+                        <td>${log.MessageUUID}</td>
                         <td>${new Date(log.ConductAt).toLocaleString()}</td>
                         <td>${log.ExitCode}</td>
                         <td>${log.Log}</td>
@@ -270,7 +270,7 @@
                 <td>${job.id}</td>
                 <td>${job.procedureID}</td>
                 <td>${job.agentUUID}</td>
-                <td>${job.instructionUUID}</td>
+                <td>${job.messageUUID}</td>
                 <td>${new Date(job.createdAt).toLocaleString()}</td>
               </tr>`;
                 });
