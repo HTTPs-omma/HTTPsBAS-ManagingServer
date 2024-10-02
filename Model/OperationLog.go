@@ -16,14 +16,14 @@ import (
 
 // OperationLogDocument 구조체 정의
 type OperationLogDocument struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	AgentUUID       string             `bson:"agentUUID"`
-	ProcedureID     string             `bson:"procedureID"`
-	InstructionUUID string             `bson:"instructionUUID"`
-	ConductAt       time.Time          `bson:"conductAt"`
-	ExitCode        int                `bson:"exitCode"`
-	Log             string             `bson:"log"`
-	Command         string             `bson:"command"` // Command 필드로 변경
+	ID          primitive.ObjectID `bson:"_id,omitempty"`
+	AgentUUID   string             `bson:"agentUUID"`
+	ProcedureID string             `bson:"procedureID"`
+	MessageUUID string             `bson:"messageUUID"`
+	ConductAt   time.Time          `bson:"conductAt"`
+	ExitCode    int                `bson:"exitCode"`
+	Log         string             `bson:"log"`
+	Command     string             `bson:"command"` // Command 필드로 변경
 }
 
 const (
@@ -65,7 +65,7 @@ func (repo *OperationLogDB) SelectDocumentById(id string) (*OperationLogDocument
 	ptrdb := db.Collection(repo.DBNAME)
 
 	var OperationLogDocument OperationLogDocument
-	filter := bson.M{"instructionUUID": id}
+	filter := bson.M{"messageUUID": id}
 
 	err = ptrdb.FindOne(context.TODO(), filter).Decode(&OperationLogDocument)
 	if err != nil {
@@ -114,7 +114,7 @@ func (repo *OperationLogDB) UpdateDocumentByInstID(id string, updateData bson.M)
 	}
 	ptrdb := db.Collection(repo.DBNAME)
 
-	filter := bson.M{"instructionUUID": id}
+	filter := bson.M{"messageUUID": id}
 	update := bson.M{
 		"$set": updateData,
 	}

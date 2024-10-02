@@ -54,7 +54,7 @@ func NewInstructionManager() (*InstructionManager, error) {
 // loadCommands는 주어진 경로에서 모든 YAML 파일을 읽어들여 InstructionData로 변환합니다.
 func (cm *InstructionManager) loadCommands() error {
 	// 디렉토리 내의 모든 YAML 파일을 찾습니다.
-	files, err := filepath.Glob(filepath.Join("../CommandDB/", "*.yaml"))
+	files, err := filepath.Glob(filepath.Join("../HTTPsBAS-Procedures/", "*.yaml"))
 	if err != nil {
 		return fmt.Errorf("failed to read directory: %w", err)
 	}
@@ -106,6 +106,10 @@ func (cm *InstructionManager) GetByID(id string) (*InstructionData, bool) {
 	return &command, true
 }
 
+/**  이전에 쓰고 현재는 사용하지 않는 코드라서 주석처리했습니다.
+해당 코드를 지우기전에 허남정 연구원에게 연락주시길 바랍니다.
+
+
 //// Insert는 새로운 InstructionData를 삽입하는 함수입니다.
 //// 이미 동일한 ID가 존재하면 false를 반환하고, 성공적으로 삽입되면 true를 반환합니다.
 //func (cm *InstructionManager) Insert(command InstructionData) bool {
@@ -135,3 +139,5 @@ func (cm *InstructionManager) GetByID(id string) (*InstructionData, bool) {
 //		fmt.Printf("Command with ID %s not found\n", id)
 //	}
 //}
+
+*/

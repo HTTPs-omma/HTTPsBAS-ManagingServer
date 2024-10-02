@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	cors2 "github.com/gin-contrib/cors"
@@ -11,6 +10,7 @@ import (
 	"github.com/joho/godotenv"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/your/repo/Core"
 	_ "github.com/your/repo/docs"
 	"github.com/your/repo/router"
 	"net"
@@ -109,18 +109,41 @@ func handleTCPConnection(conn net.Conn) {
 		hs, err := HSMgr.Parsing(buffer)
 		if err != nil {
 			fmt.Println("Error parsing:", err)
-			continue
+			ack := &HSProtocol.HS{ // HSProtocol.ACK
+				ProtocolID:     hs.ProtocolID,
+				Command:        HSProtocol.ERROR_ACK,
+				UUID:           hs.UUID,
+				HealthStatus:   hs.HealthStatus,
+				Identification: hs.Identification,
+				TotalLength:    hs.TotalLength,
+				Data:           []byte{},
+			}
+			rstb, _ := HSMgr.ToBytes(ack)
+			conn.Write(rstb)
+			return
 		}
 
-		if hs.Command == 0b0000000110 { // payload 를 받아옴
-			conn.Write([]byte(testCommand))
+		//fmt.Println("hs.uuid : ", hs.UUID)
+		dipt := Core.CommandDispatcher{}
+		ack, err := dipt.Action(hs)
+		if err != nil {
+			ack := &HSProtocol.HS{ // HSProtocol.ACK
+				ProtocolID:     hs.ProtocolID,
+				Command:        HSProtocol.ERROR_ACK,
+				UUID:           hs.UUID,
+				HealthStatus:   hs.HealthStatus,
+				Identification: hs.Identification,
+				TotalLength:    hs.TotalLength,
+				Data:           []byte{},
+			}
+			rstb, _ := HSMgr.ToBytes(ack)
+			fmt.Println(err)
+			conn.Write(rstb)
+			return
 		}
-
-		if hs.Command == 0b0000000111 { // 실행 결과를 작성함.
-			msg := bytes.ReplaceAll(hs.Data, []byte{0x00}, []byte{})
-			fmt.Println("Log : ", string(msg))
-		}
-
+		rstb, err := HSMgr.ToBytes(ack)
+		conn.Write(rstb)
+		return
 	}
 }
 
