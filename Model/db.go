@@ -3,8 +3,9 @@ package Model
 import (
 	"database/sql"
 	"errors"
-	_ "modernc.org/sqlite"
 	"time"
+
+	_ "modernc.org/sqlite"
 )
 
 /*

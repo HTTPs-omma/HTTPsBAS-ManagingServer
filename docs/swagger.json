@@ -1,13 +1,11 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server Petstore server.",
-        "title": "Swagger Example API",
-        "termsOfService": "http://swagger.io/terms/",
+        "description": "parameter 에 아무런 값을 넣지 않으면, 모든 값을 불러옵니다.",
+        "title": "ManagingServer API",
         "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
+            "name": "ManagingServer API Support",
+            "email": "uskawjdu@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -15,7 +13,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost",
+    "host": "uskawjdu.iptime.org",
     "basePath": "/",
     "paths": {
         "/api/postInst": {
@@ -41,6 +39,103 @@
                 ],
                 "responses": {}
             }
+        },
+        "/view/ApplicationDB": {
+            "get": {
+                "description": "Retrieves application database records by UUID, or all records if no UUID is provided",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ApplicationDB"
+                ],
+                "summary": "Get application database records",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Application UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/view/JobDataDB": {
+            "get": {
+                "description": "Retrieves all job data from the database",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "JobDataDB"
+                ],
+                "summary": "Get all job data",
+                "responses": {}
+            }
+        },
+        "/view/OperationLogDB": {
+            "get": {
+                "description": "Retrieves all operation logs from the database",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "OperationLogDB"
+                ],
+                "summary": "Get all operation logs",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Agent UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/view/SystemInfoDB": {
+            "get": {
+                "description": "Retrieves system information records by UUID, or all records if no UUID is provided",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SystemInfoDB"
+                ],
+                "summary": "Get system information records",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "System UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/view/agentStatus": {
+            "get": {
+                "description": "Retrieves agent status by UUID, or all agents if no UUID is provided",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AgentStatus"
+                ],
+                "summary": "Get agent status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Agent UUID",
+                        "name": "uuid",
+                        "in": "query"
+                    }
+                ],
+                "responses": {}
+            }
         }
     },
     "definitions": {
@@ -57,7 +152,7 @@
                 },
                 "procedureID": {
                     "type": "string",
-                    "default": "P_DefenseEvasion_Kimsuky_001"
+                    "default": "P_DefenseEvasion_0002"
                 }
             }
         }
