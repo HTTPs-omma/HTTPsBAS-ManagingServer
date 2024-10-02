@@ -60,7 +60,7 @@ func (a *ApplicationDB) createTable() error {
 			InstallLocation TEXT,                       -- 패키지 설치 위치
 			InstallSource TEXT,                         -- 설치 소스 위치
 			PackageName VARCHAR(255),                   -- 원래 패키지 이름
-			PackageCode VARCHAR(255) UNIQUE NOT NULL,  	-- 패키지 식별자 UUID
+			PackageCode VARCHAR(255) NOT NULL,  	-- 패키지 식별자 UUID
 			RegCompany VARCHAR(255),                    -- 제품을 사용하는 것으로 등록된 회사 이름
 			RegOwner VARCHAR(255),                      -- 제품을 사용하는 것으로 등록된 사용자 이름
 			URLInfoAbout TEXT,                          -- 제품에 대한 정보가 제공되는 URL
@@ -148,6 +148,7 @@ type Win32_Product struct {
 }
 
 func (a *ApplicationDB) InsertRecord(data *DapplicationDB) error {
+	fmt.Println("client uuid : " + data.AgentUUID)
 	// 데이터베이스 연결
 	db, err := getDBPtr()
 	if err != nil {
@@ -283,7 +284,7 @@ func (s *ApplicationDB) DeleteAllRecords() error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`DELETE FROM %s WHERE`, s.dbName)
+	query := fmt.Sprintf(`DELETE FROM %s`, s.dbName)
 	_, err = db.Exec(query)
 	if err != nil {
 		return err
