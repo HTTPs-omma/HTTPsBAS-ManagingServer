@@ -88,7 +88,7 @@ func (s *SystemInfoDB) CreateTable() error {
 
 func (s *SystemInfoDB) InsertRecord(data *DsystemInfoDB) error {
 	// 데이터 베이스에는 단 하나의 Row 만을 보장해야함
-	isExist, err := s.ExistRecord()
+	isExist, err := s.ExistRecordByUUID(data.Uuid)
 	if err != nil {
 		return err
 	}
@@ -143,6 +143,22 @@ func (s *SystemInfoDB) UpdateRecord(data *DsystemInfoDB) error {
 
 	query := fmt.Sprintf(`UPDATE %s SET HostName = ?, OsName = ?, OsVersion = ?, Family = ?, Architecture = ?, KernelVersion = ?, BootTime = ?, IP = ?, MAC = ?`, s.dbName)
 	_, err = db.Exec(query, data.HostName, data.OsName, data.OsVersion, data.Family, data.Architecture, data.KernelVersion, data.BootTime, data.IP, data.MAC)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *SystemInfoDB) UpdateIP(IP string, Uuid string) error {
+	db, err := getDBPtr()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`UPDATE %s SET IP = ? WHERE uuid = ?`, s.dbName)
+	_, err = db.Exec(query, IP, Uuid)
 	if err != nil {
 		return err
 	}
@@ -248,6 +264,23 @@ func (s *SystemInfoDB) ExistRecord() (bool, error) {
 	query := fmt.Sprintf(`SELECT EXISTS(SELECT 1 FROM %s)`, s.dbName)
 	var exists bool
 	err = db.QueryRow(query).Scan(&exists)
+	if err != nil {
+		return false, err
+	}
+
+	return exists, nil
+}
+
+func (s *SystemInfoDB) ExistRecordByUUID(uuid string) (bool, error) {
+	db, err := getDBPtr()
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`SELECT EXISTS(SELECT 1 FROM %s WHERE uuid = ?)`, s.dbName)
+	var exists bool
+	err = db.QueryRow(query, uuid).Scan(&exists)
 	if err != nil {
 		return false, err
 	}

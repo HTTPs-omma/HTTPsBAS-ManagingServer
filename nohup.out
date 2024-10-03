@@ -8365,3 +8365,81 @@ Invalid Command
 [GIN] 2024/10/03 - 16:14:44 | 304 |      47.981µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
 [GIN] 2024/10/03 - 16:14:44 | 200 |     286.702µs |  223.195.37.233 | GET      "/swagger/doc.json"
 signal: terminated
+package main is not in std (/usr/local/go/src/main)
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8080
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	18
+INFO Prefork: 			Disabled
+INFO PID: 			281611
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/10/03 - 18:05:08 | 200 |     407.319µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/10/03 - 18:05:08 | 200 |   12.233757ms |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/10/03 - 18:05:08 | 200 |   21.258198ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/10/03 - 18:05:08 | 200 |   48.412608ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/10/03 - 18:05:08 | 200 |      55.315µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/10/03 - 18:05:08 | 200 |     329.864µs |  223.195.37.233 | GET      "/swagger/doc.json"
+[GIN] 2024/10/03 - 18:05:08 | 304 |      26.191µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+Invalid Command
+Invalid Command
+[GIN] 2024/10/03 - 18:52:17 | 200 |     184.313µs |   218.146.20.61 | GET      "/swagger/index.html"
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+panic: runtime error: makeslice: len out of range
+
+goroutine 8664180 [running]:
+github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol.(*HSProtocolManager).Parsing(0x0?, {0xc00aa02000, 0x100000, 0x100000})
+	/root/golang/pkg/mod/github.com/!h!t!t!ps-omma/!h!t!t!ps!b!a!s-!h!s!protocol@v1.0.14/HSProtocol/HSProtocol.go:122 +0x6a
+main.handleTCPConnection({0x124f0d8, 0xc00055bb50})
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:106 +0xf7
+created by main.TCPServer in goroutine 12
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:86 +0x1f8
+exit status 2
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+TCP server listening on port 8080
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	18
+INFO Prefork: 			Disabled
+INFO PID: 			1225560
+INFO Total process count: 	1
+

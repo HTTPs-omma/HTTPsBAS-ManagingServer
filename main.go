@@ -38,10 +38,6 @@ func main() {
 		panic("Error loading .env file")
 	}
 
-	if err != nil {
-		panic("큐 생성 에러")
-	}
-
 	// tcp
 	go TCPServer()
 
@@ -169,6 +165,18 @@ func HTTPServer() {
 		AllowOrigins: []string{"*", "*"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
 	}))
+	app.Get("/download/:filename", func(c fiber.Ctx) error {
+		// 파일 이름을 URL 파라미터로 받음
+		filename := c.Params("filename")
+		filePath := "./HTTPsBAS-Dropbin/" + filename
+		// 파일이 존재하는지 확인
+		if _, err := os.Stat(filePath); os.IsNotExist(err) {
+			return c.Status(fiber.StatusNotFound).SendString("File not found")
+		}
+
+		// 파일을 클라이언트에게 전송 (다운로드)
+		return c.Download(filePath)
+	})
 
 	router.SetupAPIRoutes(app)
 	router.SetupViewRoutes(app)

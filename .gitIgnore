@@ -1,2 +1,5 @@
 Model/.env
 .env
+./.env
+./HTTPsBAS-Procedures
+./HTTPsBAS-Dropbin

@@ -38,6 +38,7 @@ require (
 	github.com/go-playground/validator/v10 v10.22.1 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
 	github.com/gofiber/utils/v2 v2.0.0-beta.6 // indirect
+	github.com/goftp/server v0.0.0-20200708154336-f64f7c2d8a42 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/josharian/intern v1.0.0 // indirect

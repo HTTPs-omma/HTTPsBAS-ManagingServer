@@ -1,6 +1,7 @@
 package router
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
@@ -46,6 +47,8 @@ func SetupAPIRoutes(app *fiber.App) {
 
 	app.Post("/api/checkInstReq", checkInstReq)
 	app.Post("/api/postInst", postInst)
+	app.Post("/ipinfo", updateIPInfo)
+
 }
 
 func checkInstReq(ctx fiber.Ctx) error {
@@ -86,11 +89,12 @@ func checkInstReq(ctx fiber.Ctx) error {
 
 // postInst example
 //
-//	@Description	ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent
+//	@Summary		ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent
+//	@Description	이 API는 다양한 작업을 실행하는 명령어를 포함합니다.
 //	@ID				get-struct-array2-by-string
 //	@Accept			json
 //	@Produce		json
-//	@Param			loginUserRequest	body	InstructionD	true	"request job"
+//	@Param			loginUserRequest	body	InstructionD	true	"request job. 'Action' 필드에는 'ExecutePayLoad', 'ExecuteCleanUp', 'GetSystemInfo', 'GetApplication', 'StopAgent' 값이 들어갈 수 있습니다."
 //	@Router			/api/postInst [post]
 func postInst(ctx fiber.Ctx) error {
 	// https://github.com/gofiber/fiber/issues/2958
@@ -125,4 +129,33 @@ func postInst(ctx fiber.Ctx) error {
 	return ctx.Status(200).JSON(fiber.Map{
 		"MessageUUID": MessageUUID,
 	})
+}
+
+func updateIPInfo(c fiber.Ctx) error {
+	fmt.Println("================================================")
+	// 클라이언트에서 보낸 JSON 데이터를 파싱
+	var data struct {
+		PrivateIP []string `json:"PrivateIP"`
+		PublicIP  string   `json:"PublicIP"`
+		agentUUID string   `json:"agentUUID"`
+	}
+
+	if err := json.Unmarshal(c.Body(), &data); err != nil {
+		return c.Status(fiber.StatusBadRequest).SendString("Invalid request : Json Parsing Failed")
+	}
+	fmt.Println("================================================")
+	fmt.Println(data)
+
+	// DB에 기록하거나 업데이트
+	agentDB, err := Model.NewSystemInfoDB()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString("Failed to connect to the database")
+	}
+
+	err = agentDB.UpdateIP(data.PublicIP, data.agentUUID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString("Failed to update record")
+	}
+
+	return c.SendString("IP information updated successfully")
 }
