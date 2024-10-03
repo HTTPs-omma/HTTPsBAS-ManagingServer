@@ -15,12 +15,12 @@
         },
         "version": "1.0"
     },
-    "host": "localhost",
+    "host": "uskawjdu.iptime.org",
     "basePath": "/",
     "paths": {
         "/api/postInst": {
             "post": {
-                "description": "get struct array by ID",
+                "description": "ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent",
                 "consumes": [
                     "application/json"
                 ],

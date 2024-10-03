@@ -46,9 +46,6 @@ func SetupViewRoutes(app *fiber.App) {
 			return err
 		}
 		dataAPP, err := appdb.SelectAllRecords()
-		if len(dataAPP) > 100 {
-			dataAPP = dataAPP[len(dataAPP)-100:]
-		}
 
 		if err != nil {
 			fmt.Println("Error selecting records:", err)

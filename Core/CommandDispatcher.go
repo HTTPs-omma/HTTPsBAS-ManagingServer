@@ -144,7 +144,9 @@ func SEND_AGENT_SYS_INFO(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		return nil, err
 	}
 	// fmt.Println(sysinfo.Uuid)
-
+	if err = sysDB.DeleteRecordByUUID(sysinfo.Uuid); err != nil {
+		return nil, err
+	}
 	err = sysDB.InsertRecord(&sysinfo)
 	if err != nil {
 		return nil, err

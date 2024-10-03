@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"net"
+	"os"
+
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	cors2 "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -13,8 +16,6 @@ import (
 	"github.com/your/repo/Core"
 	_ "github.com/your/repo/docs"
 	"github.com/your/repo/router"
-	"net"
-	"os"
 )
 
 // @title			Swagger Example API
@@ -26,7 +27,7 @@ import (
 // @contact.email	support@swagger.io
 // @license.name	Apache 2.0
 // @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-// @host			localhost
+// @host			uskawjdu.iptime.org
 // @BasePath		/
 // @Path			api
 var testCommand string = "dir /"
@@ -165,7 +166,7 @@ func HTTPServer() {
 		AllowOriginsFunc: func(origin string) bool { return true },
 	}))
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"*", "http://localhost/*"},
+		AllowOrigins: []string{"*", "*"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
 	}))
 

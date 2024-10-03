@@ -156,7 +156,7 @@ func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
 		SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, CreateAt 
 		FROM jobs 
 		WHERE AgentUUID = ? 
-		ORDER BY CreateAt DESC
+		ORDER BY CreateAt ASC
 		LIMIT 1
 	`
 

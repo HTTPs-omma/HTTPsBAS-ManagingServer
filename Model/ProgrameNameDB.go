@@ -73,29 +73,31 @@ func (a *ProgramsDB) CreateTable() error {
 
 // InsertRecord: 레코드 삽입
 func (a *ProgramsDB) InsertRecord(agentUUID string, fileName string) error {
+	exists, err := a.ExistRecord(agentUUID, fileName)
+	if err != nil {
+		return err
+	}
+
 	db, err := getDBPtr()
 	if err != nil {
 		return err
 	}
 	defer db.Close()
 
-	dupliValidQuery := fmt.Sprintf(`select * from %s WHERE AgentUUID = ? AND FileName = ?`, a.dbName)
-	rst, err := db.Query(dupliValidQuery, agentUUID, fileName)
-	if err != nil {
-		return err
-	}
-	col, err := rst.Columns()
-	if err != nil {
-		return err
-	}
-	if len(col) >= 1 {
-		return nil
-	}
-
-	query := fmt.Sprintf(`INSERT INTO %s (AgentUUID, FileName) VALUES (?, ?)`, a.dbName)
-	_, err = db.Exec(query, agentUUID, fileName)
-	if err != nil {
-		return err
+	if exists {
+		// 존재하면 업데이트
+		query := fmt.Sprintf(`UPDATE %s SET FileName = ?, updateAt = ? WHERE AgentUUID = ? AND FileName = ?`, a.dbName)
+		_, err = db.Exec(query, fileName, time.Now(), agentUUID, fileName)
+		if err != nil {
+			return err
+		}
+	} else {
+		// 존재하지 않으면 삽입
+		query := fmt.Sprintf(`INSERT INTO %s (AgentUUID, FileName) VALUES (?, ?)`, a.dbName)
+		_, err = db.Exec(query, agentUUID, fileName)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -127,6 +129,26 @@ func (a *ProgramsDB) SelectAllRecords() ([]ProgramsRecord, error) {
 	}
 
 	return records, nil
+}
+
+// ExistRecord: 특정 AgentUUID와 FileName이 존재하는지 확인하는 함수
+func (a *ProgramsDB) ExistRecord(agentUUID string, fileName string) (bool, error) {
+	db, err := getDBPtr()
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+
+	// AgentUUID와 FileName이 존재하는지 확인하는 쿼리
+	query := fmt.Sprintf(`SELECT COUNT(1) FROM %s WHERE AgentUUID = ? AND FileName = ?`, a.dbName)
+	var count int
+	err = db.QueryRow(query, agentUUID, fileName).Scan(&count)
+	if err != nil {
+		return false, err
+	}
+
+	// 존재하면 true, 존재하지 않으면 false 반환
+	return count > 0, nil
 }
 
 // SelectRecordsByUUID: 특정 AgentUUID에 따른 레코드를 선택
@@ -177,15 +199,15 @@ func (a *ProgramsDB) UpdateRecordByID(id int, newFileName string) error {
 }
 
 // DeleteRecordByID: ID를 기준으로 레코드 삭제
-func (a *ProgramsDB) DeleteRecordByID(id int) error {
+func (a *ProgramsDB) DeleteRecordByAgentUUID(agentUUID string) error {
 	db, err := getDBPtr()
 	if err != nil {
 		return err
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`DELETE FROM %s WHERE id = ?`, a.dbName)
-	_, err = db.Exec(query, id)
+	query := fmt.Sprintf(`DELETE FROM %s WHERE AgentUUID = ?`, a.dbName)
+	_, err = db.Exec(query, agentUUID)
 	if err != nil {
 		return err
 	}

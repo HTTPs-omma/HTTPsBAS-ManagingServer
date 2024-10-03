@@ -26,7 +26,7 @@ const docTemplate = `{
     "paths": {
         "/api/postInst": {
             "post": {
-                "description": "get struct array by ID",
+                "description": "ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent",
                 "consumes": [
                     "application/json"
                 ],
@@ -170,7 +170,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost",
+	Host:             "uskawjdu.iptime.org",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Swagger Example API",

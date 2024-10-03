@@ -12,7 +12,7 @@ definitions:
         default: P_PrivilegeEscalation_0001
         type: string
     type: object
-host: localhost
+host: uskawjdu.iptime.org
 info:
   contact:
     email: support@swagger.io
@@ -30,7 +30,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: get struct array by ID
+      description: ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent
       operationId: get-struct-array2-by-string
       parameters:
       - description: request job

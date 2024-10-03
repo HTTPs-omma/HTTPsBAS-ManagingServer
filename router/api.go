@@ -2,13 +2,15 @@ package router
 
 import (
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"github.com/gofiber/fiber/v3"
 	"github.com/google/uuid"
 	"github.com/your/repo/Core"
 	"github.com/your/repo/Model"
 	_ "github.com/your/repo/docs"
-	"time"
 )
 
 type AgentAction string
@@ -37,7 +39,7 @@ type InstructionD struct {
 // @contact.email	support@managingserver.io
 // @license.name	Apache 2.0
 // @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-// @host			localhost:80
+// @host			uskawjdu.iptime.org:80
 // @BasePath		/
 // @Path			/api
 func SetupAPIRoutes(app *fiber.App) {
@@ -84,7 +86,7 @@ func checkInstReq(ctx fiber.Ctx) error {
 
 // postInst example
 //
-//	@Description	get struct array by ID
+//	@Description	ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent
 //	@ID				get-struct-array2-by-string
 //	@Accept			json
 //	@Produce		json
@@ -106,6 +108,7 @@ func postInst(ctx fiber.Ctx) error {
 
 	newUUID := uuid.New()
 	MessageUUID := newUUID.String()
+	MessageUUID = strings.Replace(MessageUUID, "-", "", -1)
 	err = jobdb.InsertJobData(&Model.JobData{
 		0,
 		InstD.ProcedureID,
