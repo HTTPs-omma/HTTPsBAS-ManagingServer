@@ -68,7 +68,7 @@ func UPDATE_AGENT_PROTOCOL(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	if flag == true {
 		agsmd.UpdateRecord(&Model.AgentStatusRecord{
 			UUID:   hs_uuid,
-			Status: Model.BinaryToAgentStatus(hs.HealthStatus),
+			Status: hs.HealthStatus,
 		})
 		return &HSProtocol.HS{ // HSProtocol.ACK
 			ProtocolID:     hs.ProtocolID,
@@ -79,10 +79,10 @@ func UPDATE_AGENT_PROTOCOL(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 			TotalLength:    hs.TotalLength,
 			Data:           []byte{},
 		}, nil
-	} else if (flag == false) && (hs.HealthStatus == uint8(HSProtocol.WAIT)) {
+	} else if (flag == false) && (hs.HealthStatus == HSProtocol.WAIT) {
 		agsmd.InsertRecord(&Model.AgentStatusRecord{
 			UUID:   hs_uuid,
-			Status: Model.BinaryToAgentStatus(hs.HealthStatus),
+			Status: hs.HealthStatus,
 		})
 
 		return &HSProtocol.HS{ // HSProtocol.ACK
@@ -111,8 +111,8 @@ func UPDATE_AGENT_STATUS(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 	err = agsDb.InsertRecord(&Model.AgentStatusRecord{
 		ID:       0,
 		UUID:     HSProtocol.ByteArrayToHexString(hs.UUID),
-		Protocol: Model.BinaryToProtocol(hs.ProtocolID),
-		Status:   Model.BinaryToAgentStatus(hs.HealthStatus),
+		Protocol: hs.ProtocolID,
+		Status:   hs.HealthStatus,
 	})
 	// err = agsDb.InsertRecord(&Model.AgentStatusRecord{})
 	if err != nil {

@@ -21,6 +21,7 @@ const (
 	ExecuteCleanUp AgentAction = "ExecuteCleanUp"
 	GetSystemInfo  AgentAction = "GetSystemInfo"
 	GetApplication AgentAction = "GetApplication"
+	StopAgent      AgentAction = "StopAgent"
 	ChangeProtocolToTCP AgentAction = "ChangeProtocolToTCP"
 	ChangeProtocolToHTTP AgentAction = "ChangeProtocolToHTTP"
 )
