@@ -37,7 +37,7 @@ const docTemplate = `{
                 "operationId": "get-struct-array2-by-string",
                 "parameters": [
                     {
-                        "description": "request job. 'Action' 필드에는 'ExecutePayLoad', 'ExecuteCleanUp', 'GetSystemInfo', 'GetApplication', 'StopAgent' 값이 들어갈 수 있습니다.",
+                        "description": "request job. 'Action' 필드에는 'ExecutePayLoad', 'ExecuteCleanUp', 'GetSystemInfo', 'GetApplication', 'StopAgent', 'ChangeProtocol' 값이 들어갈 수 있습니다.",
                         "name": "loginUserRequest",
                         "in": "body",
                         "required": true,

@@ -21,6 +21,7 @@ const (
 	ExecuteCleanUp AgentAction = "ExecuteCleanUp"
 	GetSystemInfo  AgentAction = "GetSystemInfo"
 	GetApplication AgentAction = "GetApplication"
+	ChangeProtocol AgentAction = "ChangeProtocol"
 )
 
 // swagger:parameters Request
@@ -87,6 +88,7 @@ func checkInstReq(ctx fiber.Ctx) error {
 	return ctx.Send(rstb)
 }
 
+
 // postInst example
 //
 //	@Summary		ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent
@@ -94,7 +96,7 @@ func checkInstReq(ctx fiber.Ctx) error {
 //	@ID				get-struct-array2-by-string
 //	@Accept			json
 //	@Produce		json
-//	@Param			loginUserRequest	body	InstructionD	true	"request job. 'Action' 필드에는 'ExecutePayLoad', 'ExecuteCleanUp', 'GetSystemInfo', 'GetApplication', 'StopAgent' 값이 들어갈 수 있습니다."
+//	@Param			loginUserRequest	body	InstructionD	true	"request job. 'Action' 필드에는 'ExecutePayLoad', 'ExecuteCleanUp', 'GetSystemInfo', 'GetApplication', 'StopAgent', 'ChangeProtocol' 값이 들어갈 수 있습니다."
 //	@Router			/api/postInst [post]
 func postInst(ctx fiber.Ctx) error {
 	// https://github.com/gofiber/fiber/issues/2958

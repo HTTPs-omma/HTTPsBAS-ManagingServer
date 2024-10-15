@@ -8,7 +8,7 @@ import (
 )
 
 // Binary 값을 AgentStatus로 변환하는 메서드를 구현합니다.
-func BinaryToAgentStatus(i uint8) AgentStatus {
+func BinaryToAgentStatus(i uint8) HSProtocol.AGENTSTATUS {
 	switch i {
 	case 0b00:
 		return HSProtocol.NEW
@@ -19,12 +19,12 @@ func BinaryToAgentStatus(i uint8) AgentStatus {
 	case 0b11:
 		return HSProtocol.DELETED
 	default:
-		return HSProtocol.UNKNOWN
+		return HSProtocol.NEW
 	}
 }
 
 // Binary 값을 AgentStatus로 변환하는 메서드를 구현합니다.
-func BinaryToProtocol(i uint8) Protocol {
+func BinaryToProtocol(i uint8) HSProtocol.PROTOCOL {
 	switch i {
 	case 0b0001:
 		return HSProtocol.TCP
@@ -39,11 +39,6 @@ func BinaryToProtocol(i uint8) Protocol {
 	}
 }
 
-// Protocol 유형을 정의합니다.
-type Protocol uint8
-
-// // AgentStatus 유형을 정의합니다.
-type AgentStatus int
 
 type AgentStatusDB struct {
 	dbName string
@@ -52,8 +47,8 @@ type AgentStatusDB struct {
 type AgentStatusRecord struct {
 	ID        int
 	UUID      string
-	Status    AgentStatus
-	Protocol  Protocol
+	Status    HSProtocol.AGENTSTATUS
+	Protocol  HSProtocol.PROTOCOL
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
