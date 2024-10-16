@@ -3,8 +3,9 @@ package Model
 import (
 	"database/sql"
 	"fmt"
-	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 	"time"
+
+	"github.com/HTTPs-omma/HTTPsBAS-HSProtocol/HSProtocol"
 )
 
 // Binary 값을 AgentStatus로 변환하는 메서드를 구현합니다.
@@ -38,7 +39,6 @@ func BinaryToProtocol(i uint8) HSProtocol.PROTOCOL {
 		return HSProtocol.UNKNOWN
 	}
 }
-
 
 type AgentStatusDB struct {
 	dbName string

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"net"
 	"os"
@@ -78,6 +79,7 @@ func TCPServer() {
 
 	for {
 		conn, err := listener.Accept()
+		fmt.Println("======= tcp received ===========")
 		if err != nil {
 			fmt.Println("Error accepting connection:", err)
 			continue
@@ -89,16 +91,18 @@ func TCPServer() {
 }
 
 func handleTCPConnection(conn net.Conn) {
-	defer conn.Close() // 함수 호출 종료 후 Close
+	reader := bufio.NewReader(conn)
+	reader.Discard(reader.Buffered()) // 남은 버퍼를 버림
+	// defer conn.Close() // 함수 호출 종료 후 Close
 
-	buffer := make([]byte, 1024*1024)
 	for {
+		buffer := make([]byte, 1024*1024)
 		n, err := conn.Read(buffer)
 		if err != nil {
 			fmt.Println("Error reading from connection:", err)
 			break
 		}
-		if n < 1 {
+		if n < 2 {
 			continue
 		}
 
@@ -120,7 +124,11 @@ func handleTCPConnection(conn net.Conn) {
 			return
 		}
 
-		//fmt.Println("hs.uuid : ", hs.UUID)
+		// fmt.Println("hs.command : ", hs.Command)
+		// fmt.Println("hs.TotalLeng : ", hs.TotalLength)
+		// da, _ := HSProtocol.NewHSProtocolManager().ToBytes(hs)
+		// fmt.Println("hs len : ", len(da))
+
 		dipt := Core.CommandDispatcher{}
 		ack, err := dipt.Action(hs)
 		if err != nil {
@@ -136,11 +144,16 @@ func handleTCPConnection(conn net.Conn) {
 			rstb, _ := HSMgr.ToBytes(ack)
 			fmt.Println(err)
 			conn.Write(rstb)
-			return
+			break
 		}
 		rstb, err := HSMgr.ToBytes(ack)
 		conn.Write(rstb)
-		return
+
+		// reader := bufio.NewReader(conn)
+		// reader.Discard(reader.Buffered()) // 남은 버퍼를 버림
+
+		// fmt.Println("완료")
+		continue
 	}
 }
 
@@ -165,7 +178,7 @@ func HTTPServer() {
 		AllowOrigins: []string{"*", "*"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
 	}))
-	app.Get("/download/:filename", func(c fiber.Ctx) error {
+	app.Get("/downloads/:filename", func(c fiber.Ctx) error {
 		// 파일 이름을 URL 파라미터로 받음
 		filename := c.Params("filename")
 		filePath := "./HTTPsBAS-Dropbin/" + filename

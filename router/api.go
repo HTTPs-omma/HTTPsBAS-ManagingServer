@@ -17,12 +17,12 @@ import (
 type AgentAction string
 
 const (
-	ExecutePayLoad AgentAction = "ExecutePayLoad"
-	ExecuteCleanUp AgentAction = "ExecuteCleanUp"
-	GetSystemInfo  AgentAction = "GetSystemInfo"
-	GetApplication AgentAction = "GetApplication"
-	StopAgent      AgentAction = "StopAgent"
-	ChangeProtocolToTCP AgentAction = "ChangeProtocolToTCP"
+	ExecutePayLoad       AgentAction = "ExecutePayLoad"
+	ExecuteCleanUp       AgentAction = "ExecuteCleanUp"
+	GetSystemInfo        AgentAction = "GetSystemInfo"
+	GetApplication       AgentAction = "GetApplication"
+	StopAgent            AgentAction = "StopAgent"
+	ChangeProtocolToTCP  AgentAction = "ChangeProtocolToTCP"
 	ChangeProtocolToHTTP AgentAction = "ChangeProtocolToHTTP"
 )
 
@@ -68,7 +68,8 @@ func checkInstReq(ctx fiber.Ctx) error {
 
 	//fmt.Println()
 
-	//fmt.Println("hs.uuid : ", hs.UUID)
+	// fmt.Println("hs.command : ", hs.Command)
+	// fmt.Println("hs.TotalLength : ", hs.TotalLength)
 	dipt := Core.CommandDispatcher{}
 	ack, err := dipt.Action(hs)
 	if err != nil {
@@ -89,7 +90,6 @@ func checkInstReq(ctx fiber.Ctx) error {
 	rstb, err := HSMgr.ToBytes(ack)
 	return ctx.Send(rstb)
 }
-
 
 // postInst example
 //
