@@ -31,7 +31,7 @@ type InstructionD struct {
 	ProcedureID string   `json:"procedureID" default:"P_PrivilegeEscalation_0001"`
 	AgentUUID   string   `json:"agentUUID" default:"5610eb3154c742d4bc95ce9194166ac4"`
 	Action      string   `json:"action" default:"ExecutePayLoad"`
-	Files       []string `json:"files" default:"[]"`
+	Files       []string `json:"files"`
 	//MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
@@ -82,6 +82,7 @@ func checkInstReq(ctx fiber.Ctx) error {
 			TotalLength:    hs.TotalLength,
 			Data:           []byte{},
 		}
+		fmt.Println("size : ", ack.TotalLength)
 		rstb, _ := HSMgr.ToBytes(ack)
 		fmt.Println(err)
 		return ctx.Send(rstb)

@@ -28,7 +28,7 @@ import (
 // @contact.email	support@swagger.io
 // @license.name	Apache 2.0
 // @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-// @host			uskawjdu.iptime.org
+// @host			httpsbas.com:8002
 // @BasePath		/
 // @Path			api
 var testCommand string = "dir /"
@@ -121,7 +121,7 @@ func handleTCPConnection(conn net.Conn) {
 			}
 			rstb, _ := HSMgr.ToBytes(ack)
 			conn.Write(rstb)
-			return
+			continue
 		}
 
 		// fmt.Println("hs.command : ", hs.Command)
@@ -144,7 +144,7 @@ func handleTCPConnection(conn net.Conn) {
 			rstb, _ := HSMgr.ToBytes(ack)
 			fmt.Println(err)
 			conn.Write(rstb)
-			break
+			continue
 		}
 		rstb, err := HSMgr.ToBytes(ack)
 		conn.Write(rstb)
@@ -194,8 +194,8 @@ func HTTPServer() {
 	router.SetupAPIRoutes(app)
 	router.SetupViewRoutes(app)
 
-	fmt.Println("HTTP server listening on port 80")
-	err := app.Listen(":80")
+	// fmt.Println("HTTP server listening on port 80")
+	err := app.Listen(":8002")
 	if err != nil {
 		fmt.Println("Error starting HTTP server:", err)
 	}

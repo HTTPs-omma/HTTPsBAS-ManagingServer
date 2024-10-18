@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "uskawjdu.iptime.org",
+    "host": "httpsbas.com:8002",
     "basePath": "/",
     "paths": {
         "/api/postInst": {
@@ -152,6 +152,12 @@
                 "agentUUID": {
                     "type": "string",
                     "default": "5610eb3154c742d4bc95ce9194166ac4"
+                },
+                "files": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "procedureID": {
                     "type": "string",

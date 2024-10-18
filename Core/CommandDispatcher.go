@@ -246,7 +246,8 @@ func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		if issuccess != true {
 			return nil, fmt.Errorf("job procedure not found")
 		}
-		extendedcmdData := cmdData.ConvertToExtended(job.MessageUUID, job.Action)
+		fmt.Println(job.Files)
+		extendedcmdData := cmdData.ConvertToExtended(job.MessageUUID, job.Action, job.Files)
 		bData, err := extendedcmdData.ToBytes()
 		if err != nil {
 			return nil, err

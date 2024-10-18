@@ -159,6 +159,12 @@ const docTemplate = `{
                     "type": "string",
                     "default": "5610eb3154c742d4bc95ce9194166ac4"
                 },
+                "files": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "procedureID": {
                     "type": "string",
                     "default": "P_PrivilegeEscalation_0001"
@@ -171,7 +177,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "uskawjdu.iptime.org",
+	Host:             "httpsbas.com:8002",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Swagger Example API",
