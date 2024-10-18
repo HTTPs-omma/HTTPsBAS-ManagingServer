@@ -2,6 +2,7 @@ package Model
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"time"
 )
@@ -11,7 +12,8 @@ type JobData struct {
 	ProcedureID string    `json:"procedureID"`
 	AgentUUID   string    `json:"agentUUID"`
 	MessageUUID string    `json:"messageUUID"`
-	Action      string    `json:"action"` // 명령어 필드 추가
+	Action      string    `json:"action"`
+	Files       []string  `json:"files"` // Files 필드를 []string 타입으로 변경
 	CreateAt    time.Time `json:"createAt"`
 }
 
@@ -48,6 +50,7 @@ func (jd *JobDB) createTableIfNotExists() error {
 		AgentUUID TEXT,
 		MessageUUID TEXT,
 		Action TEXT,
+		Files TEXT,
 		CreateAt DATETIME
 	);`
 
@@ -65,11 +68,18 @@ func (jd *JobDB) InsertJobData(jobData *JobData) error {
 		return err
 	}
 	defer db.Close()
+
 	jobData.CreateAt = time.Now()
-	insertSQL := `INSERT INTO jobs (ProcedureID, AgentUUID, MessageUUID, Action, CreateAt) 
-	              VALUES (?, ?, ?, ?, ?)`
-	_, err = db.Exec(insertSQL, jobData.ProcedureID, jobData.AgentUUID, jobData.MessageUUID, jobData.Action, jobData.CreateAt)
-	fmt.Println(jobData)
+
+	// Files 배열을 JSON 문자열로 직렬화
+	filesJSON, err := json.Marshal(jobData.Files)
+	if err != nil {
+		return fmt.Errorf("failed to marshal files: %w", err)
+	}
+
+	insertSQL := `INSERT INTO jobs (ProcedureID, AgentUUID, MessageUUID, Action, Files, CreateAt) 
+	              VALUES (?, ?, ?, ?, ?, ?)`
+	_, err = db.Exec(insertSQL, jobData.ProcedureID, jobData.AgentUUID, jobData.MessageUUID, jobData.Action, string(filesJSON), jobData.CreateAt)
 	if err != nil {
 		return fmt.Errorf("insert job failed: %w", err)
 	}
@@ -84,36 +94,40 @@ func (jd *JobDB) SelectJobDataByAgentUUID(agentUUID string) (*JobData, error, bo
 	}
 	defer db.Close()
 
-	selectSQL := `SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, CreateAt FROM jobs WHERE AgentUUID = ?`
+	selectSQL := `SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, Files, CreateAt FROM jobs WHERE AgentUUID = ?`
 	rows, err := db.Query(selectSQL, agentUUID)
 	if err != nil {
 		return nil, err, false
 	}
 	defer rows.Close()
 	if rows.Next() == false {
-		// 결과가 없다면,
 		return &JobData{}, nil, false
 	}
 
 	var job *JobData = &JobData{}
-	err = rows.Scan(&job.ProcedureID, &job.Id, &job.AgentUUID, &job.MessageUUID, &job.Action, &job.CreateAt) // 첫 행에만 적용
+	var filesJSON string
+	err = rows.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.Action, &filesJSON, &job.CreateAt)
 	if err != nil {
 		return nil, err, true
+	}
+
+	// JSON 문자열을 []string 배열로 역직렬화
+	err = json.Unmarshal([]byte(filesJSON), &job.Files)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal files: %w", err), true
 	}
 
 	return job, nil, true
 }
 
 func (jd *JobDB) SelectAllJobData() ([]JobData, error) {
-
 	db, err := getDBPtr()
 	if err != nil {
 		return nil, err
 	}
 	defer db.Close()
 
-	selectSQL := `SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, CreateAt FROM jobs`
-
+	selectSQL := `SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, Files, CreateAt FROM jobs`
 	rows, err := db.Query(selectSQL)
 	defer rows.Close()
 	if err != nil {
@@ -125,20 +139,25 @@ func (jd *JobDB) SelectAllJobData() ([]JobData, error) {
 
 	jobs := []JobData{}
 
-	var job_init *JobData = &JobData{}
-	err = rows.Scan(&job_init.Id, &job_init.ProcedureID, &job_init.AgentUUID, &job_init.MessageUUID, &job_init.Action, &job_init.CreateAt) // 첫 행에만 적용
-	if err != nil {
-		return nil, err
-	}
-	jobs = append(jobs, *job_init)
-
-	for rows.Next() == true {
-		var job *JobData = &JobData{}
-		err = rows.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.Action, &job.CreateAt) // 첫 행에만 적용
+	for {
+		var job JobData
+		var filesJSON string
+		err = rows.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.Action, &filesJSON, &job.CreateAt)
 		if err != nil {
 			return nil, err
 		}
-		jobs = append(jobs, *job)
+
+		// JSON 문자열을 []string 배열로 역직렬화
+		err = json.Unmarshal([]byte(filesJSON), &job.Files)
+		if err != nil {
+			return nil, fmt.Errorf("failed to unmarshal files: %w", err)
+		}
+
+		jobs = append(jobs, job)
+
+		if !rows.Next() {
+			break
+		}
 	}
 
 	return jobs, nil
@@ -151,29 +170,31 @@ func (jd *JobDB) PopbyAgentUUID(agentUUID string) (*JobData, error, bool) {
 	}
 	defer db.Close()
 
-	// 쿼리문 수정: WHERE 절을 추가하고 ORDER BY를 사용하여 CreateAt을 기준으로 내림차순 정렬
 	selectSQL := `
-		SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, CreateAt 
+		SELECT id, ProcedureID, AgentUUID, MessageUUID, Action, Files, CreateAt 
 		FROM jobs 
 		WHERE AgentUUID = ? 
 		ORDER BY CreateAt ASC
 		LIMIT 1
 	`
-
-	// QueryRow를 사용하여 한 행만 가져옵니다.
 	row := db.QueryRow(selectSQL, agentUUID)
 
 	var job JobData
-	err = row.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.Action, &job.CreateAt)
+	var filesJSON string
+	err = row.Scan(&job.Id, &job.ProcedureID, &job.AgentUUID, &job.MessageUUID, &job.Action, &filesJSON, &job.CreateAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			// 일치하는 행이 없는 경우
 			return &JobData{}, nil, false
 		}
 		return nil, err, false
 	}
 
-	// 해당 JobData를 삭제
+	// JSON 문자열을 []string 배열로 역직렬화
+	err = json.Unmarshal([]byte(filesJSON), &job.Files)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal files: %w", err), false
+	}
+
 	err = jd.DeleteJobDataById(job.Id)
 	if err != nil {
 		return nil, err, false

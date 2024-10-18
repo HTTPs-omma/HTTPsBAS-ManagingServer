@@ -2,11 +2,12 @@ package Core
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
+
+	"gopkg.in/yaml.v2"
 )
 
 /**
@@ -24,18 +25,19 @@ type InstructionData struct {
 }
 
 type ExtendedInstructionData struct {
-	ID               string `yaml:"id"`
-	MITREID          string `yaml:"MITRE_ID"`
-	Description      string `yaml:"Description"`
-	Tool             string `yaml:"tool"`
-	RequisiteCommand string `yaml:"requisite_command"`
-	Command          string `yaml:"command"`
-	Cleanup          string `yaml:"cleanup"`
-	MessageUUID      string `yaml:"messageUUID"`
-	AgentAction      string `yaml:"agentAction"`
+	ID               string   `yaml:"id"`
+	MITREID          string   `yaml:"MITRE_ID"`
+	Description      string   `yaml:"Description"`
+	Tool             string   `yaml:"tool"`
+	RequisiteCommand string   `yaml:"requisite_command"`
+	Command          string   `yaml:"command"`
+	Cleanup          string   `yaml:"cleanup"`
+	MessageUUID      string   `yaml:"messageUUID"`
+	AgentAction      string   `yaml:"agentAction"`
+	Files            []string `yaml:"files"`
 }
 
-func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction string) ExtendedInstructionData {
+func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction string, files []string) ExtendedInstructionData {
 	return ExtendedInstructionData{
 		ID:               cd.ID,
 		MITREID:          cd.MITREID,
@@ -46,6 +48,7 @@ func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction str
 		Cleanup:          cd.Cleanup,
 		MessageUUID:      messageUUID,
 		AgentAction:      agentAction,
+		Files:            files,
 	}
 }
 
@@ -141,7 +144,7 @@ func (cm *InstructionManager) GetByID(id string) (*InstructionData, bool) {
 }
 
 /**  이전에 쓰고 현재는 사용하지 않는 코드라서 주석처리했습니다.
-해당 코드를 지우기전에 허남정 연구원에게 연락주시길 바랍니다.
+해당 코드를 지우기전에 허남정 연구원에게 연락주시길 바랍니다. 01054660028
 
 
 //// Insert는 새로운 InstructionData를 삽입하는 함수입니다.

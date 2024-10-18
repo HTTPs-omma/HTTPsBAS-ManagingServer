@@ -28,9 +28,10 @@ const (
 
 // swagger:parameters Request
 type InstructionD struct {
-	ProcedureID string `json:"procedureID" default:"P_PrivilegeEscalation_0001"`
-	AgentUUID   string `json:"agentUUID" default:"5610eb3154c742d4bc95ce9194166ac4"`
-	Action      string `json:"action" default:"ExecutePayLoad"`
+	ProcedureID string   `json:"procedureID" default:"P_PrivilegeEscalation_0001"`
+	AgentUUID   string   `json:"agentUUID" default:"5610eb3154c742d4bc95ce9194166ac4"`
+	Action      string   `json:"action" default:"ExecutePayLoad"`
+	Files       []string `json:"files" default:"[]"`
 	//MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
@@ -43,7 +44,7 @@ type InstructionD struct {
 // @contact.email	support@managingserver.io
 // @license.name	Apache 2.0
 // @license.url	http://www.apache.org/licenses/LICENSE-2.0.html
-// @host			uskawjdu.iptime.org:80
+// @host			httpsbas.com:8002
 // @BasePath		/
 // @Path			/api
 func SetupAPIRoutes(app *fiber.App) {
@@ -67,7 +68,6 @@ func checkInstReq(ctx fiber.Ctx) error {
 	}
 
 	//fmt.Println()
-
 	// fmt.Println("hs.command : ", hs.Command)
 	// fmt.Println("hs.TotalLength : ", hs.TotalLength)
 	dipt := Core.CommandDispatcher{}
@@ -112,18 +112,21 @@ func postInst(ctx fiber.Ctx) error {
 	if err != nil {
 		return ctx.Status(404).Send([]byte(err.Error()))
 	}
-	//fmt.Println("test : ", InstD.ProcedureID, InstD.AgentUUID, InstD.MessageUUID)
+
+	InstD.ProcedureID = strings.Replace(InstD.ProcedureID, " ", "", -1)
+	InstD.AgentUUID = strings.Replace(InstD.AgentUUID, " ", "", -1)
 
 	newUUID := uuid.New()
 	MessageUUID := newUUID.String()
 	MessageUUID = strings.Replace(MessageUUID, "-", "", -1)
 	err = jobdb.InsertJobData(&Model.JobData{
-		0,
-		InstD.ProcedureID,
-		InstD.AgentUUID,
-		MessageUUID,
-		InstD.Action,
-		time.Now(),
+		Id:          0,
+		ProcedureID: InstD.ProcedureID,
+		AgentUUID:   InstD.AgentUUID,
+		MessageUUID: MessageUUID,
+		Action:      InstD.Action,
+		Files:       InstD.Files,
+		CreateAt:    time.Now(),
 	})
 	if err != nil {
 		fmt.Println("Error inserting data:", err)
