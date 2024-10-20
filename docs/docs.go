@@ -49,6 +49,50 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/api/updateNickname": {
+            "post": {
+                "description": "This API updates the nickname of an agent identified by its UUID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "summary": "Update the nickname of an agent",
+                "operationId": "update-nickname",
+                "parameters": [
+                    {
+                        "description": "Update NickName request. 'AgentUUID' is the identifier of the agent, and 'NickName' is the new nickname.",
+                        "name": "updateNicknameRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/router.UpdateNicknameRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "NickName updated successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request: JSON parsing failed",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to connect to the database or update NickName",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/view/ApplicationDB": {
             "get": {
                 "description": "Retrieves application database records by UUID, or all records if no UUID is provided",
@@ -167,7 +211,18 @@ const docTemplate = `{
                 },
                 "procedureID": {
                     "type": "string",
-                    "default": "P_PrivilegeEscalation_0001"
+                    "default": "P_Collection_0001"
+                }
+            }
+        },
+        "router.UpdateNicknameRequest": {
+            "type": "object",
+            "properties": {
+                "agentUUID": {
+                    "type": "string"
+                },
+                "nickName": {
+                    "type": "string"
                 }
             }
         }

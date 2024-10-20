@@ -3,11 +3,12 @@ package Model
 import (
 	"context"
 	"fmt"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
 	"time"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // Chatgpt 이용함.
@@ -19,11 +20,14 @@ MongoDB는 100개의 커넥션 풀을 지원한다.
 func getCollectionPtr() (*mongo.Database, error) {
 	MONGOID := os.Getenv("MONGODBID")
 	MONGOPW := os.Getenv("MONGODBPW")
+	SERVER_DOMAIN := os.Getenv("SERVER_DOMAIN")
+	MONGOPORT := os.Getenv("MONGOPORT")
+
 	clientOptions := options.Client().
-		ApplyURI("mongodb://" + MONGOID + ":" + MONGOPW + "@uskawjdu.iptime.org:17017/"). // MongoDB URI
-		SetMaxPoolSize(50).                                                               // 최대 풀 크기
-		SetMinPoolSize(10).                                                               // 최소 풀 크기
-		SetMaxConnIdleTime(60 * time.Second)                                              // 최대 유휴 시간
+		ApplyURI("mongodb://" + MONGOID + ":" + MONGOPW + "@" + SERVER_DOMAIN + ":" + MONGOPORT). // MongoDB URI
+		SetMaxPoolSize(50).                                                                       // 최대 풀 크기
+		SetMinPoolSize(10).                                                                       // 최소 풀 크기
+		SetMaxConnIdleTime(60 * time.Second)                                                      // 최대 유휴 시간
 		//fmt.Println("mongodb://" + MONGOID + ":" + MONGOPW + "@uskawjdu.iptime.org:17017/")
 	// 클라이언트 생성
 	client, err := mongo.NewClient(clientOptions)

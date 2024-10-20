@@ -13,7 +13,14 @@ definitions:
           type: string
         type: array
       procedureID:
-        default: P_PrivilegeEscalation_0001
+        default: P_Collection_0001
+        type: string
+    type: object
+  router.UpdateNicknameRequest:
+    properties:
+      agentUUID:
+        type: string
+      nickName:
         type: string
     type: object
 host: httpsbas.com:8002
@@ -49,6 +56,36 @@ paths:
       - application/json
       responses: {}
       summary: ExecutePayLoad ExecuteCleanUp GetSystemInfo GetApplication StopAgent
+  /api/updateNickname:
+    post:
+      consumes:
+      - application/json
+      description: This API updates the nickname of an agent identified by its UUID.
+      operationId: update-nickname
+      parameters:
+      - description: Update NickName request. 'AgentUUID' is the identifier of the
+          agent, and 'NickName' is the new nickname.
+        in: body
+        name: updateNicknameRequest
+        required: true
+        schema:
+          $ref: '#/definitions/router.UpdateNicknameRequest'
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: NickName updated successfully
+          schema:
+            type: string
+        "400":
+          description: 'Invalid request: JSON parsing failed'
+          schema:
+            type: string
+        "500":
+          description: Failed to connect to the database or update NickName
+          schema:
+            type: string
+      summary: Update the nickname of an agent
   /view/ApplicationDB:
     get:
       description: Retrieves application database records by UUID, or all records

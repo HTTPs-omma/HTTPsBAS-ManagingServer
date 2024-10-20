@@ -244,9 +244,14 @@ func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 		}
 		cmdData, issuccess := cmdMgr.GetByID(job.ProcedureID) // 프로시저를 불러와야함.
 		if issuccess != true {
-			return nil, fmt.Errorf("job procedure not found")
+			if job.Action == "GetSystemInfo" || job.Action == "GetApplication" || job.Action == "StopAgent" || job.Action == "ChangeProtocolToTCP" || job.Action == "ChangeProtocolToHTTP" {
+				cmdData, issuccess = cmdMgr.GetByID("P_Collection_0001")
+			} else {
+				return nil, fmt.Errorf("job procedure not found")
+			}
+
 		}
-		fmt.Println(job.Files)
+
 		extendedcmdData := cmdData.ConvertToExtended(job.MessageUUID, job.Action, job.Files)
 		bData, err := extendedcmdData.ToBytes()
 		if err != nil {

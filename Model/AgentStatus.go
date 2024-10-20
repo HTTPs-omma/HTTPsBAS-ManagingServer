@@ -49,6 +49,7 @@ type AgentStatusRecord struct {
 	UUID      string
 	Status    HSProtocol.AGENTSTATUS
 	Protocol  HSProtocol.PROTOCOL
+	NickName  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -62,8 +63,6 @@ func NewAgentStatusDB() (*AgentStatusDB, error) {
 	}
 	return db, nil
 }
-
-// CreateTable creates the AgentStatus table if it does not exist.
 func (s *AgentStatusDB) CreateTable() error {
 	db, err := getDBPtr()
 	if err != nil {
@@ -75,8 +74,9 @@ func (s *AgentStatusDB) CreateTable() error {
 		CREATE TABLE IF NOT EXISTS %s (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			uuid TEXT NOT NULL UNIQUE,
+			nickName TEXT,
 			status int,
-			protocol int Default 0,
+			protocol int DEFAULT 0,
 			createAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 			updateAt DATETIME DEFAULT CURRENT_TIMESTAMP
 		);
@@ -108,7 +108,7 @@ func (s *AgentStatusDB) CreateTable() error {
 	return nil
 }
 
-// InsertRecord inserts a new record into the AgentStatus table.
+// InsertRecord 메서드에서 NickName 필드를 추가하여 레코드 삽입
 func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 	db, err := getDBPtr()
 	if err != nil {
@@ -127,14 +127,14 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 		return s.UpdateRecord(data)
 	}
 
-	query := fmt.Sprintf(`INSERT INTO %s (uuid, status, protocol) VALUES (?, ?, ?)`, s.dbName)
+	query := fmt.Sprintf(`INSERT INTO %s (uuid, nickName, status, protocol) VALUES (?, ?, ?, ?)`, s.dbName)
 	stmt, err := db.Prepare(query)
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(data.UUID, data.Status, data.Protocol)
+	_, err = stmt.Exec(data.UUID, data.NickName, data.Status, data.Protocol)
 	if err != nil {
 		return err
 	}
@@ -142,6 +142,7 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 	return nil
 }
 
+// SelectAllRecords 메서드에서 NickName 필드 추가
 func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	db, err := getDBPtr()
 	if err != nil {
@@ -149,9 +150,8 @@ func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`SELECT id, uuid, status, protocol, createAt, updateAt FROM %s`, s.dbName)
+	query := fmt.Sprintf(`SELECT id, uuid, nickName, status, protocol, createAt, updateAt FROM %s`, s.dbName)
 	rows, err := db.Query(query)
-	defer rows.Close()
 	if err != nil {
 		return nil, err
 	}
@@ -160,7 +160,7 @@ func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	records := []AgentStatusRecord{}
 	for rows.Next() {
 		var record AgentStatusRecord
-		err := rows.Scan(&record.ID, &record.UUID, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)
+		err := rows.Scan(&record.ID, &record.UUID, &record.NickName, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)
 		if err != nil {
 			return nil, err
 		}
@@ -170,6 +170,7 @@ func (s *AgentStatusDB) SelectAllRecords() ([]AgentStatusRecord, error) {
 	return records, nil
 }
 
+// SelectRecordByUUID 메서드에서 NickName 필드 추가
 func (s *AgentStatusDB) SelectRecordByUUID(uuid string) ([]AgentStatusRecord, error) {
 	db, err := getDBPtr()
 	if err != nil {
@@ -177,12 +178,12 @@ func (s *AgentStatusDB) SelectRecordByUUID(uuid string) ([]AgentStatusRecord, er
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`SELECT id, uuid, status, protocol, createAt, updateAt FROM %s WHERE uuid = ?`, s.dbName)
+	query := fmt.Sprintf(`SELECT id, uuid, nickName, status, protocol, createAt, updateAt FROM %s WHERE uuid = ?`, s.dbName)
 	row := db.QueryRow(query, uuid)
 
 	var records []AgentStatusRecord
 	var record AgentStatusRecord
-	err = row.Scan(&record.ID, &record.UUID, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)
+	err = row.Scan(&record.ID, &record.UUID, &record.NickName, &record.Status, &record.Protocol, &record.CreatedAt, &record.UpdatedAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return nil, nil // Return nil if no record is found
@@ -193,7 +194,7 @@ func (s *AgentStatusDB) SelectRecordByUUID(uuid string) ([]AgentStatusRecord, er
 	return append(records, record), nil
 }
 
-// UpdateRecord updates the status and protocol of a record identified by its UUID.
+// UpdateRecord 메서드에서 NickName 필드를 업데이트하도록 수정
 func (s *AgentStatusDB) UpdateRecord(data *AgentStatusRecord) error {
 	db, err := getDBPtr()
 	if err != nil {
@@ -201,8 +202,8 @@ func (s *AgentStatusDB) UpdateRecord(data *AgentStatusRecord) error {
 	}
 	defer db.Close()
 
-	query := fmt.Sprintf(`UPDATE %s SET status = ? WHERE uuid = ?`, s.dbName)
-	_, err = db.Exec(query, data.Status, data.UUID)
+	query := fmt.Sprintf(`UPDATE %s SET status = ?, nickName = ? WHERE uuid = ?`, s.dbName)
+	_, err = db.Exec(query, data.Status, data.NickName, data.UUID)
 	if err != nil {
 		return err
 	}

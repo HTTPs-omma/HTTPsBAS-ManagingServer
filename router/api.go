@@ -28,11 +28,10 @@ const (
 
 // swagger:parameters Request
 type InstructionD struct {
-	ProcedureID string   `json:"procedureID" default:"P_PrivilegeEscalation_0001"`
+	ProcedureID string   `json:"procedureID" default:"P_Collection_0001"`
 	AgentUUID   string   `json:"agentUUID" default:"5610eb3154c742d4bc95ce9194166ac4"`
 	Action      string   `json:"action" default:"ExecutePayLoad"`
 	Files       []string `json:"files"`
-	//MessageUUID string `json:"messageUUID" default:"32a2833486414af9bc4596caef585538"`
 }
 
 // @title			ManagingServer API
@@ -52,7 +51,7 @@ func SetupAPIRoutes(app *fiber.App) {
 	app.Post("/api/checkInstReq", checkInstReq)
 	app.Post("/api/postInst", postInst)
 	app.Post("/ipinfo", updateIPInfo)
-
+	app.Post("/api/updateNickname", updateNickname) // NickName 업데이트 라우터 추가
 }
 
 func checkInstReq(ctx fiber.Ctx) error {
@@ -166,4 +165,53 @@ func updateIPInfo(c fiber.Ctx) error {
 	}
 
 	return c.SendString("IP information updated successfully")
+}
+
+type UpdateNicknameRequest struct {
+	AgentUUID string `json:"agentUUID"`
+	NickName  string `json:"nickName"`
+}
+
+// updateNickname updates the nickname of an agent based on the provided AgentUUID.
+//
+//	@Summary		Update the nickname of an agent
+//	@Description	This API updates the nickname of an agent identified by its UUID.
+//	@ID				update-nickname
+//	@Accept			json
+//	@Produce		plain
+//	@Param			updateNicknameRequest	body	UpdateNicknameRequest	true	"Update NickName request. 'AgentUUID' is the identifier of the agent, and 'NickName' is the new nickname."
+//	@Success		200	{string}	string	"NickName updated successfully"
+//	@Failure		400	{string}	string	"Invalid request: JSON parsing failed"
+//	@Failure		500	{string}	string	"Failed to connect to the database or update NickName"
+//	@Router			/api/updateNickname [post]
+func updateNickname(ctx fiber.Ctx) error {
+	var requestData struct {
+		AgentUUID string `json:"agentUUID"`
+		NickName  string `json:"nickName"`
+	}
+
+	if err := json.Unmarshal(ctx.Body(), &requestData); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).SendString("Invalid request: JSON parsing failed")
+	}
+
+	// 공백 제거
+	requestData.AgentUUID = strings.Replace(requestData.AgentUUID, " ", "", -1)
+	requestData.NickName = strings.TrimSpace(requestData.NickName)
+
+	// DB 연결
+	agentDB, err := Model.NewAgentStatusDB()
+	if err != nil {
+		return ctx.Status(fiber.StatusInternalServerError).SendString("Failed to connect to the database")
+	}
+
+	// 해당 Agent의 NickName 업데이트
+	err = agentDB.UpdateRecord(&Model.AgentStatusRecord{
+		UUID:     requestData.AgentUUID,
+		NickName: requestData.NickName,
+	})
+	if err != nil {
+		return ctx.Status(fiber.StatusInternalServerError).SendString("Failed to update NickName")
+	}
+
+	return ctx.SendString("NickName updated successfully")
 }
