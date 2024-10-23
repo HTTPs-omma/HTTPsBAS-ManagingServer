@@ -35,9 +35,10 @@ type ExtendedInstructionData struct {
 	MessageUUID      string   `yaml:"messageUUID"`
 	AgentAction      string   `yaml:"agentAction"`
 	Files            []string `yaml:"files"`
+	Update           string   `yaml:"update"`
 }
 
-func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction string, files []string) ExtendedInstructionData {
+func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction string, files []string, update string) ExtendedInstructionData {
 	return ExtendedInstructionData{
 		ID:               cd.ID,
 		MITREID:          cd.MITREID,
@@ -49,6 +50,7 @@ func (cd *InstructionData) ConvertToExtended(messageUUID string, agentAction str
 		MessageUUID:      messageUUID,
 		AgentAction:      agentAction,
 		Files:            files,
+		Update:           update,
 	}
 }
 

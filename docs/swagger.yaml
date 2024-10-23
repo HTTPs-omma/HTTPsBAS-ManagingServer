@@ -15,6 +15,8 @@ definitions:
       procedureID:
         default: P_Collection_0001
         type: string
+      upload:
+        type: string
     type: object
   router.UpdateNicknameRequest:
     properties:

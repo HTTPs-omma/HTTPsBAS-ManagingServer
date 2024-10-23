@@ -252,7 +252,7 @@ func FETCH_INSTRUCTION(hs *HSProtocol.HS) (*HSProtocol.HS, error) {
 
 		}
 
-		extendedcmdData := cmdData.ConvertToExtended(job.MessageUUID, job.Action, job.Files)
+		extendedcmdData := cmdData.ConvertToExtended(job.MessageUUID, job.Action, job.Files, job.Upload)
 		bData, err := extendedcmdData.ToBytes()
 		if err != nil {
 			return nil, err

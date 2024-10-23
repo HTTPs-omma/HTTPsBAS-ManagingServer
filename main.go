@@ -106,6 +106,12 @@ func handleTCPConnection(conn net.Conn) {
 			continue
 		}
 
+		defer func() {
+			if r := recover(); r != nil {
+				fmt.Println("panic 회복:", r)
+			}
+		}()
+
 		HSMgr := HSProtocol.NewHSProtocolManager()
 		hs, err := HSMgr.Parsing(buffer)
 		if err != nil {

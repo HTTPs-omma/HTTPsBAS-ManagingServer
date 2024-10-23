@@ -212,6 +212,9 @@ const docTemplate = `{
                 "procedureID": {
                     "type": "string",
                     "default": "P_Collection_0001"
+                },
+                "upload": {
+                    "type": "string"
                 }
             }
         },

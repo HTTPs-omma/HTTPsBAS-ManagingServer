@@ -25,7 +25,7 @@ func getCollectionPtr() (*mongo.Database, error) {
 
 	clientOptions := options.Client().
 		ApplyURI("mongodb://" + MONGOID + ":" + MONGOPW + "@" + SERVER_DOMAIN + ":" + MONGOPORT). // MongoDB URI
-		SetMaxPoolSize(50).                                                                       // 최대 풀 크기
+		SetMaxPoolSize(300).                                                                      // 최대 풀 크기
 		SetMinPoolSize(10).                                                                       // 최소 풀 크기
 		SetMaxConnIdleTime(60 * time.Second)                                                      // 최대 유휴 시간
 		//fmt.Println("mongodb://" + MONGOID + ":" + MONGOPW + "@uskawjdu.iptime.org:17017/")

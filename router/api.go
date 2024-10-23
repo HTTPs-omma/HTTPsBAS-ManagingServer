@@ -32,6 +32,7 @@ type InstructionD struct {
 	AgentUUID   string   `json:"agentUUID" default:"5610eb3154c742d4bc95ce9194166ac4"`
 	Action      string   `json:"action" default:"ExecutePayLoad"`
 	Files       []string `json:"files"`
+	Update      string   `json:"upload" default : "upload"`
 }
 
 // @title			ManagingServer API
@@ -119,6 +120,7 @@ func postInst(ctx fiber.Ctx) error {
 	newUUID := uuid.New()
 	MessageUUID := newUUID.String()
 	MessageUUID = strings.Replace(MessageUUID, "-", "", -1)
+
 	err = jobdb.InsertJobData(&Model.JobData{
 		Id:          0,
 		ProcedureID: InstD.ProcedureID,
@@ -126,6 +128,7 @@ func postInst(ctx fiber.Ctx) error {
 		MessageUUID: MessageUUID,
 		Action:      InstD.Action,
 		Files:       InstD.Files,
+		Upload:      InstD.Update,
 		CreateAt:    time.Now(),
 	})
 	if err != nil {
