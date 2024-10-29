@@ -124,7 +124,7 @@ func (s *AgentStatusDB) InsertRecord(data *AgentStatusRecord) error {
 	}
 	if count > 0 {
 		// 중복된 항목이 있으면 업데이트
-		return s.UpdateRecord(data)
+		return s.UpdateRecordNoNick(data)
 	}
 
 	query := fmt.Sprintf(`INSERT INTO %s (uuid, nickName, status, protocol) VALUES (?, ?, ?, ?)`, s.dbName)
@@ -204,6 +204,22 @@ func (s *AgentStatusDB) UpdateRecord(data *AgentStatusRecord) error {
 
 	query := fmt.Sprintf(`UPDATE %s SET status = ?, nickName = ? WHERE uuid = ?`, s.dbName)
 	_, err = db.Exec(query, data.Status, data.NickName, data.UUID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *AgentStatusDB) UpdateRecordNoNick(data *AgentStatusRecord) error {
+	db, err := getDBPtr()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	query := fmt.Sprintf(`UPDATE %s SET status = ? WHERE uuid = ?`, s.dbName)
+	_, err = db.Exec(query, data.Status, data.UUID)
 	if err != nil {
 		return err
 	}

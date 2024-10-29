@@ -95,3 +95,31 @@ main.handleTCPConnection({0x124fef8, 0xc000baee90})
 created by main.TCPServer in goroutine 5
 	/home/ubuntu/agentApp/HTTPsBAS-ManagingServer/main.go:88 +0x25f
 exit status 2
+TCP server listening on port 8080
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+
+    _______ __             
+   / ____(_) /_  ___  _____
+  / /_  / / __ \/ _ \/ ___/
+ / __/ / / /_/ /  __/ /    
+/_/   /_/_.___/\___/_/          v3.0.0-beta.3
+--------------------------------------------------
+INFO Server started on: 	http://127.0.0.1:8002 (bound on host 0.0.0.0 and port 8002)
+INFO Total handlers count: 	19
+INFO Prefork: 			Disabled
+INFO PID: 			3157198
+INFO Total process count: 	1
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:8001
+signal: interrupt
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+Error starting HTTP server: failed to listen: failed to listen: listen tcp4 :8002: bind: address already in use

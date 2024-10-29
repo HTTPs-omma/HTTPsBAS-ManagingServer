@@ -93,8 +93,8 @@ func TCPServer() {
 func handleTCPConnection(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	reader.Discard(reader.Buffered()) // 남은 버퍼를 버림
-	// defer conn.Close() // 함수 호출 종료 후 Close
-
+	defer conn.Close()                // 함수 호출 종료 후 Close
+	index := 0
 	for {
 		buffer := make([]byte, 1024*1024)
 		n, err := conn.Read(buffer)
@@ -102,9 +102,14 @@ func handleTCPConnection(conn net.Conn) {
 			fmt.Println("Error reading from connection:", err)
 			break
 		}
+		if index > 100 {
+			break
+		}
 		if n < 2 {
+			index += 1
 			continue
 		}
+		index = 0
 
 		defer func() {
 			if r := recover(); r != nil {
